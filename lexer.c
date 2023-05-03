@@ -19,7 +19,7 @@ int main()
 	(input = readline("> "));
 	i = 0;
 	a = NEWLINE;
-	lexer = ft_lstnew(i, a, input);
+	lexer = ft_lstnew(i, a,de input);
     free(input);
 	i++;
     while ((input = readline("> ")) != NULL) {
