@@ -16,17 +16,16 @@ int main()
 	int			i;
 	t_tokens 	a;
 
-	(input = readline("> "));
-	i = 0;
 	a = NEWLINE;
-	lexer = ft_lstnew(i, a, input);
-    free(input);
-	i++;
-    while ((input = readline("> ")) != NULL) {
+	lexer = NULL;
+	i = 0;
+    while ((input = reqdadline("> ")) != NULL) 
+	{
         add_history(input);
-		ft_lstadd_back(&lexer, ft_lstnew(i, a, input));
+		//ft_lstadd_back(&lexer, ft_lstnew(i, a, input));
         printf("You entered: %s\n", input);
-        free(input);
+    	rl_on_new_line();
+        //free(input);
 		i++;
     }
 	//print_list(lexer);
