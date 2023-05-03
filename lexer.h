@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/03 16:58:14 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/03 17:27:14 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 
 typedef enum s_tokens
 {
-	_WORD = 1;
+	_WORD = 1,
 	_PIPE = '|',
 	_GREATER = '>',
 	_LESSER = '<',

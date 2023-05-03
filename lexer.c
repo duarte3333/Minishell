@@ -9,7 +9,7 @@ void	print_list(t_lexer *lexer)
 	}
 }
 //Lexical Analyzer
-int main() 
+/* int main() 
 {
 	t_lexer 	*lexer;
     char		*input;
@@ -30,4 +30,4 @@ int main()
     }
 	//print_list(lexer);
     return 0;
-}
+} */
