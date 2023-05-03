@@ -19,7 +19,7 @@ int main()
 	a = NEWLINE;
 	lexer = NULL;
 	i = 0;
-    while ((input = reqdadline("> ")) != NULL) 
+    while ((input = readline("> ")) != NULL) 
 	{
         add_history(input);
 		//ft_lstadd_back(&lexer, ft_lstnew(i, a, input));
