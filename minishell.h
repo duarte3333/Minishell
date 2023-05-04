@@ -27,12 +27,13 @@
 
 typedef struct s_list
 {
-	char    		*content;
+	char    		**content;
 	int				fd[2];
 	struct s_list	*next;
 	struct s_list	*prev;
 }	t_list;
 
+//Aux functions
 size_t	ft_strlen(const char *str);
 t_list	*ft_lstnew(char *content);
 char	**ft_split(const char *str, char c);
@@ -41,6 +42,10 @@ char	*ft_strjoinn(char *s1, char const *s2);
 t_list	*ft_lstnew(char *content);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
+
+//Parse Function
+void	parse(char *res, char *str, char sep, int slen);
+
 
 
 

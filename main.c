@@ -24,7 +24,7 @@ void	print_list(t_list *list)
 }
 
 //ls -l | < Makefile cat | cat > out
-void	classifier(char *div, t_list *pre_list)
+void	classifier(char *div, t_list **pre_list)
 {
 	int		i;
 	char	*temp;
@@ -32,47 +32,38 @@ void	classifier(char *div, t_list *pre_list)
 
 	i = -1;
 	temp = NULL;
-	post = ft_split(div, ' ');
-	while (post[++i])
-	{
-		//printf("post %s\n", post[i]);
-		if (!strcmp(post[i], "<"))
-			i++;
-		else if (!strcmp(post[i], ">"))
-			i++;
-		else if (!strcmp(post[i], "<<"))
-			i++;
-		else if (!strcmp(post[i], "<<"))
-			i++;
-		else
-		{
-			if (!temp)
-				temp = post[i];
-			else
-			{
-				temp = ft_strjoinn(temp, " ");
-				temp = ft_strjoinn(temp, post[i]);
-				//printf("temp %s\n", temp);
-			}
-		}
-	}
-	ft_lstadd_back(&pre_list, ft_lstnew(temp));
-	print_list(pre_list);
+	post = ft_split(div, '2');
+	printf("post %s\n", post[0]);
+	ft_lstadd_back(pre_list, ft_lstnew(ft_split(post, '2')));
+	//print_list(pre_list);
 }
 
 t_list	*generate_list(char *input)
 {
-	int		i;
-	int		j;
-	t_list	*pre_list;
-	char 	**division;
-	char 	**post_division;
+	int				i;
+	t_list			*pre_list;
+	char 			**division;
+	static char 	*pre_split;
 
-	division = ft_split(input, '|');
+	printf("{input} %s\n", input);
+	printf("{size} %i\n",ft_strlen(input));
+	pre_split = (char *)malloc(sizeof(char) * (ft_strlen(input) * 2) + 1);
+	pre_split[(ft_strlen(input) * 2)] = NULL;
+	parse(pre_split, input, 0, 0);
+	printf("{pre_split} %s\n", pre_split);
+	division = ft_split("wc322>>22>", '3');
+	free(pre_split);
 	pre_list = NULL;
 	i = -1;
 	while (division[++i])
-		classifier(division[i], pre_list);
+	{
+		printf("{division} %s\n", division[i]);
+		ft_lstadd_back(pre_list, ft_lstnew(ft_split(div, '2')));
+
+		classifier(division[i], &pre_list);
+		free(division[i]);
+	}
+	free(division);
 	return (pre_list);
 }
 
@@ -92,7 +83,7 @@ int	main(int ac, char **av, char **env)
 			exit(0);
 		}
 		pre_list = generate_list(input);
-		//print_list(pre_list);
+		print_list(pre_list);
 		free(input);
 	}
 }

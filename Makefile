@@ -1,5 +1,5 @@
 NAME = minishell
-CC = cc -lreadline
+CC = clang -lreadline
 CFLAGS = -O3 -Wall -Wextra -g -fsanitize=address #-Werror
 
 #valgrind --leak-check=full --show-leak-kinds=all 
@@ -18,7 +18,7 @@ RESET=\033[0m
 bold_green=\033[1;32m
 yellow_bg=\033[43m
 
-SRCS =	lexer.c \
+SRCS =	parser.c \
 		main.c \
 		Aux/ft_calloc.c \
 		Aux/ft_strlen.c \

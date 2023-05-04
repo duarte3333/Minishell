@@ -50,14 +50,15 @@ void	parse(char *res, char *str, char sep, int slen)
 			len = 0;
 		}
 	}
+	*res = 0;
 }
 
-int main(int ac, char **av)
-{
-	char *line = av[1];
-	(void)ac;
-	static char res[1000];
-	printf("%s\n", av[1]);
-	parse(res,line, 0, 0);
-	printf("%s\n", res);
-}
+// int main(int ac, char **av)
+// {
+// 	char *line = av[1];
+// 	(void)ac;
+// 	static char res[1000];
+// 	printf("%s\n", av[1]);
+// 	parse(res,line, 0, 0);
+// 	printf("%s\n", res);
+// }
