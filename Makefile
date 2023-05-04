@@ -23,7 +23,8 @@ SRCS =	lexer.c \
 		Aux/ft_calloc.c \
 		Aux/ft_strlen.c \
 		Aux/lists_aux.c \
-		Aux/ft_split.c 
+		Aux/ft_split.c \
+		Aux/ft_strjoin.c
 
 OBJS	= ${SRCS:.c=.o}
 

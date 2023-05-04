@@ -23,20 +23,57 @@ void	print_list(t_list *list)
 	}
 }
 
+//ls -l | < Makefile cat | cat > out
+void	classifier(char *div, t_list *pre_list)
+{
+	int		i;
+	char	*temp;
+	char 	**post;
+
+	i = -1;
+	temp = NULL;
+	post = ft_split(div, ' ');
+	while (post[++i])
+	{
+		//printf("post %s\n", post[i]);
+		if (!strcmp(post[i], "<"))
+			i++;
+		else if (!strcmp(post[i], ">"))
+			i++;
+		else if (!strcmp(post[i], "<<"))
+			i++;
+		else if (!strcmp(post[i], "<<"))
+			i++;
+		else
+		{
+			if (!temp)
+				temp = post[i];
+			else
+			{
+				temp = ft_strjoinn(temp, " ");
+				temp = ft_strjoinn(temp, post[i]);
+				//printf("temp %s\n", temp);
+			}
+		}
+	}
+	ft_lstadd_back(&pre_list, ft_lstnew(temp));
+	print_list(pre_list);
+
+}
+
 t_list	*generate_list(char *input)
 {
 	int		i;
 	int		j;
 	t_list	*pre_list;
 	char 	**division;
+	char 	**post_division;
 
 	division = ft_split(input, '|');
 	pre_list = NULL;
 	i = -1;
 	while (division[++i])
-	{
-		ft_lstadd_back(&pre_list, ft_lstnew(division[i]));
-	}
+		classifier(division[i], pre_list);
 	return (pre_list);
 }
 
