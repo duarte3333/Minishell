@@ -1,5 +1,5 @@
 NAME = minishell
-CC = clang -lreadline
+CC = cc -lreadline
 CFLAGS = -O3 -Wall -Wextra -g -fsanitize=address #-Werror
 
 #valgrind --leak-check=full --show-leak-kinds=all 
