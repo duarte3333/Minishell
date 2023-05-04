@@ -1,6 +1,6 @@
 NAME = minishell
-CC = cc -lreadline
-CFLAGS = -O3 -Wall -Wextra -g #-fsanitize=address #-Werror
+CC = clang -lreadline
+CFLAGS = -O3 -Wall -Wextra -g -fsanitize=address #-Werror
 
 #valgrind --leak-check=full --show-leak-kinds=all 
 #--track-fds=yes ./pipex /dev/random  head out.txt
@@ -22,7 +22,8 @@ SRCS =	lexer.c \
 		main.c \
 		Aux/ft_calloc.c \
 		Aux/ft_strlen.c \
-		Aux/lists_aux.c
+		Aux/lists_aux.c \
+		Aux/ft_split.c 
 
 OBJS	= ${SRCS:.c=.o}
 

@@ -10,24 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lexer.h"
+#include "../minishell.h"
 
 //Esta funcao cria um nó
-t_lexer	*ft_lstnew(int i, t_tokens token, char *str)
+t_list	*ft_lstnew(char *content)
 {
-	t_lexer	*new;
+	t_list	*new;
 
-	new = (t_lexer *)ft_calloc(sizeof(t_lexer), 1);
+	new = (t_list *)ft_calloc(sizeof(t_list), 1);
 	if (!new)
 		return (NULL);
-	new->i = i;
-	new->token = token;
-	new->str = str;
+	new->content = content;
+	if (pipe(new->fd) == -1)
+		perror("");
 	return (new);
 }
 
 //Esta funcao retorna o ultimo elemento de uma linked list
-t_lexer	*ft_lstlast(t_lexer *lst)
+t_list	*ft_lstlast(t_list *lst)
 {
 	while (lst)
 	{
@@ -40,7 +40,7 @@ t_lexer	*ft_lstlast(t_lexer *lst)
 
 //Esta funcao acrescenta um ultimo elemento na linked list
 //Ou seja, coloca o last->next a apontar para o new
-void	ft_lstadd_back(t_lexer **lst, t_lexer *new)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	if (lst)
 	{

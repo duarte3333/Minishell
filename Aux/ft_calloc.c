@@ -1,4 +1,4 @@
-#include "../lexer.h"
+#include "../minishell.h"
 
 //Esta funcao aloca memoria para n bytes com o malloc
 //e depois coloca zeros em todos os bytes que alocou

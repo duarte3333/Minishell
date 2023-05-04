@@ -1,13 +1,13 @@
-#include "lexer.h"
+// #include "lexer.h"
 
-void	print_list(t_lexer *lexer)
-{
-	while (lexer)
-	{
-		printf("[i]: %i; [str]: %s",lexer->i, lexer->str);
-		lexer = lexer->next;
-	}
-}
+// void	print_list(t_lexer *lexer)
+// {
+// 	while (lexer)
+// 	{
+// 		printf("[i]: %i; [str]: %s",lexer->i, lexer->str);
+// 		lexer = lexer->next;
+// 	}
+// }
 //Lexical Analyzer
 /* int main() 
 {
