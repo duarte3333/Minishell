@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:57:38 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/04 18:21:49 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/04 18:45:21 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,32 +26,27 @@ int	check_sep(char *str, int *slen)
 
 void	parse(char *res, char *str, char sep, int slen)
 {
-	int		i;
 	int		len;
 
-	i = -1;
 	len = 0;
-	while (str[++i])
+	while (str && *str)
 	{
-		if (str[i] == sep) // se for igual as aspas faz reset
-			sep = 0;
-		else if (str[i] == '\'' || str[i] == '\"') // primeira aspa apanhada portanto ligamos a flag (sep) e definimos o seu tamanho em sep_len
-			sep = str[i];
-		else if (str[i] == ' ' && !sep) // se a flag estiver down sub espaco por 2
-			str[i] = '2';
-		if (!sep && check_sep(&str[i], &slen)) // pipe e sub por 3 caso nao esteja a flag ligada
+		if ((*str == '\'' || *str == '\"') && (!sep || sep == *str)) // primeira aspa apanhada portanto ligamos a flag (sep) e definimos o seu tamanho em sep_len
+			sep = (*str) * (sep != *str);
+		else if (*str == ' ' && !sep) // se a flag estiver down sub espaco por 2
+			*str = '2';
+		if (!sep && check_sep(str, &slen) && ++len) // pipe e sub por 3 caso nao esteja a flag ligada
 		{
 			*res++ = ('3' - (len != 0));
-			if (str[i] != '|' || (len))
-				*res++ = str[i];
-			if (str[i] != '|' && slen == 2)
-				*res++ = str[++i];
+			if (*str != '|' || (len))
+				*res++ = *str++;
+			if (*str != '|' && slen == 2)
+				*res++ = *str++;
 			*res++ = '2';
-			len = slen;
 		}
 		else
 		{	
-			*res++ = str[i];
+			*res++ = *str++;
 			len = 0;
 		}
 	}
@@ -59,9 +54,10 @@ void	parse(char *res, char *str, char sep, int slen)
 
 int main(int ac, char **av)
 {
+	char *line = av[1];
 	(void)ac;
-	static char res[500];
+	static char res[1000];
 	printf("%s\n", av[1]);
-	parse(res, av[1], 0, 0);
+	parse(res,line, 0, 0);
 	printf("%s\n", res);
 }
