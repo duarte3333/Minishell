@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:57:38 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/04 18:45:21 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/05 18:43:48 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,19 @@ void	parse(char *res, char *str, char sep, int slen)
 	len = 0;
 	while (str && *str)
 	{
-		if ((*str == '\'' || *str == '\"') && (!sep || sep == *str)) // primeira aspa apanhada portanto ligamos a flag (sep) e definimos o seu tamanho em sep_len
+		if ((*str == '\'' || *str == '\"') && (!sep || sep == *str)) // sep encontrado e se encontrado novamente desligado
 			sep = (*str) * (sep != *str);
 		else if (*str == ' ' && !sep) // se a flag estiver down sub espaco por 2
 			*str = '2';
-		if (!sep && check_sep(str, &slen) && ++len) // pipe e sub por 3 caso nao esteja a flag ligada
+		if (!sep && check_sep(str, &slen)) // sub de pipes por 3 ou no caso de > colocacao de um tres e do proprio cha
 		{
 			*res++ = ('3' - (len != 0));
-			if (*str != '|' || (len))
-				*res++ = *str++;
-			if (*str != '|' && slen == 2)
+			if (*str != '|' || len)
+				*res++ = *str;
+			if (str++ && *str != '|' && slen == 2) // incrementamos o str aqui para poupar linhas
 				*res++ = *str++;
 			*res++ = '2';
+			len++;
 		}
 		else
 		{	

@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:01:28 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/04 15:53:03 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/05 18:44:45 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,18 @@ t_list	*generate_list(char *input)
 {
 	int				i;
 	t_list			*pre_list;
-	char 			**division;
-	static char 	*pre_split;
+	char			**division;
+	static char		*pre_split;
 
-	//printf("{input} %s\n", input);
+	printf("{input} %s\n", input);
 	//printf("{size} %i\n",ft_strlen(input));
-	pre_split = (char *)malloc(sizeof(char) * (ft_strlen(input) * 2) + 1);
+	pre_split = ft_calloc((ft_strlen(input) * 3 + 1), 1);
 	if (!pre_split)
 		return (NULL);
-	//parse(pre_split, input, 0, 0);
-	printf("{pre_split} %s\n", "2cat32ls2-l232ls2>2Makefile2"); //fiz esta linha pa testar pq o parse nao funciona
-	division = ft_split("cat32ls2-l232ls2<2Makefile2", '3');
+	parse(pre_split, input, 0, 0);
+	printf("%s\n", pre_split);
+	//printf("{pre_split} %s\n", "2cat32ls2-l232ls2>2Makefile2"); //fiz esta linha pa testar pq o parse nao funciona
+	division = ft_split(pre_split, '3');
 	pre_list = NULL;
 	i = -1;
 	while (division[++i])
