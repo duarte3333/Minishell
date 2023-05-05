@@ -50,7 +50,6 @@ void	parse(char *res, char *str, char sep, int slen)
 			len = 0;
 		}
 	}
-	*res = 0;
 }
 
 // int main(int ac, char **av)

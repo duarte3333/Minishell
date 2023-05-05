@@ -39,7 +39,6 @@ t_list	*ft_lstnew(char *content);
 char	**ft_split(const char *str, char c);
 void	*ft_calloc(size_t nelem, size_t elsize);
 char	*ft_strjoinn(char *s1, char const *s2);
-t_list	*ft_lstnew(char *content);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 

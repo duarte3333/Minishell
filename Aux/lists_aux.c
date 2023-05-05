@@ -20,7 +20,7 @@ t_list	*ft_lstnew(char *content)
 	new = (t_list *)ft_calloc(sizeof(t_list), 1);
 	if (!new)
 		return (NULL);
-	new->content = content;
+	new->content = ft_split(content, '2');
 	if (pipe(new->fd) == -1)
 		perror("");
 	return (new);
