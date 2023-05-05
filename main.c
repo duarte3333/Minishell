@@ -20,7 +20,7 @@ void	print_list(t_list *list)
 		int i = -1;
 		printf("\n[content]: ");
 		while (list->content[++i])
-			printf("%s ", list->content[i]);
+			printf("{%s}, ", list->content[i]);
 		printf("\n");
 		printf("[fd in] %i\n", list->fd[0]);
 		printf("[fd out] %i\n", list->fd[1]);
@@ -60,8 +60,8 @@ t_list	*generate_list(char *input)
 	if (!pre_split)
 		return (NULL);
 	//parse(pre_split, input, 0, 0);
-	printf("{pre_split} %s\n", "2cat32ls2-l232ls > Makefile2"); //fiz esta linha pa testar pq o parse nao funciona
-	division = ft_split("cat32ls2-l232ls > Makefile2", '3');
+	printf("{pre_split} %s\n", "2cat32ls2-l232ls2>2Makefile2"); //fiz esta linha pa testar pq o parse nao funciona
+	division = ft_split("cat32ls2-l232ls2<2Makefile2", '3');
 	pre_list = NULL;
 	i = -1;
 	while (division[++i])
@@ -91,6 +91,7 @@ int	main(int ac, char **av, char **env)
 		}
 		pre_list = generate_list(input);
 		print_list(pre_list);
+		//execution(pre_list);
 		ft_free_list(&pre_list);
 		free(input);
 	}
