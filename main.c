@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:01:28 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/05 18:44:45 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/09 19:54:48 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	print_list(t_list *list)
 {
-		
 	while (list)
 	{
 		int i = -1;
@@ -54,19 +53,19 @@ t_list	*generate_list(char *input)
 	char			**division;
 	static char		*pre_split;
 
-	printf("{input} %s\n", input);
+	//printf("{input} %s\n", input);
 	//printf("{size} %i\n",ft_strlen(input));
 	pre_split = ft_calloc((ft_strlen(input) * 3 + 1), 1);
 	if (!pre_split)
 		return (NULL);
 	parse(pre_split, input, 0, 0);
-	printf("%s\n", pre_split);
+	//printf("%s\n", pre_split);
 	division = ft_split(pre_split, '3');
 	pre_list = NULL;
 	i = -1;
 	while (division[++i])
 	{
-		printf("{division} %s\n", division[i]);
+		//printf("{division} %s\n", division[i]);
 		ft_lstadd_back(&pre_list, ft_lstnew(division[i]));
 		free(division[i]);
 	}
@@ -78,11 +77,11 @@ t_list	*generate_list(char *input)
 int	main(int ac, char **av, char **env)
 {
 	char	*input;
+	char	*big_path;
 	t_list	*pre_list;
 
 	(void)ac;
 	(void)av;
-	(void)env;
 	while ((input = readline("> ")) != NULL)
 	{
 		if (!strcmp(input, "exit"))
@@ -92,8 +91,8 @@ int	main(int ac, char **av, char **env)
 		}
 		add_history(input);
 		pre_list = generate_list(input);
+		execution(pre_list, env);
 		print_list(pre_list);
-		//execution(pre_list);
 		ft_free_list(&pre_list);
 		free(input);
 	}

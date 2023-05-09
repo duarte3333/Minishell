@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_extra.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:01:28 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/04 15:53:03 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/09 18:43:39 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void	classifier(char *div, t_list *pre_list)
 				temp = post[i];
 			else
 			{
-				temp = ft_strjoinn(temp, " ");
-				temp = ft_strjoinn(temp, post[i]);
+				temp = ft_strjoin(temp, " ");
+				temp = ft_strjoin(temp, post[i]);
 				//printf("temp %s\n", temp);
 			}
 		}

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.h                                            :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/03 17:27:14 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/09 19:42:04 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,21 @@ size_t	ft_strlen(const char *str);
 t_list	*ft_lstnew(char *content);
 char	**ft_split(const char *str, char c);
 void	*ft_calloc(size_t nelem, size_t elsize);
-char	*ft_strjoinn(char *s1, char const *s2);
+char	*ft_strjoin(char *s1, char const *s2);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
+char	*ft_strdup(const char *src);
+void	ft_free_matrix(char ***m);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 //Parse Function
 void	parse(char *res, char *str, char sep, int slen);
 
+//path stuff
+char	*get_path(char **env);
+char	*get_cmd_path(char **env, char **cmd);
 
-
-
+//exec
+void execution(t_list *lst, char **env);
 
 #endif

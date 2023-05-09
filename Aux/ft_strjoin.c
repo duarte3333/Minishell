@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 10:05:58 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/03/17 10:06:08 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/05/09 18:43:13 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	*ft_callocc(size_t nelem, size_t elsize)
 
 //Esta funcao recebe duas strings e faz a concatenação de ambas
 //ou seja, junta-as
-char	*ft_strjoinn(char *s1, char const *s2)
+char	*ft_strjoin(char *s1, char const *s2)
 {
 	int		size_concat;
 	char	*concat;

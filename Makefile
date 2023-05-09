@@ -20,11 +20,15 @@ yellow_bg=\033[43m
 
 SRCS =	parser.c \
 		main.c \
+		path.c \
 		Aux/ft_calloc.c \
 		Aux/ft_strlen.c \
 		Aux/lists_aux.c \
 		Aux/ft_split.c \
 		Aux/ft_strjoin.c \
+		Aux/ft_free_matrix.c \
+		Aux/ft_strncmp.c \
+		Aux/ft_strdup.c \
 		execution.c
 
 OBJS	= ${SRCS:.c=.o}
