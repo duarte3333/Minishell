@@ -61,7 +61,6 @@ t_list	*generate_list(char *input)
 		return (NULL);
 	parse(pre_split, input, 0, 0);
 	printf("%s\n", pre_split);
-	//printf("{pre_split} %s\n", "2cat32ls2-l232ls2>2Makefile2"); //fiz esta linha pa testar pq o parse nao funciona
 	division = ft_split(pre_split, '3');
 	pre_list = NULL;
 	i = -1;
@@ -71,6 +70,7 @@ t_list	*generate_list(char *input)
 		ft_lstadd_back(&pre_list, ft_lstnew(division[i]));
 		free(division[i]);
 	}
+	free(pre_split);
 	free(division);
 	return (pre_list);
 }
@@ -90,6 +90,7 @@ int	main(int ac, char **av, char **env)
 			free(input);
 			exit(0);
 		}
+		add_history(input);
 		pre_list = generate_list(input);
 		print_list(pre_list);
 		//execution(pre_list);
