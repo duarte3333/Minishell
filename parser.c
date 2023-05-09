@@ -55,7 +55,7 @@ void	parse(char *res, char *str, char sep, int slen)
 				*res++ = *str;
 			if (str++ && *str != '|' && slen == 2)
 				*res++ = *str++;
-			*res++ = '2'; //Nao percebo o porquê desta linha
+			*res++ = '2';
 			len++;
 		}
 		else
