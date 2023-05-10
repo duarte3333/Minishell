@@ -1,0 +1,11 @@
+Aux
+execution.c
+Get_Next_Line
+here_doc.c
+main.c
+Makefile
+minishell
+minishell.h
+oi
+parser.c
+path.c

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:01:28 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/09 19:54:48 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/10 15:26:52 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,14 @@
 
 void	print_list(t_list *list)
 {
+	if (!list)
+		printf("empty list\n");
 	while (list)
 	{
-		int i = -1;
+		int	i;
+		
+		i = -1;
+		printf("[p] %p", list);
 		printf("\n[content]: ");
 		while (list->content[++i])
 			printf("{%s}, ", list->content[i]);
@@ -36,8 +41,7 @@ void	ft_free_list(t_list **lst)
 	{
 		i = -1;
 		temp = (*lst)->next;
-		while ((*lst)->content[++i] != NULL)
-			free((*lst)->content[i]);
+		ft_free_matrix(&(*lst)->content);
 		free((*lst)->content);
 		free(*lst);
 		*lst = temp;
@@ -73,16 +77,12 @@ t_list	*generate_list(char *input)
 	free(division);
 	return (pre_list);
 }
-
-int	main(int ac, char **av, char **env)
+void prompt(char **env)
 {
 	char	*input;
-	char	*big_path;
 	t_list	*pre_list;
 
-	(void)ac;
-	(void)av;
-	while ((input = readline("> ")) != NULL)
+	while ((input = readline("$ ")) != NULL)
 	{
 		if (!strcmp(input, "exit"))
 		{
@@ -91,10 +91,17 @@ int	main(int ac, char **av, char **env)
 		}
 		add_history(input);
 		pre_list = generate_list(input);
-		execution(pre_list, env);
 		print_list(pre_list);
+		execution(pre_list, env);
 		ft_free_list(&pre_list);
 		free(input);
 	}
+}
+
+int	main(int ac, char **av, char **env)
+{
+	(void)ac;
+	(void)av;
+	prompt(env);
 }
 

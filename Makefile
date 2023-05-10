@@ -29,6 +29,9 @@ SRCS =	parser.c \
 		Aux/ft_free_matrix.c \
 		Aux/ft_strncmp.c \
 		Aux/ft_strdup.c \
+		Get_Next_Line/get_next_line_utils.c \
+		Get_Next_Line/get_next_line.c \
+		here_doc.c \
 		execution.c
 
 OBJS	= ${SRCS:.c=.o}
@@ -62,12 +65,14 @@ fclean_all: clean fclean_checker
 
 re: fclean all
 
+do: all clean
+
 norm:
 	norminette -R CheckForbiddenSourceHeader -R CheckDefine *.c
 	norminette -R CheckForbiddenSourceHeader -R CheckDefine Aux/*.c
 	norminette -R CheckDefine pipex.h
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re bonus do
 
 #$@: Is the name of the output file that this rule will create. 
 #	 In this case, it's the name of the object file being created.
