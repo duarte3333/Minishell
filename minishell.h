@@ -30,9 +30,11 @@
 typedef struct s_list
 {
 	char    		**content;
+	char 			*path;
 	int				fd[2];
 	struct s_list	*next;
 	struct s_list	*prev;
+	void			*(exec(char **env, char **list->content));
 }	t_list;
 
 //Aux functions
