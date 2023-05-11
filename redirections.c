@@ -23,9 +23,9 @@ int	redirection(t_list **lst)
 		if (!strcmp((*lst)->content[i], "<<"))
 			(*lst)->fd[0] = ft_here_doc(*lst, i);
 		else if(!strcmp((*lst)->content[i], ">>"))
-			(*lst)->fd[1] = open((*lst)->content[i + 1], O_WRONLY | O_TRUNC | O_APPEND | O_CREAT, 0644);
+			(*lst)->fd[1] = open((*lst)->content[i + 1], O_WRONLY | O_APPEND | O_CREAT, 0644);
 		else if(!strcmp((*lst)->content[i], "<"))
-			(*lst)->fd[0] = open((*lst)->content[i + 1], O_RDWR | O_TRUNC, 0644);
+			(*lst)->fd[0] = open((*lst)->content[i + 1], O_RDONLY, 0644);
 		else if(!strcmp((*lst)->content[i], ">"))
 			(*lst)->fd[1] = open((*lst)->content[i + 1], O_WRONLY | O_TRUNC | O_CREAT, 0644);	
 		// if ((*lst)->prev->fd[1] == -1 || (*lst)->fd[0] == -1)
