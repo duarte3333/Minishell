@@ -34,12 +34,13 @@ typedef struct s_list
 	int				fd[2];
 	struct s_list	*next;
 	struct s_list	*prev;
-	void			*(exec(char **env, char **list->content));
+	int				(*ft_exec)(char **env, struct s_list *list);
 }	t_list;
 
+void	print_list(t_list *list);
 //Aux functions
 size_t	ft_strlen(const char *str);
-t_list	*ft_lstnew(char *content);
+t_list	*ft_lstnew(char *content, char **env);
 t_list	*ft_lstlast(t_list *lst);
 char	**ft_split(const char *str, char c);
 void	*ft_calloc(size_t nelem, size_t elsize);
@@ -50,9 +51,7 @@ void	ft_free_matrix(char ***m);
 void 	delete_element(t_list **lst);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void 	go_head(t_list **lst);
-
-
-void	print_list(t_list *list);
+void	ft_free_list(t_list **lst);
 
 //Prompt
 void 	prompt(char **env);
@@ -67,7 +66,18 @@ char	*get_cmd_path(char **env, char **cmd);
 //Here doc
 int		ft_here_doc(t_list *lst, int i);
 
+//Redirections
+int		redirection(t_list **lst);
+
 //Execution
 void 	execution(t_list *lst, char **env);
+
+//Exec functions
+int		check_token(char **str);
+int 	__exec_default(char **env, t_list **lst);
+int 	__exec_here_doc(char **env, t_list **lst);
+int 	__exec_in(char **env, t_list **lst);
+
+
 
 #endif

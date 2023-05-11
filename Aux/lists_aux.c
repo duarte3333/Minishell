@@ -13,7 +13,7 @@
 #include "../minishell.h"
 
 //Esta funcao cria um nó
-t_list	*ft_lstnew(char *content)
+t_list	*ft_lstnew(char *content, char **env)
 {
 	t_list	*new;
 
@@ -21,6 +21,7 @@ t_list	*ft_lstnew(char *content)
 	if (!new)
 		return (NULL);
 	new->content = ft_split(content, '2');
+	new->path = get_cmd_path(env, new->content);
 	if (pipe(new->fd) == -1)
 		perror("");
 	return (new);
