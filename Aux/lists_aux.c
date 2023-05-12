@@ -12,6 +12,21 @@
 
 #include "../minishell.h"
 
+void	define_exec(t_list **lst, char **env)
+{
+	int option;
+
+	option = check_token((*lst)->content);
+	if (option == 1)
+		(*lst)->ft_exec = __exec_here_doc;
+	else if (option == 2 || option == 4)
+		(*lst)->ft_exec = __exec_out;
+	else if(option == 3)
+		(*lst)->ft_exec = __exec_in;
+	else
+		(*lst)->ft_exec = __exec_default;
+}
+
 //Esta funcao cria um nó
 t_list	*ft_lstnew(char *content, char **env)
 {
@@ -22,6 +37,7 @@ t_list	*ft_lstnew(char *content, char **env)
 		return (NULL);
 	new->content = ft_split(content, 2);
 	new->path = get_cmd_path(env, new->content);
+	define_exec(&new, env);
 	if (pipe(new->fd) == -1)
 		perror("");
 	return (new);

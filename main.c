@@ -53,7 +53,7 @@ void prompt(char **env)
 		}
 		add_history(input);
 		pre_list = generate_list(input, env);
-		//print_list(pre_list);
+		print_list(pre_list);
 		execution(pre_list, env);
 		ft_free_list(&pre_list);
 		free(input);

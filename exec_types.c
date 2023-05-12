@@ -16,8 +16,8 @@ int __exec_out(char **env, t_list **lst)
 
 int __exec_here_doc(char **env, t_list **lst)
 {	
-	close((*lst)->fd[0]);
-	close((*lst)->fd[1]);
+	//close((*lst)->fd[0]);
+	//close((*lst)->fd[1]);
 	//(*lst)->fd[0] = ft_here_doc(*lst, 0);
 	//printf("[path] %s\n", (*lst)->prev->path);
 	//get_cmd_path(env, )

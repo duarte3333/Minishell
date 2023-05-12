@@ -1,20 +1,5 @@
 #include "minishell.h"
 
-void	define_exec(t_list **lst, char **env)
-{
-	int option;
-
-	option = check_token((*lst)->content);
-	if (option == 1)
-		(*lst)->ft_exec = __exec_here_doc;
-	else if (option == 2 || option == 4)
-		(*lst)->ft_exec = __exec_out;
-	else if(option == 3)
-		(*lst)->ft_exec = __exec_in;
-	else
-		(*lst)->ft_exec = __exec_default;
-}
-
 //printf("cmd: %s\n", lst->content[0]);
 //printf("STDIN replaced by %d\n", lst->fd[0]);
 //printf("STDOUT replaced by %d\n", lst->next->fd[1]);
@@ -55,7 +40,6 @@ void execution(t_list *lst, char **env)
 	go_head(&lst);
 	while (lst)
 	{
-		define_exec(&lst, env);
 		command_execution(lst, env);
 		if (!lst->next)
 			break;
