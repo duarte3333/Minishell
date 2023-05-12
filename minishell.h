@@ -57,7 +57,7 @@ void	ft_free_list(t_list **lst);
 void 	prompt(char **env);
 
 //Parse Function
-void	parse(char *res, char *str, char sep, int slen);
+void	parse(char *res, char *str, char sep, int *array);
 
 //Getting the path
 char	*get_path(char **env);

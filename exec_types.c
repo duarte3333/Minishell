@@ -31,10 +31,10 @@ int __exec_in(char **env, t_list **lst)
 	if (!(*lst)->content[2])
 		return (0);
 	dup2((*lst)->fd[0], 0);
-	printf(">>>>[content] %s\n", (*lst)->content[2]);
-	(*lst)->path = get_cmd_path(env, (*lst)->content[2]);
+	//printf(">>>>[content] %s\n", (*lst)->content[2]);
+	(*lst)->path = get_cmd_path(env, &(*lst)->content[2]);
 	//printf("[path] %s\n", (*lst)->path);
 	close((*lst)->fd[0]);
 	close((*lst)->fd[1]);
-	return (execve((*lst)->path, (*lst)->content[2], env));
+	return (execve((*lst)->path, &(*lst)->content[2], env));
 }
