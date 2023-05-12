@@ -19,6 +19,7 @@ t_list	*generate_list(char *input, char **env)
 	char			**division;
 	static char		*pre_split;
 	int				array[2];
+	char			**temp;
 
 	//printf("{input} %s\n", input);
 	//printf("{size} %i\n",ft_strlen(input));
@@ -28,14 +29,18 @@ t_list	*generate_list(char *input, char **env)
 	array[0] = 0;
 	array[1] = 0;
 	parse(pre_split, input, 0, array);
-	//printf("%s\n", pre_split);
+	printf("%s\n", pre_split);
 	division = ft_split(pre_split, 3);
 	pre_list = NULL;
 	i = -1;
 	while (division[++i])
 	{
 		//printf("{division} %s\n", division[i]);
-		ft_lstadd_back(&pre_list, ft_lstnew(division[i], env));
+		temp = ft_split(division[i], 2);
+		// if (*temp)
+			ft_lstadd_back(&pre_list, ft_lstnew(temp, env));
+		// else
+		// 	free(temp);
 		free(division[i]);
 	}
 	free(pre_split);

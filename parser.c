@@ -12,16 +12,16 @@
 
 #include "minishell.h"
 
-int	check_sep(char *str, int *array)
+int	check_sep(char *str, int *arr)
 {
-	array[0] = 0;
+	arr[0] = 0;
 	if ((str[0] == '<' && str[1] == '<') || (str[0] == '>' && str[1] == '>'))
-		array[0] = 2;
+		arr[0] = 2;
 	else if (str[0] == '<' || str[0] == '>')
-		array[0] = 1;
+		arr[0] = 1;
 	else if (str[0] == '|')
-		array[0] = 1;
-	return (array[0]);
+		arr[0] = 1;
+	return (arr[0]);
 }
 /* Esta funcao faz o parsing do minishell 
 Linha 47: -Se sep encontrado e se encontrado novamente desligado
@@ -32,12 +32,12 @@ Linha 51: -Se for um token {<, <<, >, >>, |} e sep = 0:
 		  meter um 3 na casa do separador (tem de ser o unico 3 até ver uma 
 		  algo diferente de token -> len = 0).
 		  -Se nao for um pipe e len>0 --> manter o elemento na str
-		  -Se nao for um pipe e array==2 --> manter o proximo, fazendo dois
+		  -Se nao for um pipe e arr==2 --> manter o proximo, fazendo dois
 		  -No final meter um 2 extra e len passa para 1
 Linha 56: Incrementamos o str aqui para poupar linhas
 Linha 61: -Caso geral: é ir colando as letras na string res e dizer que 
 		  pode começar um novo token -> len = 0*/
-void	parse(char *res, char *str, char sep, int *array)
+void	parse(char *res, char *str, char sep, int *arr)
 {
 	int		len;
 
@@ -48,17 +48,17 @@ void	parse(char *res, char *str, char sep, int *array)
 			sep = (*str) * (sep != *str);
 		else if (*str == ' ' && !sep)
 			*str = 2;
-		if (!sep && check_sep(str, array)) // sub de pipes por 3 ou no caso de > colocacao de um tres e do proprio cha
+		if (!sep && check_sep(str, arr)) // sub de pipes por 3 ou no caso de > colocacao de um tres e do proprio cha
 		{
-			*res++ = (3 - (len != 0));
-			if (*str != '|' || len)
+			*res++ = (3 - (len != 0 || arr[1] == 0));
+			if ((*str != '|' || !arr[1]) || len)
 				*res++ = *str;
-			if (str++ && *str != '|' && array[0] == 2)
+			if (str++ && *str != '|' && arr[0] == 2)
 				*res++ = *str++;
 			*res++ = 2;
 			len++;
 		}
-		else if(*str == 2 || ++array[1])
+		else if((*str == 2 && arr[1]) || ((*str != 2 || *str++ != 2) && ++arr[1]))
 		{	
 			*res++ = *str++;
 			len = 0;

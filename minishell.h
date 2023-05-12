@@ -40,7 +40,7 @@ typedef struct s_list
 void	print_list(t_list *list);
 //Aux functions
 size_t	ft_strlen(const char *str);
-t_list	*ft_lstnew(char *content, char **env);
+t_list	*ft_lstnew(char **content, char **env);
 t_list	*ft_lstlast(t_list *lst);
 char	**ft_split(const char *str, char c);
 void	*ft_calloc(size_t nelem, size_t elsize);

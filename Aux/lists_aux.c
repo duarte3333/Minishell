@@ -28,14 +28,14 @@ void	define_exec(t_list **lst, char **env)
 }
 
 //Esta funcao cria um nó
-t_list	*ft_lstnew(char *content, char **env)
+t_list	*ft_lstnew(char **content, char **env)
 {
 	t_list	*new;
 
 	new = (t_list *)ft_calloc(sizeof(t_list), 1);
 	if (!new)
 		return (NULL);
-	new->content = ft_split(content, 2);
+	new->content = content;
 	new->path = get_cmd_path(env, new->content);
 	define_exec(&new, env);
 	if (pipe(new->fd) == -1)
