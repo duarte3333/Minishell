@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lists_aux.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 17:16:16 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/02/10 17:16:18 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/05/12 12:16:50 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_list	*ft_lstnew(char *content, char **env)
 	new = (t_list *)ft_calloc(sizeof(t_list), 1);
 	if (!new)
 		return (NULL);
-	new->content = ft_split(content, '2');
+	new->content = ft_split(content, 2);
 	new->path = get_cmd_path(env, new->content);
 	if (pipe(new->fd) == -1)
 		perror("");

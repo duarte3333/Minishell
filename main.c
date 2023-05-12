@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:01:28 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/10 15:26:52 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/05/12 14:30:46 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_list	*generate_list(char *input, char **env)
 		return (NULL);
 	parse(pre_split, input, 0, 0);
 	//printf("%s\n", pre_split);
-	division = ft_split(pre_split, '3');
+	division = ft_split(pre_split, 3);
 	pre_list = NULL;
 	i = -1;
 	while (division[++i])
@@ -53,7 +53,7 @@ void prompt(char **env)
 		}
 		add_history(input);
 		pre_list = generate_list(input, env);
-		print_list(pre_list);
+		//print_list(pre_list);
 		execution(pre_list, env);
 		ft_free_list(&pre_list);
 		free(input);

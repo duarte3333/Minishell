@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/09 19:42:04 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/12 14:32:47 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void 	execution(t_list *lst, char **env);
 
 //Exec functions
 int		check_token(char **str);
+int 	__exec_out(char **env, t_list **lst);
 int 	__exec_default(char **env, t_list **lst);
 int 	__exec_here_doc(char **env, t_list **lst);
 int 	__exec_in(char **env, t_list **lst);

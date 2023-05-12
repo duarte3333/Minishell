@@ -7,6 +7,8 @@ void	define_exec(t_list **lst, char **env)
 	option = check_token((*lst)->content);
 	if (option == 1)
 		(*lst)->ft_exec = __exec_here_doc;
+	else if (option == 2 || option == 4)
+		(*lst)->ft_exec = __exec_out;
 	else if(option == 3)
 		(*lst)->ft_exec = __exec_in;
 	else
