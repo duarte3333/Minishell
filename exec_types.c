@@ -11,7 +11,7 @@ int __exec_out(char **env, t_list **lst)
 {
 	close((*lst)->fd[0]);
 	close((*lst)->fd[1]);
-	return (1);
+	return (0);
 }
 
 int __exec_here_doc(char **env, t_list **lst)
@@ -28,14 +28,13 @@ int __exec_here_doc(char **env, t_list **lst)
 int __exec_in(char **env, t_list **lst)
 {	
 	//printf("[fd] %i\n", (*lst)->fd[0]);
+	if (!(*lst)->content[2])
+		return (0);
 	dup2((*lst)->fd[0], 0);
-	((*lst)->content)++;
-	((*lst)->content)++;
-	//printf("[content] %s\n", (*lst)->content[0]);
-	(*lst)->path = get_cmd_path(env, (*lst)->content);
+	printf(">>>>[content] %s\n", (*lst)->content[2]);
+	(*lst)->path = get_cmd_path(env, (*lst)->content[2]);
 	//printf("[path] %s\n", (*lst)->path);
 	close((*lst)->fd[0]);
 	close((*lst)->fd[1]);
-	return (execve((*lst)->path, (*lst)->content, env));
+	return (execve((*lst)->path, (*lst)->content[2], env));
 }
-

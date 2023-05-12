@@ -31,8 +31,7 @@ void execution(t_list *lst, char **env)
 	go_head(&lst);
 	while (lst)
 	{
-		if (redirection(&lst))
-			prompt(env);
+		redirection(&lst);
 		if (!lst->next)
 			break;
 		lst = lst->next;
