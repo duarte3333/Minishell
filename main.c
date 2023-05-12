@@ -29,7 +29,7 @@ t_list	*generate_list(char *input, char **env)
 	array[0] = 0;
 	array[1] = 0;
 	parse(pre_split, input, 0, array);
-	printf("%s\n", pre_split);
+	//printf("%s\n", pre_split);
 	division = ft_split(pre_split, 3);
 	pre_list = NULL;
 	i = -1;
@@ -65,6 +65,7 @@ void prompt(char **env)
 		execution(pre_list, env);
 		ft_free_list(&pre_list);
 		free(input);
+		unlink(".temp");
 	}
 }
 

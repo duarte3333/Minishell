@@ -20,12 +20,12 @@ int	redirection(t_list **lst)
 	i = 0;
 	while ((*lst)->content[i])
 	{
-		if (!strcmp((*lst)->content[i], "<<"))
+		/* if (!strcmp((*lst)->content[i], "<<"))
 		{
 			close((*lst)->fd[0]);
 			(*lst)->fd[0] = ft_here_doc(*lst, i);
-		}
-		else if(!strcmp((*lst)->content[i], ">>"))
+		} */
+		/* else  */if(!strcmp((*lst)->content[i], ">>"))
 		{
 			close((*lst)->fd[1]);
 			(*lst)->fd[1] = open((*lst)->content[i + 1], O_WRONLY | O_APPEND | O_CREAT, 0644);

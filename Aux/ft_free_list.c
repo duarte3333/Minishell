@@ -20,7 +20,7 @@ void	ft_free_list(t_list **lst)
 void	print_list(t_list *list)
 {
 	if (!list)
-		printf("empty list\n");
+		return ;
 	while (list)
 	{
 		int	i;

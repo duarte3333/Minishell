@@ -27,6 +27,7 @@ int	ft_here_doc(t_list *lst, int i)
 	char	*in;
 	int		fd_in;
 
+
 	fd_in = open(".temp", O_RDWR | O_TRUNC | O_CREAT, 0644);
 	if (fd_in == -1)
 	{
