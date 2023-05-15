@@ -28,7 +28,7 @@ int	redirection(t_list **lst)
 		/* else  */if(!strcmp((*lst)->content[i], ">>"))
 		{
 			close((*lst)->fd[1]);
-			(*lst)->fd[1] = open((*lst)->content[i + 1], O_WRONLY | O_APPEND | O_CREAT, 0644);
+			(*lst)->prev->fd[1] = open((*lst)->content[i + 1], O_WRONLY | O_APPEND | O_CREAT, 0644);
 		}
 		else if(!strcmp((*lst)->content[i], "<"))
 		{

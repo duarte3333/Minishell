@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 17:16:16 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/12 12:16:50 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/15 15:58:23 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ void delete_element(t_list **lst)
 	temp = (*lst);
     if (lst && *lst)
     {
+		if ((*lst)->path)
+			free((*lst)->path);
 		if (!(*lst)->prev && !(*lst)->next)
 			*lst = NULL;
 		else if (!(*lst)->prev && (*lst)->next)

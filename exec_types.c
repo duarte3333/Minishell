@@ -3,7 +3,8 @@
 int __exec_default(char **env, t_list **lst)
 {
 	close((*lst)->fd[0]);
-	close((*lst)->fd[1]);
+	if ((*lst)->fd[1] != 1)
+		close((*lst)->fd[1]);
 	return (execve((*lst)->path, (*lst)->content, env));
 }
 

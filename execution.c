@@ -33,7 +33,7 @@ void execution(t_list *lst, char **env)
 	{
 		redirection(&lst);
 		if (!lst->next)
-			break;
+			break ;
 		lst = lst->next;
 	}
 	go_head(&lst);
@@ -41,7 +41,7 @@ void execution(t_list *lst, char **env)
 	{
 		command_execution(lst, env);
 		if (!lst->next)
-			break;
+			break ;
 		lst = lst->next;
 	}
 	go_head(&lst);
