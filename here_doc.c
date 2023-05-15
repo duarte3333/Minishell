@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 10:58:47 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/03/25 11:32:55 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/05/15 17:35:36 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,23 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return ((unsigned char)*s1 - (unsigned char)*s2);
 }
 
+char	*ft_str_add_nbr(char *str, int nr)
+{
+	char	*res;
+
+	res = malloc(sizeof(ft_strlen(str) + 3));
+}
+
 int	ft_here_doc(t_list *lst, int i)
 {
-	char	*in;
-	int		fd_in;
+	char		*in;
+	int			fd_in;
+	static int	nr;
+	char		*ficheiro;
 
-
-	fd_in = open(".temp", O_RDWR | O_TRUNC | O_CREAT, 0644);
+	nr++;
+	ficheiro = ft_str_add_nbr(".temp", nr);
+	fd_in = open(ficheiro, O_RDWR | O_TRUNC | O_CREAT, 0644);
 	if (fd_in == -1)
 	{
 		perror("");
@@ -47,5 +57,6 @@ int	ft_here_doc(t_list *lst, int i)
 		in = get_next_line(0);
 	}
 	free(in);
+	free(ficheiro);
 	return (fd_in);
 }

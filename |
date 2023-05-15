@@ -1,0 +1,18 @@
+total 1392
+-rw-r--r-- 1 mtiago-s 2022_lisboa       0 May 15 17:47 >>
+-rw-r--r-- 1 mtiago-s 2022_lisboa       0 May 15 17:50 |
+-rwxr-xr-x 1 mtiago-s 2022_lisboa   16696 May 15 17:25 a.out
+drwxr-xr-x 2 mtiago-s 2022_lisboa    4096 May 15 17:47 Aux
+-rw-r--r-- 1 mtiago-s 2022_lisboa    1294 May 15 17:17 exec_types.c
+-rw-r--r-- 1 mtiago-s 2022_lisboa     992 May 15 17:34 execution.c
+drwxr-xr-x 2 mtiago-s 2022_lisboa    4096 May 15 17:47 Get_Next_Line
+-rw-r--r-- 1 mtiago-s 2022_lisboa    1783 May 15 17:35 here_doc.c
+-rw-r--r-- 1 mtiago-s 2022_lisboa       0 May 15 17:44 i
+-rw-r--r-- 1 mtiago-s 2022_lisboa    2107 May 15 17:08 main.c
+-rw-r--r-- 1 mtiago-s 2022_lisboa    2246 May 15 15:10 Makefile
+-rwxr-xr-x 1 mtiago-s 2022_lisboa 1348264 May 15 17:47 minishell
+-rw-r--r-- 1 mtiago-s 2022_lisboa    2574 May 15 17:18 minishell.h
+-rw-r--r-- 1 mtiago-s 2022_lisboa       0 May 15 17:39 out
+-rw-r--r-- 1 mtiago-s 2022_lisboa    4342 May 15 17:47 parser.c
+-rw-r--r-- 1 mtiago-s 2022_lisboa    1719 May 15 16:00 path.c
+-rw-r--r-- 1 mtiago-s 2022_lisboa    1060 May 15 17:04 redirections.c

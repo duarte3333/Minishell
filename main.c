@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:01:28 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/15 16:47:53 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/15 17:08:51 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void prompt(char **env)
 		add_history(input);
 		pre_list = generate_list(input, env);
 		print_list(pre_list);
-		//execution(pre_list, env);
+		execution(pre_list, env);
 		ft_free_list(&pre_list);
 		free(input);
 		unlink(".temp");

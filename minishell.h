@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/12 14:32:47 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/15 17:18:26 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 typedef struct s_list
 {
 	char    		**content;
-	char 			*path;
+	char			*path;
 	int				fd[2];
 	struct s_list	*next;
 	struct s_list	*prev;

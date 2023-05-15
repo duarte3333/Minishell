@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:57:38 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/15 16:48:52 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/15 17:47:08 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	parse(char *res, char *str, char sep, int *arr)
 			*str = 2;
 		if (!sep && check_sep(str, arr)) // sub de pipes por 3 ou no caso de > colocacao de um tres e do proprio cha
 		{
-			*res++ = (3 - (len != 0 || arr[1] == 0));
+			*res++ = (3 - (*str != '|' || len != 0 || arr[1] == 0));
 			if ((*str != '|' || !arr[1]) || len)
 				*res++ = *str;
 			if (str++ && *str != '|' && arr[0] == 2)
