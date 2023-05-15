@@ -1,6 +1,6 @@
 NAME = minishell
 CC = cc -lreadline
-CFLAGS = -O3 -Wall -Wextra -g -fsanitize=address #-Werror
+CFLAGS =  -Wall -Wextra -g -fsanitize=address #-Werror#-O3
 
 #valgrind --leak-check=full --show-leak-kinds=all 
 #--track-fds=yes ./pipex /dev/random  head out.txt

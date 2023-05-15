@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/15 17:18:26 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/15 20:24:43 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 
 typedef struct s_list
 {
-	char    		**content;
+	char			**content;
 	char			*path;
 	int				fd[2];
 	struct s_list	*next;
@@ -40,7 +40,7 @@ typedef struct s_list
 void	print_list(t_list *list);
 //Aux functions
 size_t	ft_strlen(const char *str);
-t_list	*ft_lstnew(char **content, char **env);
+t_list	*ft_lstnew(int i, char **env);
 t_list	*ft_lstlast(t_list *lst);
 char	**ft_split(const char *str, char c);
 void	*ft_calloc(size_t nelem, size_t elsize);
@@ -67,7 +67,7 @@ char	*get_cmd_path(char **env, char **cmd);
 int		ft_here_doc(t_list *lst, int i);
 
 //Redirections
-int		redirection(t_list **lst);
+int		redirection(char *word);
 
 //Execution
 void 	execution(t_list *lst, char **env);

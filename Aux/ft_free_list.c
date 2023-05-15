@@ -19,12 +19,12 @@ void	ft_free_list(t_list **lst)
 
 void	print_list(t_list *list)
 {
+	int	i;
+
 	if (!list)
 		return ;
 	while (list)
 	{
-		int	i;
-		
 		i = -1;
 		printf("[p] %p", list);
 		printf("\n[content]: ");
@@ -33,7 +33,7 @@ void	print_list(t_list *list)
 		printf("\n");
 		printf("[fd in] %i\n", list->fd[0]);
 		printf("[fd out] %i\n", list->fd[1]);
-		printf("[path] %s\n", list->path);
+		//printf("[path] %s\n", list->path);
 		list = list->next;
 	}
 }

@@ -13,7 +13,7 @@ void	*ft_calloc(size_t nelem, size_t elsize)
 		return (NULL);
 	if (nelem != 0)
 	{
-		while (++i < nelem)
+		while (++i < elsize * nelem)
 			arr[i] = 0;
 		return ((void *)arr);
 	}

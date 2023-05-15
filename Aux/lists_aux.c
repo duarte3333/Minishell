@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 17:16:16 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/15 15:58:23 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/15 20:48:46 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,17 @@ void	define_exec(t_list **lst, char **env)
 }
 
 //Esta funcao cria um nó
-t_list	*ft_lstnew(char **content, char **env)
+t_list	*ft_lstnew(int i, char **env)
 {
 	t_list	*new;
 
+	printf("criando no com %d palavras\n", i);
 	new = (t_list *)ft_calloc(sizeof(t_list), 1);
 	if (!new)
 		return (NULL);
-	new->content = content;
-	new->path = get_cmd_path(env, new->content);
-	define_exec(&new, env);
+	new->content = ft_calloc(sizeof(char *), i + 1);
+	//new->path = get_cmd_path(env, new->content);
+	//define_exec(&new, env);
 	if (pipe(new->fd) == -1)
 		perror("");
 	return (new);
