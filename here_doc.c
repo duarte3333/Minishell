@@ -19,7 +19,6 @@ int	ft_here_doc(char *str)
 
 	if (pipe(fd) == -1)
 		perror("");
-	write(0, ">", 1);
 	in = get_next_line(0);
 	while (1)
 	{
