@@ -12,26 +12,15 @@
 
 #include "minishell.h"
 
-typedef struct s_global
+struct global
 {
 	int			status;
 	char		**env;
 	int			fd[2];
-}	t_global;
-
-t_global	GLOBAL;
-GLOBAL.fd[0] = 0;
-GLOBAL.fd[1] = 1;
-
-int	ft_matrixlen(char **matrix)
-{
-	int	i;
-
-	i = 0;
-	while (matrix[i] && matrix[i][0] != 3)
-		i++;
-	return (i);
 }
+
+global.fd[0] = 0;
+global.fd[1] = 1;
 
 t_list	*generate_list(char *input, char **env)
 {
@@ -55,7 +44,7 @@ t_list	*generate_list(char *input, char **env)
 	redirection(pre_list, division, env);
 	free(pre_split);
 	free(division);
-	//print_list(pre_list);
+	print_list(pre_list);
 	return (pre_list);
 }
 
@@ -77,7 +66,7 @@ void prompt(char **env)
 		execution(pre_list, env);
 		ft_free_list(&pre_list);
 		free(input);
-		unlink(".temp"); //
+		unlink(".temp");
 	}
 }
 
