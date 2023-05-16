@@ -36,7 +36,7 @@ t_list	*generate_list(char *input, char **env)
 	redirection(pre_list, division, env);
 	free(pre_split);
 	free(division);
-	//print_list(pre_list);
+	print_list(pre_list);
 	return (pre_list);
 }
 
@@ -49,14 +49,14 @@ void prompt(char **env)
 	{
 		g.fd[0] = 0;
 		g.fd[1] = 1;
-		if (!strcmp(input, "exit"))
+		if (!ft_strcmp(input, "exit"))
 		{
 			free(input);
 			exit(0);
 		}
 		add_history(input);
 		pre_list = generate_list(input, env);
-		print_list(pre_list);
+		//print_list(pre_list);
 		if (pre_list->content[0])
 			execution(pre_list, env);
 		ft_free_list(&pre_list);

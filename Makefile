@@ -27,10 +27,11 @@ SRCS =	parser.c \
 		Aux/ft_split.c \
 		Aux/ft_strjoin.c \
 		Aux/ft_free_matrix.c \
-		Aux/ft_strncmp.c \
 		Aux/ft_strdup.c \
 		Aux/ft_free_list.c \
 		Aux/ft_matrixlen.c \
+		Aux/ft_strcmp.c \
+		Aux/ft_strncmp.c \
 		Get_Next_Line/get_next_line_utils.c \
 		Get_Next_Line/get_next_line.c \
 		here_doc.c \

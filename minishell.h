@@ -58,10 +58,12 @@ void	ft_lstadd_back(t_list **lst, t_list *new);
 char	*ft_strdup(const char *src);
 void	ft_free_matrix(char ***m);
 void 	delete_element(t_list **lst);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void 	go_head(t_list **lst);
 void	ft_free_list(t_list **lst);
 int		ft_matrixlen(char **matrix);
+int		ft_strcmp(char *s1, char *s2);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+
 
 //Prompt
 void 	prompt(char **env);
