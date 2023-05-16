@@ -25,7 +25,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 int	ft_here_doc(char *str)
 {
 	char		*in;
-	int 		fd[2]
+	int 		fd[2];
 
 	if (pipe(fd) == -1)
 		perror("");
@@ -34,8 +34,8 @@ int	ft_here_doc(char *str)
 	write(fd[1], in, ft_strlen(in));
 	while (1)
 	{
-		if ((ft_strncmp(in, lst->content[i + 1], ft_strlen(lst->content[i + 1])) == 0) && \
-			(ft_strlen(in) - 1 == ft_strlen(lst->content[i + 1])))
+		if ((ft_strncmp(in, str, ft_strlen(str)) == 0) && \
+			(ft_strlen(in) - 1 == ft_strlen(str)))
 			break ;
 		write(0, ">", 1);
 		write(fd[1], in, ft_strlen(in));

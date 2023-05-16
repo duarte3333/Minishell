@@ -23,6 +23,8 @@ void	command_execution(t_list *lst, char **env)
 		if (lst->ft_exec(env, &lst) == -1)
 		{
 			perror("");
+			go_head(&lst);
+			ft_free_list(&lst);
 			exit(1);
 		}
 	}
@@ -43,6 +45,7 @@ void execution(t_list *lst, char **env)
 	// go_head(&lst);
 	while (lst)
 	{
+		lst->path = get_cmd_path(env, lst->content);
 		command_execution(lst, env);
 		if (!lst->next)
 			break ;

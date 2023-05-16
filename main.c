@@ -12,6 +12,8 @@
 
 #include "minishell.h"
 
+struct global g;
+
 t_list	*generate_list(char *input, char **env)
 {
 	t_list			*pre_list;
@@ -54,8 +56,9 @@ void prompt(char **env)
 		}
 		add_history(input);
 		pre_list = generate_list(input, env);
-		//print_list(pre_list);
-		execution(pre_list, env);
+		print_list(pre_list);
+		if (pre_list->content[0])
+			execution(pre_list, env);
 		ft_free_list(&pre_list);
 		free(input);
 	}

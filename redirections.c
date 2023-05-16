@@ -67,7 +67,7 @@ int	redirection(t_list	*pre_list, char **division, char **env)
 	temp = pre_list;
 	while (division[++i])
 	{
-		if (division[i][0] == 3)
+		if (division[i][0] == 3 && pre_list->content[0])
 		{
 			ft_lstadd_back(&pre_list, ft_lstnew(ft_matrixlen(&division[i + 1]), env));
 			if (temp->next)
@@ -76,7 +76,7 @@ int	redirection(t_list	*pre_list, char **division, char **env)
 		}
 		else if (check_token(division[i]))
 			redirect(division, &i);
-		else
+		else if (division[i] && division[i][0] != 3)
 		{
 			temp->content[j] = ft_strdup(division[i]);
 			j++;

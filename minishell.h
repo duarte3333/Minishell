@@ -33,7 +33,7 @@ struct global
 	int			fd[2];
 };
 
-struct global g;
+extern struct global g;
 
 typedef struct s_list
 {
@@ -73,7 +73,7 @@ char	*get_path(char **env);
 char	*get_cmd_path(char **env, char **cmd);
 
 //Here doc
-int		ft_here_doc(t_list *lst, int i);
+int		ft_here_doc(char *str);
 
 //Redirections
 int		redirection(t_list	*pre_list, char **division, char **env);

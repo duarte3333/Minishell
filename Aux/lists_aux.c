@@ -14,17 +14,17 @@
 
 void	define_exec(t_list **lst, char **env)
 {
-	int option;
+	// int option;
 
-	option = check_token((*lst)->content);
-	if (option == 1)
-		(*lst)->ft_exec = __exec_here_doc;
-	else if (option == 2 || option == 4)
-		(*lst)->ft_exec = __exec_out;
-	else if(option == 3)
-		(*lst)->ft_exec = __exec_in;
-	else
-		(*lst)->ft_exec = __exec_default;
+	// option = check_token((*lst)->content);
+	// if (option == 1)
+	// 	(*lst)->ft_exec = __exec_here_doc;
+	// else if (option == 2 || option == 4)
+	// 	(*lst)->ft_exec = __exec_out;
+	// else if(option == 3)
+	// 	(*lst)->ft_exec = __exec_in;
+	// else
+	(*lst)->ft_exec = __exec_default;
 }
 
 //Esta funcao cria um nó
@@ -32,11 +32,12 @@ t_list	*ft_lstnew(int i, char **env)
 {
 	t_list	*new;
 
-	printf("criando no com %d palavras\n", i);
+	//printf("criando no com %d palavras\n", i);
 	new = (t_list *)ft_calloc(sizeof(t_list), 1);
 	if (!new)
 		return (NULL);
 	new->content = ft_calloc(sizeof(char *), i + 1);
+	new->ft_exec = __exec_default;
 	//new->path = get_cmd_path(env, new->content);
 	//define_exec(&new, env);
 	if (pipe(new->fd) == -1)
