@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 18:13:42 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/16 15:32:01 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/16 15:34:23 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,7 @@ int	redirection(t_list	*pre_list, char **division, char **env)
 			j = 0;
 		}
 		else if (division[i][0] == 3 && !pre_list->content[0])
-		{
-			pre_list->fd_master[0] = 0;
-			pre_list->fd_master[1] = 1;
-		}
+			pipe(pre_list->fd_master[0]);
 		else if (check_token(division[i]))
 			redirect(division, &i, temp);
 		else if (division[i] && division[i][0] != 3)
