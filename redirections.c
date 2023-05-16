@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 18:13:42 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/16 15:34:23 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/16 15:42:18 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,20 +65,18 @@ int	redirection(t_list	*pre_list, char **division, char **env)
 	i = -1;
 	j = 0;
 	temp = pre_list;
-	while (division[++i])
+	while (division && division[++i])
 	{
-		if (division[i][0] == 3 && pre_list->content[0])
+		if (division[i][0] == 3)
 		{
 			ft_lstadd_back(&pre_list, ft_lstnew(ft_matrixlen(&division[i + 1]), env));
 			if (temp->next)
 				temp = temp->next;
 			j = 0;
 		}
-		else if (division[i][0] == 3 && !pre_list->content[0])
-			pipe(pre_list->fd_master[0]);
 		else if (check_token(division[i]))
 			redirect(division, &i, temp);
-		else if (division[i] && division[i][0] != 3)
+		else
 		{
 			temp->content[j] = ft_strdup(division[i]);
 			j++;

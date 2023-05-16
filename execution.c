@@ -46,7 +46,8 @@ void execution(t_list *lst, char **env)
 	while (lst)
 	{
 		lst->path = get_cmd_path(env, lst->content);
-		command_execution(lst, env);
+		if (lst->content[0])
+			command_execution(lst, env);
 		if (!lst->next)
 			break ;
 		lst = lst->next;
