@@ -6,21 +6,11 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:01:28 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/16 12:10:55 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/16 12:33:41 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	ft_matrixlen(char **matrix)
-{
-	int	i;
-
-	i = 0;
-	while (matrix[i] && matrix[i][0] != 3)
-		i++;
-	return (i);
-}
 
 t_list	*generate_list(char *input, char **env)
 {
@@ -68,7 +58,6 @@ void prompt(char **env)
 		execution(pre_list, env);
 		ft_free_list(&pre_list);
 		free(input);
-		unlink(".temp"); //
 	}
 }
 

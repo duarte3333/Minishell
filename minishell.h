@@ -60,6 +60,7 @@ void 	delete_element(t_list **lst);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void 	go_head(t_list **lst);
 void	ft_free_list(t_list **lst);
+int		ft_matrixlen(char **matrix);
 
 //Prompt
 void 	prompt(char **env);
