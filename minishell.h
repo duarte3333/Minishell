@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/16 11:49:16 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/16 12:10:29 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,14 @@
 # include <readline/history.h>
 # include "Get_Next_Line/get_next_line.h"
 
+struct global
+{
+	int			status;
+	char		**env;
+	int			fd[2];
+};
+
+struct global g;
 
 typedef struct s_list
 {
@@ -73,7 +81,7 @@ int		redirection(t_list	*pre_list, char **division, char **env);
 void 	execution(t_list *lst, char **env);
 
 //Exec functions
-int		check_token(char **str);
+int		check_token(char *str);
 int 	__exec_out(char **env, t_list **lst);
 int 	__exec_default(char **env, t_list **lst);
 int 	__exec_here_doc(char **env, t_list **lst);

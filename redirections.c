@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 18:13:42 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/16 11:54:34 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/16 12:18:55 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,38 @@ int	check_token(char *str)
 	return (0);
 }
 
+int	redirect(char **division, int *i)
+{
+	if (!ft_strncmp(division[*i], ">>", 2))
+	{
+		if (g.fd[1] > 2)
+			close(g.fd[1]);
+		free(division[*i]);
+		g.fd[1]  = open(division[++(*i)], O_WRONLY | O_APPEND | O_CREAT, 0644);
+	}
+	else if (!ft_strncmp(division[*i], "<<", 2))
+	{
+		if (g.fd[0] > 2)
+			close(g.fd[0]);
+		g.fd[0] = ft_here_doc(division[++(*i)]);
+	}
+	else if (!ft_strncmp(division[*i], "<", 1))
+	{
+		if (g.fd[0] > 2)
+			close(g.fd[0]);
+		free(division[*i]);
+		g.fd[0] = open(division[++(*i)], O_RDONLY, 0644);
+	}
+	else if (!ft_strncmp(division[*i], ">", 1))
+	{
+		if (g.fd[1] > 2)
+			close(g.fd[1]);
+		free(division[*i]);
+		g.fd[1] = open(division[++(*i)], O_WRONLY | O_TRUNC | O_CREAT, 0644);
+	}
+}
 
-
-int		redirection(t_list	*pre_list, char **division, char **env)
+int	redirection(t_list	*pre_list, char **division, char **env)
 {
 	int		i;
 	int		j;
@@ -46,26 +75,7 @@ int		redirection(t_list	*pre_list, char **division, char **env)
 			j = 0;
 		}
 		else if (check_token(division[i]))
-		/* else if (!ft_strncmp(division[i], "<<", 2))
-			GLOBAL.fd[0] = ft_here_doc(*lst, i); */
-		else  if (!ft_strncmp(division[i], ">>", 2))
-		{
-			if (GLOBAL.fd[1] > 2) // replicar para o resto
-				close(GLOBAL.fd[1]);
-			GLOBAL.fd[1]  = open(division[++i], O_WRONLY | O_APPEND | O_CREAT, 0644);
-		}
-		else if (!ft_strncmp(division[i], "<", 1))
-		{
-			if (GLOBAL.fd[0] > 2) // replicar para o resto
-				close(GLOBAL.fd[0]);
-			GLOBAL.fd[0] = open(division[++i], O_RDONLY, 0644);
-		}
-		else if (!ft_strncmp(division[i], ">", 1))
-		{
-			if (GLOBAL.fd[1] > 2) // replicar para o resto
-				close(GLOBAL.fd[1]);
-			GLOBAL.fd[1] = open(division[++i], O_WRONLY | O_TRUNC | O_CREAT, 0644);
-		}
+			redirect(division, &i);
 		else
 		{
 			temp->content[j] = ft_strdup(division[i]);

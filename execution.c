@@ -12,12 +12,12 @@ void	command_execution(t_list *lst, char **env)
 	{
 		if (lst->prev)
 			dup2(lst->fd[0], 0);
-		else if (GLOBAL.fd[0])
-			dup2(GLOBAL.fd[0], 0);
+		else if (g.fd[0] > 2)
+			dup2(g.fd[0], 0);
 		if (lst->next)
 			dup2(lst->next->fd[1], 1);
-		else if (GLOBAL.fd[1] > 2)
-			dup2(GLOBAL.fd[1], 1);
+		else if (g.fd[1] > 2)
+			dup2(g.fd[1], 1);
 		//close(lst->fd[0]);
 		//close(lst->fd[1]);
 		if (lst->ft_exec(env, &lst) == -1)

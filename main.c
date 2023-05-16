@@ -6,22 +6,11 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:01:28 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/16 11:50:48 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/16 12:10:55 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-typedef struct s_global
-{
-	int			status;
-	char		**env;
-	int			fd[2];
-}	t_global;
-
-t_global	GLOBAL;
-GLOBAL.fd[0] = 0;
-GLOBAL.fd[1] = 1;
 
 int	ft_matrixlen(char **matrix)
 {
@@ -66,6 +55,8 @@ void prompt(char **env)
 
 	while ((input = readline("$ ")) != NULL)
 	{
+		g.fd[0] = 0;
+		g.fd[1] = 1;
 		if (!strcmp(input, "exit"))
 		{
 			free(input);
