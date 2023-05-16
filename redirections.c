@@ -6,23 +6,73 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 18:13:42 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/15 19:51:09 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/16 11:54:34 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	check_token(char **str)
+int	check_token(char *str)
 {
-	if (!strcmp(str[0], "<<"))
+	if (!ft_strncmp(str, "<<", 2))
 		return (1);
-	else if(!strcmp(str[0], ">>"))
+	else if(!ft_strncmp(str, ">>", 2))
 		return (2);
-	else if(!strcmp(str[0], "<"))
+	else if(!ft_strncmp(str, "<", 1))
 		return (3);
-	else if(!strcmp(str[0], ">"))
+	else if(!ft_strncmp(str, ">", 1))
 		return (4);
 	return (0);
+}
+
+
+
+int		redirection(t_list	*pre_list, char **division, char **env)
+{
+	int		i;
+	int		j;
+	t_list	*temp;
+
+	i = -1;
+	j = 0;
+	temp = pre_list;
+	while (division[++i])
+	{
+		if (division[i][0] == 3)
+		{
+			ft_lstadd_back(&pre_list, ft_lstnew(ft_matrixlen(&division[i + 1]), env));
+			if (temp->next)
+				temp = temp->next;
+			j = 0;
+		}
+		else if (check_token(division[i]))
+		/* else if (!ft_strncmp(division[i], "<<", 2))
+			GLOBAL.fd[0] = ft_here_doc(*lst, i); */
+		else  if (!ft_strncmp(division[i], ">>", 2))
+		{
+			if (GLOBAL.fd[1] > 2) // replicar para o resto
+				close(GLOBAL.fd[1]);
+			GLOBAL.fd[1]  = open(division[++i], O_WRONLY | O_APPEND | O_CREAT, 0644);
+		}
+		else if (!ft_strncmp(division[i], "<", 1))
+		{
+			if (GLOBAL.fd[0] > 2) // replicar para o resto
+				close(GLOBAL.fd[0]);
+			GLOBAL.fd[0] = open(division[++i], O_RDONLY, 0644);
+		}
+		else if (!ft_strncmp(division[i], ">", 1))
+		{
+			if (GLOBAL.fd[1] > 2) // replicar para o resto
+				close(GLOBAL.fd[1]);
+			GLOBAL.fd[1] = open(division[++i], O_WRONLY | O_TRUNC | O_CREAT, 0644);
+		}
+		else
+		{
+			temp->content[j] = ft_strdup(division[i]);
+			j++;
+		}
+		free(division[i]);
+	}
 }
 
 // int	redirection(char *word)

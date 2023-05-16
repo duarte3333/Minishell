@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/15 20:24:43 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/16 11:49:16 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	*get_cmd_path(char **env, char **cmd);
 int		ft_here_doc(t_list *lst, int i);
 
 //Redirections
-int		redirection(char *word);
+int		redirection(t_list	*pre_list, char **division, char **env);
 
 //Execution
 void 	execution(t_list *lst, char **env);

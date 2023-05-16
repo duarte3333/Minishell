@@ -12,8 +12,12 @@ void	command_execution(t_list *lst, char **env)
 	{
 		if (lst->prev)
 			dup2(lst->fd[0], 0);
+		else if (GLOBAL.fd[0])
+			dup2(GLOBAL.fd[0], 0);
 		if (lst->next)
 			dup2(lst->next->fd[1], 1);
+		else if (GLOBAL.fd[1] > 2)
+			dup2(GLOBAL.fd[1], 1);
 		//close(lst->fd[0]);
 		//close(lst->fd[1]);
 		if (lst->ft_exec(env, &lst) == -1)
@@ -28,15 +32,15 @@ void	command_execution(t_list *lst, char **env)
 
 void execution(t_list *lst, char **env)
 {
-	go_head(&lst);
-	while (lst)
-	{
-		//redirection(&lst);
-		if (!lst->next)
-			break ;
-		lst = lst->next;
-	}
-	go_head(&lst);
+	// go_head(&lst);
+	// while (lst)
+	// {
+	// 	//redirection(&lst);
+	// 	if (!lst->next)
+	// 		break ;
+	// 	lst = lst->next;
+	// }
+	// go_head(&lst);
 	while (lst)
 	{
 		command_execution(lst, env);
