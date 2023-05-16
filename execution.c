@@ -1,7 +1,7 @@
 #include "minishell.h"
 
 //printf("cmd: %s\n", lst->content[0]);
-//printf("STDIN replaced by %d\n", lst->fd[0]);
+//printf("STDIN replaced by %d\n", lsGLOBALt->fd[0]);
 //printf("STDOUT replaced by %d\n", lst->next->fd[1]);
 void	command_execution(t_list *lst, char **env)
 {
@@ -10,14 +10,14 @@ void	command_execution(t_list *lst, char **env)
 	pid = fork();
 	if (pid == 0)
 	{
-		if (lst->prev)
+		if (lst->prev && lst->fd_master[0] < 3)
 			dup2(lst->fd[0], 0);
-		else if (g.fd[0] > 2)
-			dup2(g.fd[0], 0);
-		if (lst->next)
+		else if (lst->fd_master[0] > 2)
+			dup2(lst->fd_master[0], 0);
+		if (lst->next && lst->fd_master[1] < 3)
 			dup2(lst->next->fd[1], 1);
-		else if (g.fd[1] > 2)
-			dup2(g.fd[1], 1);
+		else if (lst->fd_master[1] > 2)
+			dup2(lst->fd_master[1], 1);
 		//close(lst->fd[0]);
 		//close(lst->fd[1]);
 		if (lst->ft_exec(env, &lst) == -1)

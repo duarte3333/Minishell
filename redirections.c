@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 18:13:42 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/16 12:18:55 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/16 15:18:46 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,34 +25,34 @@ int	check_token(char *str)
 	return (0);
 }
 
-int	redirect(char **division, int *i)
+int	redirect(char **division, int *i, t_list *pre_list)
 {
 	if (!ft_strncmp(division[*i], ">>", 2))
 	{
-		if (g.fd[1] > 2)
-			close(g.fd[1]);
+		if (pre_list->fd_master[1] > 2)
+			close(pre_list->fd_master[1]);
 		free(division[*i]);
-		g.fd[1]  = open(division[++(*i)], O_WRONLY | O_APPEND | O_CREAT, 0644);
+		pre_list->fd_master[1] = open(division[++(*i)], O_WRONLY | O_APPEND | O_CREAT, 0644);
 	}
 	else if (!ft_strncmp(division[*i], "<<", 2))
 	{
-		if (g.fd[0] > 2)
-			close(g.fd[0]);
-		g.fd[0] = ft_here_doc(division[++(*i)]);
+		if (pre_list->fd_master[0] > 2)
+			close(pre_list->fd_master[0]);
+		pre_list->fd_master[0] = ft_here_doc(division[++(*i)]);
 	}
 	else if (!ft_strncmp(division[*i], "<", 1))
 	{
-		if (g.fd[0] > 2)
-			close(g.fd[0]);
+		if (pre_list->fd_master[0] > 2)
+			close(pre_list->fd_master[0]);
 		free(division[*i]);
-		g.fd[0] = open(division[++(*i)], O_RDONLY, 0644);
+		pre_list->fd_master[0] = open(division[++(*i)], O_RDONLY, 0644);
 	}
 	else if (!ft_strncmp(division[*i], ">", 1))
 	{
-		if (g.fd[1] > 2)
-			close(g.fd[1]);
+		if (pre_list->fd_master[1] > 2)
+			close(pre_list->fd_master[1]);
 		free(division[*i]);
-		g.fd[1] = open(division[++(*i)], O_WRONLY | O_TRUNC | O_CREAT, 0644);
+		pre_list->fd_master[1] = open(division[++(*i)], O_WRONLY | O_TRUNC | O_CREAT, 0644);
 	}
 }
 
@@ -75,7 +75,7 @@ int	redirection(t_list	*pre_list, char **division, char **env)
 			j = 0;
 		}
 		else if (check_token(division[i]))
-			redirect(division, &i);
+			redirect(division, &i, temp);
 		else if (division[i] && division[i][0] != 3)
 		{
 			temp->content[j] = ft_strdup(division[i]);

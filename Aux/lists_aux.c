@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 17:16:16 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/15 20:48:46 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/16 15:18:46 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ t_list	*ft_lstnew(int i, char **env)
 		return (NULL);
 	new->content = ft_calloc(sizeof(char *), i + 1);
 	new->ft_exec = __exec_default;
+	new->fd_master[0] = 0;
+	new->fd_master[1] = 1;
 	//new->path = get_cmd_path(env, new->content);
 	//define_exec(&new, env);
 	if (pipe(new->fd) == -1)

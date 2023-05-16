@@ -33,6 +33,8 @@ void	print_list(t_list *list)
 		printf("\n");
 		printf("[fd in] %i\n", list->fd[0]);
 		printf("[fd out] %i\n", list->fd[1]);
+		printf("[fd OW in] %i\n", list->fd_master[0]);
+		printf("[fd OW out] %i\n", list->fd_master[1]);
 		//printf("[path] %s\n", list->path);
 		list = list->next;
 	}
