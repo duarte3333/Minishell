@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 18:31:12 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/15 16:00:03 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/19 16:10:11 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,3 @@ char	*get_cmd_path(char **env, char **cmd)
 	ft_free_matrix(&matrix);
 	return (res);
 }
-
-/* int main(int ac, char **av, char **env)
-{
-	char *big_path;
-	(void)ac;
-
-	big_path = get_path(env);
-	int i = 1;
-	while (av[i])
-	{
-		printf("cmd: %s\n", av[i]);
-		printf("path do cmd: %s\n", get_cmd_path(big_path, &av[i]));
-		i++;
-	}
-} */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:57:38 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/15 17:47:08 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/19 16:12:01 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ Linha 51: -Se for um token {<, <<, >, >>, |} e sep = 0:
 Linha 56: Incrementamos o str aqui para poupar linhas
 Linha 61: -Caso geral: é ir colando as letras na string res e dizer que 
 		  pode começar um novo token -> len = 0*/
+
 void	parse(char *res, char *str, char sep, int *arr)
 {
 	int		len;
@@ -44,11 +45,11 @@ void	parse(char *res, char *str, char sep, int *arr)
 	len = 0;
 	while (str && *str)
 	{
-		if ((*str == '\'' || *str == '\"') && (!sep || sep == *str)) 
+		if ((*str == '\'' || *str == '\"') && (!sep || sep == *str))
 			sep = (*str) * (sep != *str);
 		else if (*str == ' ' && !sep)
 			*str = 2;
-		if (!sep && check_sep(str, arr)) // sub de pipes por 3 ou no caso de > colocacao de um tres e do proprio cha
+		if (!sep && check_sep(str, arr))
 		{
 			*res++ = (3 - (*str != '|' || len != 0 || arr[1] == 0));
 			if ((*str != '|' || !arr[1]) || len)
@@ -58,7 +59,7 @@ void	parse(char *res, char *str, char sep, int *arr)
 			*res++ = 2;
 			len++;
 		}
-		else if((*str == 2 && arr[1]) || ((*str != 2 || *str++ != 2) && ++arr[1]))
+		else if ((*str == 2 && arr[1]) || ((*str != 2 || *str++ != 2) && ++arr[1]))
 		{	
 			*res++ = *str++;
 			len = 0;
@@ -73,7 +74,7 @@ void	parse(char *res, char *str, char sep, int *arr)
 //Output:  cat2322"grep a"23223>>22>22something
 
 //----------------------------------------------------------------
-//--  "Makefile < cat"     -- Makefile < cat: command not found --                        --
+//--  "Makefile < cat"     -- Makefile < cat: command not found --
 //----------------------------------------------------------------
 //--  "< Makefile cat"     -- Faz here doc e escreve num        --
 //--                       -- ficheiro chamado cat              --

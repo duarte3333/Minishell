@@ -1,22 +1,51 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec_types.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/19 16:02:31 by dsa-mora          #+#    #+#             */
+/*   Updated: 2023/05/19 16:26:19 by dsa-mora         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-int __exec_default(char **env, t_list **lst)
+void	__exec_default(char **env, t_list **lst)
 {
-	close((*lst)->fd[0]);
-	close((*lst)->fd[1]);
-	if ((*lst)->fd_master[1] > 2)
-		close((*lst)->fd_master[1]);
-	if ((*lst)->fd_master[0] > 2)
-		close((*lst)->fd_master[0]);
-	return (execve((*lst)->path, (*lst)->content, env));
+	if (fork() == 0)
+	{
+		if ((*lst)->prev && (*lst)->fd_master[0] < 3)
+			dup2((*lst)->fd[0], 0);
+		else if ((*lst)->fd_master[0] > 2)
+			dup2((*lst)->fd_master[0], 0);
+		if ((*lst)->next && (*lst)->fd_master[1] < 3)
+			dup2((*lst)->next->fd[1], 1);
+		else if ((*lst)->fd_master[1] > 2)
+			dup2((*lst)->fd_master[1], 1);
+		close((*lst)->fd[0]);
+		close((*lst)->fd[1]);
+		if ((*lst)->fd_master[1] > 2)
+			close((*lst)->fd_master[1]);
+		if ((*lst)->fd_master[0] > 2)
+			close((*lst)->fd_master[0]);
+		if (execve((*lst)->path, (*lst)->content, env) == -1)
+		{
+			perror("");
+			go_head(lst);
+			ft_free_list(lst);
+			exit(1);
+		}
+	}
 }
 
-int __exec_out(char **env, t_list **lst)
-{
-	close((*lst)->fd[0]);
-	close((*lst)->fd[1]);
-	exit(0);
-}
+// int	__exec_out(char **env, t_list **lst)
+// {
+// 	close((*lst)->fd[0]);
+// 	close((*lst)->fd[1]);
+// 	exit(0);
+// }
 
 // int __exec_here_doc(char **env, t_list **lst)
 // {	

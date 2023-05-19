@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   execution.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/19 16:09:50 by dsa-mora          #+#    #+#             */
+/*   Updated: 2023/05/19 16:09:51 by dsa-mora         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 //printf("cmd: %s\n", lst->content[0]);
@@ -5,27 +17,7 @@
 //printf("STDOUT replaced by %d\n", lst->next->fd[1]);
 void	command_execution(t_list *lst, char **env)
 {
-	int		pid;
-
-	pid = fork();
-	if (pid == 0)
-	{
-		if (lst->prev && lst->fd_master[0] < 3)
-			dup2(lst->fd[0], 0);
-		else if (lst->fd_master[0] > 2)
-			dup2(lst->fd_master[0], 0);
-		if (lst->next && lst->fd_master[1] < 3)
-			dup2(lst->next->fd[1], 1);
-		else if (lst->fd_master[1] > 2)
-			dup2(lst->fd_master[1], 1);
-		if (lst->ft_exec(env, &lst) == -1)
-		{
-			perror("");
-			go_head(&lst);
-			ft_free_list(&lst);
-			exit(1);
-		}
-	}
+	lst->ft_exec(env, &lst);
 	close(lst->fd[0]);
 	close(lst->fd[1]);
 	if (lst->fd_master[1] > 2)
@@ -34,7 +26,7 @@ void	command_execution(t_list *lst, char **env)
 		close(lst->fd_master[0]);
 }
 
-void execution(t_list *lst, char **env)
+void	execution(t_list *lst, char **env)
 {
 	while (lst)
 	{

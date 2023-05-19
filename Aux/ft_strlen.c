@@ -22,8 +22,3 @@ size_t	ft_strlen(const char *str)
 		i++;
 	return (i);
 }
-
-// int main(void)
-// {
-//     printf("%i", ft_strlen("duarte"));
-// } 

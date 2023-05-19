@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/16 15:18:46 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/19 16:33:03 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ struct global
 {
 	int			status;
 	char		**env;
-	int			fd[2];
 };
 
 extern struct global g;
@@ -43,13 +42,14 @@ typedef struct s_list
 	int				fd[2];
 	struct s_list	*next;
 	struct s_list	*prev;
-	int				(*ft_exec)(char **env, struct s_list *list);
+	void			(*ft_exec)(char **env, struct s_list **list);
 }	t_list;
 
 void	print_list(t_list *list);
+
 //Aux functions
 size_t	ft_strlen(const char *str);
-t_list	*ft_lstnew(int i, char **env);
+t_list	*ft_lstnew(int i);
 t_list	*ft_lstlast(t_list *lst);
 char	**ft_split(const char *str, char c);
 void	*ft_calloc(size_t nelem, size_t elsize);
@@ -57,16 +57,15 @@ char	*ft_strjoin(char *s1, char const *s2);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 char	*ft_strdup(const char *src);
 void	ft_free_matrix(char ***m);
-void 	delete_element(t_list **lst);
-void 	go_head(t_list **lst);
+void	delete_element(t_list **lst);
+void	go_head(t_list **lst);
 void	ft_free_list(t_list **lst);
 int		ft_matrixlen(char **matrix);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
-
 //Prompt
-void 	prompt(char **env);
+void	prompt(char **env);
 
 //Parse Function
 void	parse(char *res, char *str, char sep, int *array);
@@ -79,18 +78,13 @@ char	*get_cmd_path(char **env, char **cmd);
 int		ft_here_doc(char *str);
 
 //Redirections
-int		redirection(t_list	*pre_list, char **division, char **env);
+void	redirection(t_list	*pre_list, char **division);
 
 //Execution
-void 	execution(t_list *lst, char **env);
+void	execution(t_list *lst, char **env);
 
 //Exec functions
 int		check_token(char *str);
-int 	__exec_out(char **env, t_list **lst);
-int 	__exec_default(char **env, t_list **lst);
-int 	__exec_here_doc(char **env, t_list **lst);
-int 	__exec_in(char **env, t_list **lst);
-
-
+void	__exec_default(char **env, t_list **lst);
 
 #endif

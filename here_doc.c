@@ -15,7 +15,7 @@
 int	ft_here_doc(char *str)
 {
 	char		*in;
-	int 		fd[2];
+	int			fd[2];
 
 	if (pipe(fd) == -1)
 		perror("");

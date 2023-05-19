@@ -3,36 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   lists_aux.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 17:16:16 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/16 15:18:46 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/19 16:29:05 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	define_exec(t_list **lst, char **env)
+/* vai definir a funcao de execucao para cada node */
+void	define_exec(t_list **lst)
 {
-	// int option;
-
-	// option = check_token((*lst)->content);
-	// if (option == 1)
-	// 	(*lst)->ft_exec = __exec_here_doc;
-	// else if (option == 2 || option == 4)
-	// 	(*lst)->ft_exec = __exec_out;
-	// else if(option == 3)
-	// 	(*lst)->ft_exec = __exec_in;
-	// else
 	(*lst)->ft_exec = __exec_default;
 }
 
-//Esta funcao cria um nó
-t_list	*ft_lstnew(int i, char **env)
+/* Esta funcao cria um node, gerando logo o pipe para cada node*/
+t_list	*ft_lstnew(int i)
 {
 	t_list	*new;
 
-	//printf("criando no com %d palavras\n", i);
 	new = (t_list *)ft_calloc(sizeof(t_list), 1);
 	if (!new)
 		return (NULL);
@@ -40,8 +30,6 @@ t_list	*ft_lstnew(int i, char **env)
 	new->ft_exec = __exec_default;
 	new->fd_master[0] = 0;
 	new->fd_master[1] = 1;
-	//new->path = get_cmd_path(env, new->content);
-	//define_exec(&new, env);
 	if (pipe(new->fd) == -1)
 		perror("");
 	return (new);
@@ -75,44 +63,44 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	}
 }
 
-void delete_element(t_list **lst)
-{
-	t_list *temp;
-
-	temp = (*lst);
-    if (lst && *lst)
-    {
-		if ((*lst)->path)
-			free((*lst)->path);
-		if (!(*lst)->prev && !(*lst)->next)
-			*lst = NULL;
-		else if (!(*lst)->prev && (*lst)->next)
-		{
-			(*lst)->next->prev = NULL;
-			*lst = (*lst)->next;
-		}
-		else if ((*lst)->prev && !(*lst)->next)
-		{
-			(*lst)->prev->next = NULL;
-			*lst = (*lst)->prev;
-		}
-		else if ((*lst)->prev && (*lst)->next)
-		{
-			(*lst)->prev->next = (*lst)->next;
-			(*lst)->next->prev = (*lst)->prev;
-			*lst = (*lst)->prev;
-		}
-		//printf("[content] %s\n", (*lst)->content);
-		if ((temp)->content)
-			ft_free_matrix(&(temp->content));
-		close(temp->fd[0]);
-		close(temp->fd[1]);
-		free(temp);
-    }
-}
-
-void go_head(t_list **lst)
+/* Esta funcao manda a lista de volta para o node inicial */
+void	go_head(t_list **lst)
 {
 	while ((lst) && (*lst) && (*lst)->prev)
 		(*lst) = (*lst)->prev;
 }
+// void delete_element(t_list **lst)
+// {
+// 	t_list *temp;
+
+// 	temp = (*lst);
+//     if (lst && *lst)
+//     {
+// 		if ((*lst)->path)
+// 			free((*lst)->path);
+// 		if (!(*lst)->prev && !(*lst)->next)
+// 			*lst = NULL;
+// 		else if (!(*lst)->prev && (*lst)->next)
+// 		{
+// 			(*lst)->next->prev = NULL;
+// 			*lst = (*lst)->next;
+// 		}
+// 		else if ((*lst)->prev && !(*lst)->next)
+// 		{
+// 			(*lst)->prev->next = NULL;
+// 			*lst = (*lst)->prev;
+// 		}
+// 		else if ((*lst)->prev && (*lst)->next)
+// 		{
+// 			(*lst)->prev->next = (*lst)->next;
+// 			(*lst)->next->prev = (*lst)->prev;
+// 			*lst = (*lst)->prev;
+// 		}
+// 		//printf("[content] %s\n", (*lst)->content);
+// 		if ((temp)->content)
+// 			ft_free_matrix(&(temp->content));
+// 		close(temp->fd[0]);
+// 		close(temp->fd[1]);
+// 		free(temp);
+//     }
+// }
