@@ -1,0 +1,22 @@
+/*   main.c                                             :+:      :+:    :+:   */
+/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   Created: 2023/05/03 17:01:28 by mtiago-s          #+#    #+#             */
+/*   Updated: 2023/05/19 14:13:20 by mtiago-s         ###   ########.fr       */
+struct global g;
+t_list	*generate_list(char *input, char **env)
+	char			**division;
+	static char		*pre_split;
+	int				array[2];
+	pre_split = ft_calloc((ft_strlen(input) * 3 + 1), 1);
+	array[0] = 0;
+	array[1] = 0;
+	parse(pre_split, input, 0, array);
+	pre_list = ft_lstnew(ft_matrixlen(division), env);
+void prompt(char **env)
+	char	*input;
+	while ((input = readline("$ ")) != NULL)
+		add_history(input);
+		pre_list = generate_list(input, env);
+int	main(int ac, char **av, char **env)
+	(void)ac;
+	(void)av;
