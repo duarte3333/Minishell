@@ -36,7 +36,7 @@ t_list	*generate_list(char *input, char **env)
 	redirection(pre_list, division, env);
 	free(pre_split);
 	free(division);
-	print_list(pre_list);
+	//print_list(pre_list);
 	return (pre_list);
 }
 
@@ -68,6 +68,12 @@ int	main(int ac, char **av, char **env)
 {
 	(void)ac;
 	(void)av;
+	int fd = 0;
+	while (fd != -1)
+	{
+		fd = open("Makefile", O_RDONLY);
+		printf("%d\n", fd);
+	}
 	prompt(env);
 }
 

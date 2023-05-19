@@ -4,6 +4,10 @@ int __exec_default(char **env, t_list **lst)
 {
 	close((*lst)->fd[0]);
 	close((*lst)->fd[1]);
+	if ((*lst)->fd_master[1] > 2)
+		close((*lst)->fd_master[1]);
+	if ((*lst)->fd_master[0] > 2)
+		close((*lst)->fd_master[0]);
 	return (execve((*lst)->path, (*lst)->content, env));
 }
 
