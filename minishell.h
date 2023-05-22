@@ -86,5 +86,8 @@ void	execution(t_list *lst, char **env);
 //Exec functions
 int		check_token(char *str);
 void	__exec_default(char **env, t_list **lst);
+void	__exec_pwd(char **env, t_list **lst);
+void	__exec_cd(char **env, t_list **lst);
+
 
 #endif

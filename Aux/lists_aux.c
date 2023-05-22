@@ -12,12 +12,6 @@
 
 #include "../minishell.h"
 
-/* vai definir a funcao de execucao para cada node */
-void	define_exec(t_list **lst)
-{
-	(*lst)->ft_exec = __exec_default;
-}
-
 /* Esta funcao cria um node, gerando logo o pipe para cada node*/
 t_list	*ft_lstnew(int i)
 {
@@ -27,7 +21,6 @@ t_list	*ft_lstnew(int i)
 	if (!new)
 		return (NULL);
 	new->content = ft_calloc(sizeof(char *), i + 1);
-	new->ft_exec = __exec_default;
 	new->fd_master[0] = 0;
 	new->fd_master[1] = 1;
 	if (pipe(new->fd) == -1)

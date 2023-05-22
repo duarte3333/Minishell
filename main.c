@@ -18,7 +18,7 @@ t_list	*generate_list(char *input)
 {
 	t_list			*list;
 	char			**division;
-	static char		*pre_split;
+	char			*pre_split;
 	int				array[2];
 
 	pre_split = ft_calloc((ft_strlen(input) * 3 + 1), 1);

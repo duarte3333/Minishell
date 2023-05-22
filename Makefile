@@ -18,10 +18,7 @@ RESET=\033[0m
 bold_green=\033[1;32m
 yellow_bg=\033[43m
 
-SRCS =	parser.c \
-		main.c \
-		path.c \
-		Aux/ft_calloc.c \
+SRCS =  Aux/ft_calloc.c \
 		Aux/ft_strlen.c \
 		Aux/lists_aux.c \
 		Aux/ft_split.c \
@@ -34,10 +31,15 @@ SRCS =	parser.c \
 		Aux/ft_strncmp.c \
 		Get_Next_Line/get_next_line_utils.c \
 		Get_Next_Line/get_next_line.c \
+		Built_ins/pwd.c \
+		Built_ins/cd.c \
 		here_doc.c \
 		redirections.c \
 		exec_types.c \
-		execution.c
+		execution.c \
+		parser.c \
+		main.c \
+		path.c 
 
 OBJS	= ${SRCS:.c=.o}
 
