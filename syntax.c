@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:04:26 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/22 15:39:12 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/22 15:46:32 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,19 @@ void	treat_sep(char *input, int	i, int size, int *words) // tem que ser repensad
 	//*words = 0;
 }
 
+void	treat_quotes(char *input, int i)
+{
+	char	c;
+
+	c = input[i];
+	while (input[++i])
+	{
+		if (c == input[i])
+			return ;
+	}
+	syntax_error(&c, input, 1);	
+}
+
 void	syntax_treatment(char *input)
 {
 	int	i;
@@ -100,8 +113,8 @@ void	syntax_treatment(char *input)
 			//printf("going for treat_sep %s\n", &input[i]);
 			treat_sep(input, i, j, &words);
 		}
-		// else if (input[i] == '\"' || input[i] == '\'')
-		// 	treat_quotes(input, i, j);
+		else if (input[i] == '\"' || input[i] == '\'')
+			treat_quotes(input, i);
 		else if (input[i] != 32)
 			words++;
 		if (j == 2)
@@ -111,8 +124,7 @@ void	syntax_treatment(char *input)
 }
 
 
-int	main(int ac, char **av)
+int	main(void)
 {
-	(void)ac;
-	syntax_treatment(av[1]);
+	syntax_treatment("\' ola eu sou o tiago");
 }
