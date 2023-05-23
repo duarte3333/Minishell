@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 16:09:50 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/23 19:03:52 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/05/23 19:33:50 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	define_exec(t_list *lst)
 		lst->ft_exec = __exec_pwd;
 	else if (!ft_strcmp(lst->content[0], "cd"))
 		lst->ft_exec = __exec_cd;
-	else if (!ft_strcmp(lst->content[0], "echo"))
-		lst->ft_exec = __exec_echo;
+	// else if (!ft_strcmp(lst->content[0], "echo"))
+	// 	lst->ft_exec = __exec_echo;
 	else
 		lst->ft_exec = __exec_default;
 }

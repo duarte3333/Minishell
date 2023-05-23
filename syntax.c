@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:04:26 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/23 18:47:55 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/23 19:46:04 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	delete_quotes(char **input, char c)
 	i = -1;
 	j = 0;
 	flag = 0;
+	//printf("%s\n", *input);
 	temp = ft_calloc(ft_strlen(*input) + 1, 1);
 	if (!temp)
 		return ;
@@ -100,10 +101,7 @@ void	treat_quotes(char *input, int i, int *flag)
 	while (input[++i])
 	{
 		if (c == input[i])
-		{
-			//delete_quotes(input, c);
 			return ;
-		}
 	}
 	syntax_error(&c, input, 1);
 }
