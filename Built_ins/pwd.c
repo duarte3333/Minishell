@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pwd.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/23 15:44:32 by dsa-mora          #+#    #+#             */
+/*   Updated: 2023/05/23 15:45:22 by dsa-mora         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../minishell.h"
 
@@ -8,10 +19,10 @@ e o tamanho máximo do buffer. cwd - current working directory
  */
 void	__exec_pwd(char **env, t_list **lst)
 {
-	(void)env;
-	(void)lst;
-	char cwd[PATH_MAX];
+    char cwd[PATH_MAX];
 
+    (void)env;
+	(void)lst;
     if (getcwd(cwd, sizeof(cwd)) != NULL) 
         printf("Current directory: %s\n", cwd);
 	else {

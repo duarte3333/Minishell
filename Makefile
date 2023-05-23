@@ -1,6 +1,6 @@
 NAME = minishell
-CC = cc -lreadline
-CFLAGS =  -Wall -Wextra -g -fsanitize=address #-Werror#-O3
+CC = cc
+CFLAGS = -Wall -Wextra -g -fsanitize=address -Werror#-O3
 
 #valgrind --leak-check=full --show-leak-kinds=all 
 #--track-fds=yes ./pipex /dev/random  head out.txt
@@ -43,14 +43,14 @@ SRCS =  Aux/ft_calloc.c \
 
 OBJS	= ${SRCS:.c=.o}
 
-%.o: %.c philosophers.h
-	@$(CC)  $(CFLAGS) -o $@ $< 
+%.o: %.c minishell.h
+	@$(CC) -c $(CFLAGS) -o $@ $< 
 	@echo "$(YELLOW)[COMPILED]	"$<"$(RESET)"
 
 all: fingers $(NAME) done
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) -L -lft -lreadline -o $(NAME)
 
 fingers:
 	@echo "$(YELLOW)Fingers crossed for no errors...$(RESET)"
