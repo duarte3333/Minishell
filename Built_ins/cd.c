@@ -59,13 +59,13 @@ void	__exec_cd(char **env, t_list **lst)
 	//char	*path_home;
 
 	//path_home = get_env_var("HOME");
-	if (!(*lst)->content[1] && change_dir("/home/duarte33", 0))
+	if (!(*lst)->content[1] && change_dir("/nfs/homes/mtiago-s", 0))
 		return ;
 	if (two_args(*lst))
 		return ;
 	else
 	{
-		if (!ft_strcmp((*lst)->content[1], "--") && change_dir("/home/duarte33", 0))
+		if (!ft_strcmp((*lst)->content[1], "--") && change_dir("/nfs/homes/mtiago-s", 0))
 			return ;
 		else if (((*lst)->content[1][0] == '-') && !(*lst)->content[1][2])
 		{

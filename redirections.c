@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 18:13:42 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/19 16:33:07 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/05/23 16:31:33 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ void	redirection(t_list	*lst, char **division)
 	temp = lst;
 	while (division && division[++i])
 	{
-		if (division[i][0] == 3 && (i++))
+		if (division[i][0] == 3)
 		{
-			ft_lstadd_back(&lst, ft_lstnew(ft_matrixlen(&division[i])));
+			ft_lstadd_back(&lst, ft_lstnew(ft_matrixlen(&division[i + 1])));
 			if (temp->next)
 				temp = temp->next;
 			j = 0;

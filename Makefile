@@ -44,7 +44,7 @@ SRCS =  Aux/ft_calloc.c \
 OBJS	= ${SRCS:.c=.o}
 
 %.o: %.c philosophers.h
-	@$(CC) -c $(CFLAGS) -o $@ $< 
+	@$(CC)  $(CFLAGS) -o $@ $< 
 	@echo "$(YELLOW)[COMPILED]	"$<"$(RESET)"
 
 all: fingers $(NAME) done

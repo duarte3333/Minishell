@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/19 16:33:03 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/05/23 16:44:03 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	prompt(char **env);
 void	parse(char *res, char *str, char sep, int *array);
 
 //Getting the path
-char	*get_path(char **env);
+char	*get_path(char **env, char *str);
 char	*get_cmd_path(char **env, char **cmd);
 
 //Here doc
@@ -88,6 +88,5 @@ int		check_token(char *str);
 void	__exec_default(char **env, t_list **lst);
 void	__exec_pwd(char **env, t_list **lst);
 void	__exec_cd(char **env, t_list **lst);
-
 
 #endif
