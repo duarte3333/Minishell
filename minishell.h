@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/23 17:58:23 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/05/23 19:21:29 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ struct global
 	char		**env;
 };
 
-extern struct global g;
+extern struct global g_data;
 
 typedef struct s_list
 {
@@ -92,5 +92,8 @@ void	__exec_pwd(char **env, t_list **lst);
 void	__exec_cd(char **env, t_list **lst);
 void	__exec_echo(char **env, t_list **lst);
 
+//syntax
+void	syntax_treatment(char *input);
+void	delete_quotes(char **input, char c);
 
 #endif

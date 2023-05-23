@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:01:28 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/23 19:20:40 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/23 18:59:32 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,11 @@ void	prompt(char **env)
 	while (1)
 	{
 		input = readline("$ ");
-		if (!input || !ft_strcmp(input, "exit"))
+		if (!input)
+			exit(0);
+		if (!ft_strcmp(input, "exit"))
 		{
-			if(input)
-				free(input);
+			free(input);
 			exit(0);
 		}
 		add_history(input);
@@ -66,5 +67,6 @@ int	main(int ac, char **av, char **env)
 {
 	(void)ac;
 	(void)av;
+	g_data.env = env;
 	prompt(env);
 }

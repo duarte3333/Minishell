@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 18:13:42 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/23 16:31:33 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/23 19:13:57 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ void	redirection(t_list	*lst, char **division)
 			redirect(division, &i, temp);
 		else
 		{
+			if (division[i][0] == '\'' || division[i][0] == '\"')
+				delete_quotes(&division[i], division[i][0]);
 			temp->content[j] = ft_strdup(division[i]);
 			j++;
 		}

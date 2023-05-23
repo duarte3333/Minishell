@@ -6,13 +6,13 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:04:26 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/23 16:23:21 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/23 18:47:55 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	check_sep(char *str, int *arr)
+int	check_sep_2(char *str, int *arr)
 {
 	arr[0] = 0;
 	if ((str[0] == '<' && str[1] == '<') || (str[0] == '>' && str[1] == '>'))
@@ -20,6 +20,8 @@ int	check_sep(char *str, int *arr)
 	else if (str[0] == '<' || str[0] == '>')
 		arr[0] = 1;
 	else if (str[0] == '|')
+		arr[0] = 1;
+	else if (str[0] == ';')
 		arr[0] = 1;
 	return (arr[0]);
 }
@@ -36,10 +38,9 @@ void	syntax_error(char* str, char *input, int size)
 		size--;
 	}
 	write(2, "\'\n", 2);
-	// if (input)
-	// 	free(input);
-	exit(0);
-	//prompt(g->env);
+	if (input)
+		free(input);
+	prompt(g_data.env);
 }
 
 void	treat_sep(char *input, int	i, int size, int *words)
@@ -56,25 +57,55 @@ void	treat_sep(char *input, int	i, int size, int *words)
 	i += size;
 	while (input[i])
 	{
-		if (check_sep(&input[i], &temp) && !w)
+		if (check_sep_2(&input[i], &temp) && !w)
 			syntax_error(&input[i], input, temp);
 		else if (input[i] != 32)
 			w++;
 		i++;
 	}
+	if (!w)
+		syntax_error("newline", input, 8);
 }
 
-void	treat_quotes(char *input, int i)
+void	delete_quotes(char **input, char c)
+{
+	char	*temp;
+	int		i;
+	int		j;
+	int		flag;
+	
+	i = -1;
+	j = 0;
+	flag = 0;
+	temp = ft_calloc(ft_strlen(*input) + 1, 1);
+	if (!temp)
+		return ;
+	while (input[0][++i])
+	{
+		if (flag == 2 || input[0][i] != c)
+			temp[j++] = input[0][i];
+		else
+			flag++;
+	}
+	free(*input);
+	*input = temp;
+}
+
+void	treat_quotes(char *input, int i, int *flag)
 {
 	char	c;
 
 	c = input[i];
+	*flag = c;
 	while (input[++i])
 	{
 		if (c == input[i])
+		{
+			//delete_quotes(input, c);
 			return ;
+		}
 	}
-	syntax_error(&c, input, 1);	
+	syntax_error(&c, input, 1);
 }
 
 void	syntax_treatment(char *input)
@@ -82,18 +113,22 @@ void	syntax_treatment(char *input)
 	int	i;
 	int	j;
 	int	words;
+	int	flag;
 
 	i = 0;
 	j = 0;
 	words = 0;
+	flag = 0;
 	if (!input)
 		return ;
 	while(input[i])
 	{
-		if (check_sep(&input[i], &j))
+		if (check_sep_2(&input[i], &j))
 			treat_sep(input, i, j, &words);
-		else if (input[i] == '\"' || input[i] == '\'')
-			treat_quotes(input, i);
+		else if ((input[i] == '\"' && !flag) || (input[i] == '\'' && !flag))
+			treat_quotes(input, i, &flag);
+		else if (input[i] == flag)
+			flag = 0;
 		else if (input[i] != 32)
 			words++;
 		if (j == 2)
@@ -102,8 +137,3 @@ void	syntax_treatment(char *input)
 	}
 }
 
-
-int	main(void)
-{
-	syntax_treatment("\' ola eu sou o tiago");
-}
