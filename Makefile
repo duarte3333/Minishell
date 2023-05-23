@@ -29,10 +29,12 @@ SRCS =  Aux/ft_calloc.c \
 		Aux/ft_matrixlen.c \
 		Aux/ft_strcmp.c \
 		Aux/ft_strncmp.c \
+		Aux/ft_strchr.c \
 		Get_Next_Line/get_next_line_utils.c \
 		Get_Next_Line/get_next_line.c \
 		Built_ins/pwd.c \
 		Built_ins/cd.c \
+		Built_ins/echo.c \
 		here_doc.c \
 		redirections.c \
 		exec_types.c \

@@ -6,7 +6,7 @@
 /*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 15:44:22 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/23 16:50:28 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/05/23 17:39:57 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,6 @@ void	print_path(char *path)
 	(void) path;
 	//parsed_home = get_env_var("HOME");
 	//printf("%s\n", parsed_home);
-}
-
-int	two_args(t_list *lst)
-{
-	if (lst->content[2])
-	{
-		printf("cd: too many arguments\n");
-		return (1);
-	}
-	return (1);
 }
 
 // R_OK: Verifica se o arquivo pode ser lido.
@@ -70,20 +60,24 @@ int	change_dir(char *path, int print)
 void	__exec_cd(char **env, t_list **lst)
 {
 	(void)env;
-	//char	*path_home;
-	//path_home = get_env_var("HOME");
-	if (!(*lst)->content[1] && change_dir("/home/duarte33", 0))
+	char	*path_home;
+	
+	path_home = get_env(env, "HOME") + 5;
+	//printf("%s\n",path_home);
+	if (!(*lst)->content[1] && change_dir(path_home, 0))
 		return ;
-	if (two_args(*lst))
+	if ((*lst)->content[2])
+	{
+		printf("cd: too many arguments\n");
 		return ;
+	}
 	else
 	{
-		if (!ft_strcmp((*lst)->content[1], "--") && change_dir("/home/duarte33", 0))
+		if (!ft_strcmp((*lst)->content[1], "--") && change_dir(path_home, 0))
 			return ;
-		else if (((*lst)->content[1][0] == '-') && !(*lst)->content[1][2])
+		else if ((*lst)->content[1][0] == '-')
 		{
-			change_dir("/home/duarte33/42School/minishell", 1);
-			//change_dir(get_env_var("OLDPWD"), 1);
+			change_dir(get_env(env, "OLDPWD") + 7, 1);
 			return ;
 		}
 		change_dir((*lst)->content[1], 0);

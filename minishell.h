@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/23 16:44:03 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/23 17:58:23 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void	ft_free_list(t_list **lst);
 int		ft_matrixlen(char **matrix);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+char	*ft_strchr(const char *s, int c);
+
 
 //Prompt
 void	prompt(char **env);
@@ -71,7 +73,7 @@ void	prompt(char **env);
 void	parse(char *res, char *str, char sep, int *array);
 
 //Getting the path
-char	*get_path(char **env, char *str);
+char	*get_env(char **env, char *str);
 char	*get_cmd_path(char **env, char **cmd);
 
 //Here doc
@@ -88,5 +90,7 @@ int		check_token(char *str);
 void	__exec_default(char **env, t_list **lst);
 void	__exec_pwd(char **env, t_list **lst);
 void	__exec_cd(char **env, t_list **lst);
+void	__exec_echo(char **env, t_list **lst);
+
 
 #endif
