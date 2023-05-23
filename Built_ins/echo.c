@@ -4,7 +4,7 @@ void	print_matrix(char **str)
 {
 	int i;
 
-	i = -1;
+	i = 0;
 	while (str[++i])
 		printf("%s", str[i]);
 }
@@ -20,13 +20,13 @@ void	__exec_echo(char **env, t_list **lst)
 	{
 		temp = ((*lst)->content[1]);
 		((*lst)->content[1])++;
-		while ((*lst)->content[1][++i])
+		printf("[oi] %s\n", (*lst)->content[1]);
+		while ((*lst)->content[1][++i] && (*lst)->content[1][++i] != '\n')
 		{
 			if ((*lst)->content[1][i] == 'n')
-				((*lst)->content[1])++;
+				i++;
 			else
 			{
-				((*lst)->content[1]) = temp;
 				break ;
 			}
 		}
