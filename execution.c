@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 16:09:50 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/23 19:33:50 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/24 16:46:52 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,36 @@ void	define_exec(t_list *lst)
 		lst->ft_exec = __exec_pwd;
 	else if (!ft_strcmp(lst->content[0], "cd"))
 		lst->ft_exec = __exec_cd;
-	// else if (!ft_strcmp(lst->content[0], "echo"))
-	// 	lst->ft_exec = __exec_echo;
+	else if (!ft_strcmp(lst->content[0], "echo"))
+		lst->ft_exec = __exec_echo;
+	else if (!ft_strcmp(lst->content[0], "env"))
+		lst->ft_exec = __exec_env;
 	else
 		lst->ft_exec = __exec_default;
 }
 
 void	command_execution(t_list *lst, char **env)
 {
-	lst->ft_exec(env, &lst);
-	close(lst->fd[0]);
-	close(lst->fd[1]);
-	if (lst->fd_master[1] > 2)
-		close(lst->fd_master[1]);
-	if (lst->fd_master[0] > 2)
-		close(lst->fd_master[0]);
+	if (fork() == 0)
+	{
+		if ((*lst)->prev && (*lst)->fd_master[0] < 3)
+			dup2((*lst)->fd[0], 0);
+		else if ((*lst)->fd_master[0] > 2)
+			dup2((*lst)->fd_master[0], 0);
+		if ((*lst)->next && (*lst)->fd_master[1] < 3)
+			dup2((*lst)->next->fd[1], 1);
+		else if ((*lst)->fd_master[1] > 2)
+			dup2((*lst)->fd_master[1], 1);
+		if (lst->ft_exec(env, &lst) == -1)
+		{
+			perror("");
+			go_head(lst);
+			ft_free_list(lst);
+			exit(1);
+		}
+	}
+	close_fds(&lst);
+
 }
 
 void	execution(t_list *lst, char **env)

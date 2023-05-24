@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 15:44:22 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/23 17:39:57 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/05/24 16:46:45 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	__exec_cd(char **env, t_list **lst)
 	(void)env;
 	char	*path_home;
 	
+	close_fds(lst);
 	path_home = get_env(env, "HOME") + 5;
 	//printf("%s\n",path_home);
 	if (!(*lst)->content[1] && change_dir(path_home, 0))

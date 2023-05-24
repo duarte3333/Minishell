@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/23 19:25:08 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/24 16:33:18 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int		ft_matrixlen(char **matrix);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strchr(const char *s, int c);
-
+char	**ft_matrixdup(char **matrix);
 
 //Prompt
 void	prompt(char **env);
@@ -91,6 +91,7 @@ void	__exec_default(char **env, t_list **lst);
 void	__exec_pwd(char **env, t_list **lst);
 void	__exec_cd(char **env, t_list **lst);
 void	__exec_echo(char **env, t_list **lst);
+void	__exec_env(char **env, t_list **lst);
 
 //syntax
 void	syntax_treatment(char *input);
