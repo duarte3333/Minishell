@@ -3,11 +3,9 @@
 void	ft_free_list(t_list **lst)
 {
 	t_list	*temp;
-	int		i;
 
 	while (*lst)
 	{
-		i = -1;
 		temp = (*lst)->next;
 		ft_free_matrix(&(*lst)->content);
 		free((*lst)->path);

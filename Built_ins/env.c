@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 16:31:52 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/24 18:43:20 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/24 21:35:39 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,9 @@ t_env	*ft_envnew(char *str)
 void	ft_free_env(t_env **lst)
 {
 	t_env	*temp;
-	int		i;
 
 	while (*lst)
 	{
-		i = -1;
 		temp = (*lst)->next;
 		free((*lst)->content);
 		free(*lst);
@@ -77,9 +75,6 @@ t_env	*get_env(char **env)
 
 void	__exec_env(char **env, t_list **lst)
 {
-	int	i;
-	
-	i = -1;
 	(void)env;
 	close_fds(lst, 1);
 	while (g_data.env && printf("%s\n", g_data.env->content))
