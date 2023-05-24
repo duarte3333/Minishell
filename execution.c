@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 16:09:50 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/24 17:41:44 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/24 18:43:38 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	command_execution(t_list *lst, char **env)
 			dup2(lst->fd_master[1], 1);
 		lst->ft_exec(env, &lst);
 	}
-	close_fds(&lst);
+	close_fds(&lst, 0);
 
 }
 
