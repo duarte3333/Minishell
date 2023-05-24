@@ -1,12 +1,20 @@
 #include "../minishell.h"
 
-void	print_matrix(char **str)
+void	print_matrix(char **str, size_t i)
 {
-	int i;
+	size_t j;
 
-	i = 0;
-	while (str[++i])
-		printf("%s", str[i]);
+	j = 0;
+	while (str[j])
+		j++;
+	while (str[i])
+	{
+		if ((i + 1) != j)
+			printf("%s ", str[i]);
+		else 
+			printf("%s", str[i]);
+		i++;
+	}
 }
 
 int	is_a_n(char letter)
@@ -22,26 +30,27 @@ void	__exec_echo(char **env, t_list **lst)
 	int		flag;
 
 	flag = 0;
-	i = -1;
 	(void)env; 
 	if ((*lst)->content[1][0] == '-')
 	{
-		while ((*lst)->content[1][++i])
+		i = 1;
+		while ((*lst)->content[1][i])
 		{
-			if (is_a_n((*lst)->content[1][i]))
-				i++;
-			else
+			if (!(is_a_n((*lst)->content[1][i])))
 			{
 				flag++;
 				break;
 			}
+			i++;
 		}
-		flag = 2;
+		if (!flag)
+			flag = 2;
 	}
-	if (flag == 1)
-		print_matrix((*lst)->content);
-	else if (flag == 2)
-		print_matrix(++((*lst)->content));
-	if (!flag || flag == 2)
+	if (flag == 1 || !flag)
+	{
+		print_matrix((*lst)->content, 1);
 		printf("\n");
+	}
+	else if (flag == 2)
+		print_matrix((*lst)->content, 2);
 }
