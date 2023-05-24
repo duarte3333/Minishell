@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:01:28 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/24 16:31:53 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/05/24 16:53:50 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	prompt(char **env)
 
 	while (1)
 	{
-		input = readline("$ ");
+		input = readline("$ ");// colocar if input != a newline fazer o resto
 		if (!input || !ft_strcmp(input, "exit"))
 		{
 			if(input)
@@ -66,5 +66,6 @@ int	main(int ac, char **av, char **env)
 {
 	(void)ac;
 	(void)av;
+	g_data.env = ft_matrixdup(env);
 	prompt(env);
 }

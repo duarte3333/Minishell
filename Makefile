@@ -19,6 +19,7 @@ bold_green=\033[1;32m
 yellow_bg=\033[43m
 
 SRCS =  Aux/ft_calloc.c \
+		Aux/ft_matrixdup.c \
 		Aux/ft_strlen.c \
 		Aux/lists_aux.c \
 		Aux/ft_split.c \
