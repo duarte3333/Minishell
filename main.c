@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:01:28 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/24 18:22:32 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/24 21:19:53 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	prompt(char **env_og)
 		add_history(input);
 		syntax_treatment(input);
 		list = generate_list(input);
-		print_list(list);
+		//print_list(list);
 		if (list->content[0])
 			execution(list, env_og);
 		ft_free_list(&list);
