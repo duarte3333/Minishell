@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 16:09:50 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/24 17:01:12 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/24 17:41:44 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,15 @@ void	command_execution(t_list *lst, char **env)
 {
 	if (fork() == 0)
 	{
-		if ((*lst)->prev && (*lst)->fd_master[0] < 3)
-			dup2((*lst)->fd[0], 0);
-		else if ((*lst)->fd_master[0] > 2)
-			dup2((*lst)->fd_master[0], 0);
-		if ((*lst)->next && (*lst)->fd_master[1] < 3)
-			dup2((*lst)->next->fd[1], 1);
-		else if ((*lst)->fd_master[1] > 2)
-			dup2((*lst)->fd_master[1], 1);
-		if (lst->ft_exec(env, &lst) == -1)
-		{
-			perror("");
-			go_head(lst);
-			ft_free_list(lst);
-			exit(1);
-		}
+		if (lst->prev && lst->fd_master[0] < 3)
+			dup2(lst->fd[0], 0);
+		else if (lst->fd_master[0] > 2)
+			dup2(lst->fd_master[0], 0);
+		if (lst->next && lst->fd_master[1] < 3)
+			dup2(lst->next->fd[1], 1);
+		else if (lst->fd_master[1] > 2)
+			dup2(lst->fd_master[1], 1);
+		lst->ft_exec(env, &lst);
 	}
 	close_fds(&lst);
 

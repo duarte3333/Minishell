@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:01:28 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/24 17:01:24 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/24 17:38:09 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_list	*generate_list(char *input)
 	return (list);
 }
 
-void	prompt(char **env)
+void	prompt(char **env_og)
 {
 	char	*input;
 	t_list	*list;
@@ -49,6 +49,7 @@ void	prompt(char **env)
 		{
 			if(input)
 				free(input);
+			ft_free_env(&g_data.env);
 			exit(0);
 		}
 		add_history(input);
@@ -56,7 +57,7 @@ void	prompt(char **env)
 		list = generate_list(input);
 		//print_list(list);
 		if (list->content[0])
-			execution(list, env);
+			execution(list, env_og);
 		ft_free_list(&list);
 		free(input);
 	}
@@ -66,6 +67,7 @@ int	main(int ac, char **av, char **env)
 {
 	(void)ac;
 	(void)av;
-	g_data.env = ft_matrixdup(env);
+	g_data.env = get_env(env);
+	g_data.env_og = env;
 	prompt(env);
 }

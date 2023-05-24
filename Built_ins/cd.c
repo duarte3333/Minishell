@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 15:44:22 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/24 16:46:45 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/24 17:25:23 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	print_path(char *path)
 {
 	//char	*parsed_home;
 	(void) path;
-	//parsed_home = get_env_var("HOME");
+	//parsed_home = search_env_var("HOME");
 	//printf("%s\n", parsed_home);
 }
 
@@ -63,7 +63,7 @@ void	__exec_cd(char **env, t_list **lst)
 	char	*path_home;
 	
 	close_fds(lst);
-	path_home = get_env(env, "HOME") + 5;
+	path_home = search_env(env, "HOME") + 5;
 	//printf("%s\n",path_home);
 	if (!(*lst)->content[1] && change_dir(path_home, 0))
 		return ;
@@ -78,7 +78,7 @@ void	__exec_cd(char **env, t_list **lst)
 			return ;
 		else if ((*lst)->content[1][0] == '-')
 		{
-			change_dir(get_env(env, "OLDPWD") + 7, 1);
+			change_dir(search_env(env, "OLDPWD") + 7, 1);
 			return ;
 		}
 		change_dir((*lst)->content[1], 0);

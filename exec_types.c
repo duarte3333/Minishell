@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 16:02:31 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/24 16:46:34 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/24 17:06:48 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,13 @@ void	close_fds(t_list **lst)
 void	__exec_default(char **env, t_list **lst)
 {
 		close_fds(lst);
-		return (execve((*lst)->path, (*lst)->content, env));
+		if (execve((*lst)->path, (*lst)->content, env) == -1)
+		{
+			perror("");
+			go_head(lst);
+			ft_free_list(lst);
+			exit(1);
+		}
 }
 
 

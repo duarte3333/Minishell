@@ -35,6 +35,7 @@ SRCS =  Aux/ft_calloc.c \
 		Get_Next_Line/get_next_line.c \
 		Built_ins/pwd.c \
 		Built_ins/cd.c \
+		Built_ins/env.c \
 		Built_ins/echo.c \
 		here_doc.c \
 		redirections.c \

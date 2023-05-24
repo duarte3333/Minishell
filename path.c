@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 18:31:12 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/23 17:07:48 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/05/24 17:24:59 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*get_env(char **env, char *str)
+char	*search_env(char **env, char *str)
 {
 	int	i;
 
@@ -32,7 +32,7 @@ char	*get_cmd_path(char **env, char **cmd)
 	i = 0;
 	if (access(cmd[0], X_OK) == 0)
 		return (ft_strdup(cmd[0]));
-	matrix = ft_split(get_env(env, "PATH"), ':');
+	matrix = ft_split(search_env(env, "PATH"), ':');
 	res = ft_strjoin("/", cmd[0]);
 	while (matrix[i])
 	{

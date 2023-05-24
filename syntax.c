@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:04:26 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/23 19:46:04 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/24 17:33:52 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	syntax_error(char* str, char *input, int size)
 	write(2, "\'\n", 2);
 	if (input)
 		free(input);
-	prompt(g_data.env);
+	prompt(g_data.env_og);
 }
 
 void	treat_sep(char *input, int	i, int size, int *words)

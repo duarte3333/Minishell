@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/24 16:33:18 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/24 17:33:30 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,18 @@
 # include <readline/history.h>
 # include "Get_Next_Line/get_next_line.h"
 
+typedef struct s_env
+{
+	char			*content;
+	struct	s_env	*next;
+	struct	s_env	*prev;
+}	t_env;
+
 struct global
 {
 	int			status;
-	char		**env;
+	t_env		*env;
+	char		**env_og;
 };
 
 extern struct global g_data;
@@ -73,8 +81,12 @@ void	prompt(char **env);
 void	parse(char *res, char *str, char sep, int *array);
 
 //Getting the path
-char	*get_env(char **env, char *str);
+char	*search_env(char **env, char *str);
 char	*get_cmd_path(char **env, char **cmd);
+
+//env
+t_env	*get_env(char **env);
+void	ft_free_env(t_env **lst);
 
 //Here doc
 int		ft_here_doc(char *str);
@@ -86,6 +98,7 @@ void	redirection(t_list	*pre_list, char **division);
 void	execution(t_list *lst, char **env);
 
 //Exec functions
+void	close_fds(t_list **lst);
 int		check_token(char *str);
 void	__exec_default(char **env, t_list **lst);
 void	__exec_pwd(char **env, t_list **lst);
