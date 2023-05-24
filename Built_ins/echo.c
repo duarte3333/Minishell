@@ -9,30 +9,39 @@ void	print_matrix(char **str)
 		printf("%s", str[i]);
 }
 
+int	is_a_n(char letter)
+{
+	if (letter == 'n')
+		return (1);
+	return (0);
+}
+
 void	__exec_echo(char **env, t_list **lst)
 {
 	int 	i;
-	char	*temp; 
+	int		flag;
 
+	flag = 0;
 	i = -1;
 	(void)env; 
 	if ((*lst)->content[1][0] == '-')
 	{
-		temp = ((*lst)->content[1]);
-		((*lst)->content[1])++;
-		printf("[oi] %s\n", (*lst)->content[1]);
-		while ((*lst)->content[1][++i] && (*lst)->content[1][++i] != '\n')
+		while ((*lst)->content[1][++i])
 		{
-			if ((*lst)->content[1][i] == 'n')
+			if (is_a_n((*lst)->content[1][i]))
 				i++;
 			else
 			{
-				break ;
+				flag++;
+				break;
 			}
 		}
-		print_matrix((*lst)->content);
+		flag = 2;
 	}
-	else
+	if (flag == 1)
 		print_matrix((*lst)->content);
-	printf("\n");
+	else if (flag == 2)
+		print_matrix(++((*lst)->content));
+	if (!flag || flag == 2)
+		printf("\n");
 }
