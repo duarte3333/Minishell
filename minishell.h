@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/24 17:33:30 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/24 18:42:43 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	redirection(t_list	*pre_list, char **division);
 void	execution(t_list *lst, char **env);
 
 //Exec functions
-void	close_fds(t_list **lst);
+void	close_fds(t_list **lst, int flag);
 int		check_token(char *str);
 void	__exec_default(char **env, t_list **lst);
 void	__exec_pwd(char **env, t_list **lst);

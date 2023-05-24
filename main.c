@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:01:28 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/24 17:38:09 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/24 18:22:32 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	prompt(char **env_og)
 		add_history(input);
 		syntax_treatment(input);
 		list = generate_list(input);
-		//print_list(list);
+		print_list(list);
 		if (list->content[0])
 			execution(list, env_og);
 		ft_free_list(&list);

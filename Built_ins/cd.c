@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 15:44:22 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/24 17:25:23 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/24 18:43:14 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	__exec_cd(char **env, t_list **lst)
 	(void)env;
 	char	*path_home;
 	
-	close_fds(lst);
+	close_fds(lst, 1);
 	path_home = search_env(env, "HOME") + 5;
 	//printf("%s\n",path_home);
 	if (!(*lst)->content[1] && change_dir(path_home, 0))

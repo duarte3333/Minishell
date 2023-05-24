@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 16:31:52 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/24 17:41:33 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/24 18:43:20 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	__exec_env(char **env, t_list **lst)
 	
 	i = -1;
 	(void)env;
-	close_fds(lst);
+	close_fds(lst, 1);
 	while (g_data.env && printf("%s\n", g_data.env->content))
 		g_data.env = g_data.env->next;
 	go_head(lst);
