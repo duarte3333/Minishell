@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:57:38 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/23 16:31:38 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/25 17:29:57 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,108 @@ void	parse(char *res, char *str, char sep, int *arr)
 //--     ls <<< ola       --   executa o ls                     --
 //----------------------------------------------------------------
 
+char	*get_dollar_word(char *str) // se calhar esta funcao tem de fazer ja o search path para ver se e suposto retornar essa palavra
+{
+	int		i;
+	int		j;
+	char	*res;
+	
+	i = -1;
+	j = 0;
+	while (str[++i])
+	{
+		if (i && str[i - 1] == '$')
+		{
+			while (str[i + j] && str[i + j] != 32)
+				j++;
+			if (!j)
+				return (NULL);
+			res = ft_calloc(j + 1, 1);
+			while (--j != -1 && str[i + j])
+				res[j] = str[i + j];
+			return (res);
+		}
+	}
+	return (NULL);
+}
 
+int	how_many_dollars(char *str) // contagem de quantos $ serao subsituidos
+{
+	int		res;
+	int		i;
+	char	*temp;
+
+	i = -1;
+	res = 0;
+	temp = NULL;
+	while (str[++i])
+	{
+		if (str[i] == '$' && str[i + 1] && str[i + 1] != 32 && str[i + 1] != '$')
+		{
+			temp = get_dollar_word(&str[i]);
+			if (search_env(env, temp))
+				res++;
+			if (temp)
+				free(temp);
+			temp = NULL;
+		}
+	}
+	return (res);
+}
+
+void	chg_dollar(char **str, char **env)
+{
+	int		i[3];
+	char	*temp;
+	char	*temp2;
+	char	*res;
+	int		flag;
+
+	if (!*str || !ft_strchr(*str, '$'))
+		return ;
+	temp = NULL;
+	temp2 = NULL;
+	res = *str;
+	while (ft_strchr(res, '$'))
+	{
+		i[0] = -1;
+		i[1] = 0;
+		i[2] = 0;
+		flag = 0;
+		temp = get_dollar_word(res);
+		if (!temp) //ISTO SIGNIFICA QUE NAO HAVIA NADA A SEGUIR AO $
+		{
+			printf("nothing after $\n");
+			exit(1);
+		}
+		temp2 = search_env(env, temp);
+		if (!temp2) //ISTO SIGNIFICA QUE NAO HAVIA A VARIAVEL NO ENV
+		{
+			printf("nao existe no env\n");
+			exit(2);
+		}
+		temp2 += + ft_strlen(temp) + 1;
+		free(temp);
+		temp = ft_calloc(ft_strlen(temp2) + ft_strlen(res) + 1, 1);
+		while (res[++i[0]]) // percorrer string anterior
+		{
+			if (res[i[0]] == '$' && !flag++ && ++i[0])
+			{
+				while (temp2[i[2]]) //copiar para string nova a parte que e para substituir
+					temp[i[1]++] = temp2[i[2]++];
+				while (res[i[0] + 1] && res[i[0] + 1] != 32) // avancar a palarva ex $PATH palavra = PATH
+					i[0]++;
+			}
+			else // copiar o resto
+				temp[i[1]++] = res[i[0]];
+		}
+		free (res);
+		res = temp;
+	}
+	*str = res;
+}
+	
+// }
 
 // int main(int ac, char **av)
 // {
@@ -105,3 +206,13 @@ void	parse(char *res, char *str, char sep, int *arr)
 // 	parse(res,line, 0, 0);
 // 	printf("%s\n", res);
 // }
+
+
+int	main(int ac, char **av, char **env)
+{
+	(void)ac;
+	char *input = ft_strdup(av[1]);
+	chg_dollar(&input, env);
+	printf("%s\n", input);
+	free(input);
+}

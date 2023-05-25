@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 18:31:12 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/24 17:24:59 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/25 17:10:10 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*search_env(char **env, char *str)
 	int	i;
 
 	i = 0;
-	while (env && ft_strncmp(env[i], str, ft_strlen(str)))
+	while (env && env[i] && ft_strncmp(env[i], str, ft_strlen(str)))
 		i++;
 	return (env[i]);
 }
