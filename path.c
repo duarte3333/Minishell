@@ -6,7 +6,11 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 18:31:12 by mtiago-s          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/05/30 15:48:19 by mtiago-s         ###   ########.fr       */
+=======
+/*   Updated: 2023/05/25 17:10:10 by mtiago-s         ###   ########.fr       */
+>>>>>>> 1d81de9 (handle of dollar signs starts)
 /*                                                                            */
 /* ************************************************************************** */
 
