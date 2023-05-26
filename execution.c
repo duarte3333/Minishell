@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 16:09:50 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/24 21:12:33 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/05/26 15:50:01 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	command_execution(t_list *lst, char **env)
 		lst->ft_exec(env, &lst);
 	}
 	close_fds(&lst, 0);
-
+	g_data.status = 0;
 }
 
 void	execution(t_list *lst, char **env)
