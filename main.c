@@ -85,6 +85,6 @@ int	main(int ac, char **av, char **env)
 // Acabar expander
 // Acrescentar $? ao expander
 // Mudar OLDPWD no exec_cd
-
-
-//
+// Sinais CTRL-C
+// Criar funcao que passa nosso env de t_env para char** env
+// Evitar o fork para alguns comandos
