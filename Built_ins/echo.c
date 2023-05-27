@@ -31,6 +31,7 @@ void	__exec_echo(char **env, t_list **lst)
 
 	flag = 0;
 	(void)env; 
+	close_fds(lst, 1);
 	if ((*lst)->content[1][0] == '-')
 	{
 		i = 1;

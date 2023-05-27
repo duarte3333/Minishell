@@ -23,6 +23,7 @@ void	__exec_pwd(char **env, t_list **lst)
 
     (void)env;
 	(void)lst;
+	close_fds(lst, 1);
     if (getcwd(cwd, sizeof(cwd)) != NULL) 
         printf("Current directory: %s\n", cwd);
 	else {

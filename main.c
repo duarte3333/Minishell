@@ -45,7 +45,7 @@ void	prompt(char **env_og)
 	while (1)
 	{
 		input = readline("$ ");// colocar if input != a newline fazer o resto
-		if (!input || !ft_strcmp(input, "exit"))
+		if (!input)
 		{
 			if(input)
 				free(input);
@@ -71,3 +71,20 @@ int	main(int ac, char **av, char **env)
 	g_data.env_og = env;
 	prompt(env);
 }
+
+
+//Comandos que nao funcionam
+// cd  | cd
+// ls  | cd
+// cd  | ls
+// pwd | cat
+
+//O que falta:
+// Export
+// Unset
+// Acabar expander
+// Acrescentar $? ao expander
+// Mudar OLDPWD no exec_cd
+
+
+//

@@ -42,7 +42,7 @@ void	__exec_default(char **env, t_list **lst)
 			perror("");
 			go_head(lst);
 			ft_free_list(lst);
-			exit(1);
+			exit(errno);
 		}
 }
 

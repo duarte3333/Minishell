@@ -27,12 +27,24 @@ void	define_exec(t_list *lst)
 		lst->ft_exec = __exec_echo;
 	else if (!ft_strcmp(lst->content[0], "env"))
 		lst->ft_exec = __exec_env;
+	else if (!ft_strcmp(lst->content[0], "exit"))
+		lst->ft_exec = __exec_exit;
 	else
 		lst->ft_exec = __exec_default;
 }
 
 void	command_execution(t_list *lst, char **env)
 {
+	if (!ft_strcmp(lst->content[0], "exit"))
+	{
+		lst->ft_exec(env, &lst);
+		return ;
+	}
+	else if (!ft_strcmp(lst->content[0], "cd"))
+	{
+		lst->ft_exec(env, &lst);
+		return ;
+	}
 	if (fork() == 0)
 	{
 		if (lst->prev && lst->fd_master[0] < 3)
@@ -67,7 +79,12 @@ void	execution(t_list *lst, char **env)
 	while (lst)
 	{
 		if (lst->content[0])
-			waitpid(-1, NULL, 0);
+		{
+			waitpid(-1, &g_data.status, 0);
+			if (WIFEXITED(g_data.status))
+				g_data.status = WEXITSTATUS(g_data.status);
+		}
+
 		lst = lst->next;
 	}
 }

@@ -24,6 +24,7 @@
 # include <sys/time.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <errno.h>
 # include "Get_Next_Line/get_next_line.h"
 
 typedef struct s_env
@@ -73,6 +74,8 @@ int		ft_strcmp(char *s1, char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strchr(const char *s, int c);
 char	**ft_matrixdup(char **matrix);
+int		ft_atoi(const char *nptr);
+
 
 //Prompt
 void	prompt(char **env);
@@ -105,6 +108,7 @@ void	__exec_pwd(char **env, t_list **lst);
 void	__exec_cd(char **env, t_list **lst);
 void	__exec_echo(char **env, t_list **lst);
 void	__exec_env(char **env, t_list **lst);
+void	__exec_exit(char **env, t_list **lst);
 
 //syntax
 void	syntax_treatment(char *input);

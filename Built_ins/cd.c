@@ -12,6 +12,20 @@
 
 #include "../minishell.h"
 
+//Esta funcao calcula o tamanho de uma linked list
+int	ft_lstsize(t_list *lst)
+{
+	size_t	i;
+
+	i = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
+}
+
 void	print_path(char *path)
 {
 	//char	*parsed_home;
@@ -61,27 +75,29 @@ void	__exec_cd(char **env, t_list **lst)
 {
 	(void)env;
 	char	*path_home;
-	
-	close_fds(lst, 1);
-	path_home = search_env(env, "HOME") + 5;
-	//printf("%s\n",path_home);
-	if (!(*lst)->content[1] && change_dir(path_home, 0))
-		return ;
-	if ((*lst)->content[2])
+
+	go_head(lst);
+	if (ft_lstsize(*lst) == 1)
 	{
-		printf("cd: too many arguments\n");
-		return ;
-	}
-	else
-	{
-		if (!ft_strcmp((*lst)->content[1], "--") && change_dir(path_home, 0))
+		path_home = search_env(env, "HOME") + 5;
+		if (!(*lst)->content[1] && change_dir(path_home, 0))
 			return ;
-		else if ((*lst)->content[1][0] == '-')
+		if ((*lst)->content[2])
 		{
-			change_dir(search_env(env, "OLDPWD") + 7, 1);
+			printf("cd: too many arguments\n");
 			return ;
 		}
-		change_dir((*lst)->content[1], 0);
+		else
+		{
+			if (!ft_strcmp((*lst)->content[1], "--") && change_dir(path_home, 0))
+				return ;
+			else if ((*lst)->content[1][0] == '-')
+			{
+				change_dir(search_env(env, "OLDPWD") + 7, 1);
+				return ;
+			}
+			change_dir((*lst)->content[1], 0);
+		}
 	}
 	return ;
 }
