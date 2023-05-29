@@ -6,7 +6,7 @@
 /*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 16:09:50 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/29 17:18:10 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/05/29 19:41:38 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	define_exec(t_list *lst)
 		lst->ft_exec = __exec_env;
 	else if (!ft_strcmp(lst->content[0], "exit"))
 		lst->ft_exec = __exec_exit;
+	else if (!ft_strcmp(lst->content[0], "export"))
+		lst->ft_exec = __exec_export;
 	else
 		lst->ft_exec = __exec_default;
 }
@@ -77,6 +79,8 @@ void	command_execution(t_list *lst, char **env)
 		else if (lst->fd_master[1] > 2)
 			dup2(lst->fd_master[1], 1);
 		lst->ft_exec(env, &lst);
+		ft_free_list(&lst);
+		ft_free_env(&g_data.env);
 		exit(0);
 	}
 	close_fds(&lst, 0);

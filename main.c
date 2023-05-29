@@ -6,7 +6,7 @@
 /*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:01:28 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/29 17:08:43 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/05/29 21:01:11 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,11 @@ int	main(int ac, char **av, char **env)
 // ls  | cd
 // cd  | ls
 // pwd | cat
+// cat | exit | cat | wc
+// export | grep ola
+// export AS=dads
+// ASDA=assa [no search]
+// AS=dads [str_pos_head]
 
 //O que falta:
 // Export
@@ -88,5 +93,3 @@ int	main(int ac, char **av, char **env)
 // Sinais CTRL-C
 // Criar funcao que passa nosso env de t_env para char** env
 // Evitar o fork para alguns comandos
-
-//cat | exit | cat | wc

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/24 18:42:43 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/29 20:33:57 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*ft_strjoin(char *s1, char const *s2);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 char	*ft_strdup(const char *src);
 void	ft_free_matrix(char ***m);
-void	delete_element(t_list **lst);
+void	delete_element(void **lst);
 void	go_head(t_list **lst);
 void	ft_free_list(t_list **lst);
 int		ft_matrixlen(char **matrix);
@@ -75,7 +75,9 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strchr(const char *s, int c);
 char	**ft_matrixdup(char **matrix);
 int		ft_atoi(const char *nptr);
-
+t_env	*ft_envnew(char *str);
+void	ft_envadd_back(t_env **lst, t_env *new);
+void	env_go_head(t_env **lst);
 
 //Prompt
 void	prompt(char **env);
@@ -109,6 +111,7 @@ void	__exec_cd(char **env, t_list **lst);
 void	__exec_echo(char **env, t_list **lst);
 void	__exec_env(char **env, t_list **lst);
 void	__exec_exit(char **env, t_list **lst);
+void	__exec_export(char **env, t_list **lst);
 
 //syntax
 void	syntax_treatment(char *input);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 16:31:52 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/24 18:43:20 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/29 19:33:53 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,15 @@ t_env	*get_env(char **env)
 void	__exec_env(char **env, t_list **lst)
 {
 	(void)env;
-	close_fds(lst, 1);
-	while (g_data.env && printf("%s\n", g_data.env->content))
+	(void)lst;
+	while (g_data.env && g_data.env->content)
+	{
+		printf("%s\n", g_data.env->content);
+		if (!g_data.env->next)
+			break ;
 		g_data.env = g_data.env->next;
-	go_head(lst);
-	ft_free_list(lst);
-	exit(0);
+	}
+	//go_head(lst);
+	//ft_free_list(lst);
+	env_go_head(&g_data.env);
 }

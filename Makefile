@@ -39,6 +39,7 @@ SRCS =  Aux/ft_calloc.c \
 		Built_ins/env.c \
 		Built_ins/echo.c \
 		Built_ins/exit.c \
+		Built_ins/export.c \
 		here_doc.c \
 		redirections.c \
 		exec_types.c \
