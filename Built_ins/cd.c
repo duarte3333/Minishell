@@ -3,28 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 15:44:22 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/24 18:43:14 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/29 16:55:32 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-//Esta funcao calcula o tamanho de uma linked list
-int	ft_lstsize(t_list *lst)
-{
-	size_t	i;
-
-	i = 0;
-	while (lst)
-	{
-		lst = lst->next;
-		i++;
-	}
-	return (i);
-}
 
 void	print_path(char *path)
 {
@@ -77,27 +63,24 @@ void	__exec_cd(char **env, t_list **lst)
 	char	*path_home;
 
 	go_head(lst);
-	if (ft_lstsize(*lst) == 1)
+	path_home = search_env(env, "HOME") + 5;
+	if (!(*lst)->content[1] && change_dir(path_home, 0))
+		return ;
+	if ((*lst)->content[2])
 	{
-		path_home = search_env(env, "HOME") + 5;
-		if (!(*lst)->content[1] && change_dir(path_home, 0))
+		printf("cd: too many arguments\n");
+		return ;
+	}
+	else
+	{
+		if (!ft_strcmp((*lst)->content[1], "--") && change_dir(path_home, 0))
 			return ;
-		if ((*lst)->content[2])
+		else if ((*lst)->content[1][0] == '-')
 		{
-			printf("cd: too many arguments\n");
+			change_dir(search_env(env, "OLDPWD") + 7, 1);
 			return ;
 		}
-		else
-		{
-			if (!ft_strcmp((*lst)->content[1], "--") && change_dir(path_home, 0))
-				return ;
-			else if ((*lst)->content[1][0] == '-')
-			{
-				change_dir(search_env(env, "OLDPWD") + 7, 1);
-				return ;
-			}
-			change_dir((*lst)->content[1], 0);
-		}
+		change_dir((*lst)->content[1], 0);
 	}
 	return ;
 }
