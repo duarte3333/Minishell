@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:01:28 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/29 17:08:43 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/05/29 20:04:24 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 struct global	g_data;
 
-t_list	*generate_list(char *input)
+t_list	*generate_list(char *input, char **env)
 {
 	t_list			*list;
 	char			**division;
@@ -29,6 +29,7 @@ t_list	*generate_list(char *input)
 	parse(pre_split, input, 0, array);
 	//printf("%s\n", pre_split);
 	division = ft_split(pre_split, 2);
+	division = expander(division, env);
 	list = NULL;
 	list = ft_lstnew(ft_matrixlen(division));
 	redirection(list, division);
@@ -54,7 +55,7 @@ void	prompt(char **env_og)
 		}
 		add_history(input);
 		syntax_treatment(input);
-		list = generate_list(input);
+		list = generate_list(input, env_og);
 		//print_list(list);
 		if (list->content[0])
 			execution(list, env_og);

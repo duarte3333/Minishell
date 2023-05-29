@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/24 18:42:43 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/29 20:08:19 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strchr(const char *s, int c);
 char	**ft_matrixdup(char **matrix);
 int		ft_atoi(const char *nptr);
+char	*ft_replacement(char *str, char *s1, char *s2);
 
 
 //Prompt
@@ -96,6 +97,10 @@ int		ft_here_doc(char *str);
 
 //Redirections
 void	redirection(t_list	*pre_list, char **division);
+
+//expander
+char	**expander(char **divison, char **env);
+char	*chg_dollar(char *input, char **env);
 
 //Execution
 void	execution(t_list *lst, char **env);
