@@ -7,10 +7,14 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:57:38 by mtiago-s          #+#    #+#             */
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*   Updated: 2023/05/30 15:50:14 by mtiago-s         ###   ########.fr       */
 =======
 /*   Updated: 2023/05/26 16:58:37 by mtiago-s         ###   ########.fr       */
 >>>>>>> 838e05b (dollar sign almost done)
+=======
+/*   Updated: 2023/05/29 16:58:05 by mtiago-s         ###   ########.fr       */
+>>>>>>> 8546812 (expender almost done)
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,4 +112,8 @@ void	parse(char *res, char *str, char sep, int *arr)
 // 	printf("%s\n", av[1]);
 // 	parse(res,line, 0, 0);
 // 	printf("%s\n", res);
+<<<<<<< HEAD
 // }
+=======
+// }
+>>>>>>> 8546812 (expender almost done)
