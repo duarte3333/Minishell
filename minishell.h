@@ -6,7 +6,11 @@
 /*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/05/29 20:33:57 by dsa-mora         ###   ########.fr       */
+=======
+/*   Updated: 2023/05/29 20:08:19 by mtiago-s         ###   ########.fr       */
+>>>>>>> a37469b (expander almost done, again...)
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +80,7 @@ char	*ft_strchr(const char *s, int c);
 char	**ft_matrixdup(char **matrix);
 int		ft_atoi(const char *nptr);
 void 	ft_print_matrix(char **array);
+char	*ft_replacement(char *str, char *s1, char *s2);
 
 //Env utils
 t_env	*ft_envnew(char *str);
@@ -106,6 +111,10 @@ int		ft_here_doc(char *str);
 
 //Redirections
 void	redirection(t_list	*pre_list, char **division);
+
+//expander
+char	**expander(char **divison, char **env);
+char	*chg_dollar(char *input, char **env);
 
 //Execution
 void	execution(t_list *lst, char **env);

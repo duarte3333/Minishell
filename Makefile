@@ -36,6 +36,7 @@ SRCS =  Aux/ft_calloc.c \
 		Aux/env_utils2.c \
 		Aux/ft_env_lst_to_arr.c \
 		Aux/ft_print_matrix.c \
+		Aux/ft_replacement.c \
 		Get_Next_Line/get_next_line_utils.c \
 		Get_Next_Line/get_next_line.c \
 		Built_ins/pwd.c \
@@ -50,6 +51,7 @@ SRCS =  Aux/ft_calloc.c \
 		execution.c \
 		parser.c \
 		main.c \
+		expander.c \
 		path.c \
 		syntax.c
 
