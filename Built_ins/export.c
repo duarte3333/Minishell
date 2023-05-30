@@ -72,6 +72,7 @@ void	__exec_export(char **env, t_list **lst)
 	char	**str;
 	t_env	*lst_env_export;
 	char	**char_env;
+	int		i;
 	
 	(void)env;
 	if (!(*lst)->content[1])
@@ -82,17 +83,27 @@ void	__exec_export(char **env, t_list **lst)
 		ft_free_matrix(&char_env);
 		return ;
 	}
-	str = ft_split((*lst)->content[1], '=');	
-	lst_env_export = env_lst_search(str[0]);
-	if (!lst_env_export && str[1])
-		ft_envadd_back(&(g_data.env), ft_envnew(ft_strdup((*lst)->content[1])));
-	if (lst_env_export)
+	i = 0;
+	while ((*lst)->content[i])
 	{
-		if (str[1])
+		str = ft_split((*lst)->content[i], '=');
+		if (ft_strchr(str[0], 32))
 		{
-			free(lst_env_export->content);
-			lst_env_export->content = ft_strdup((*lst)->content[1]);
+			printf("minishell: export: \'%s=%s\' not a valid identifier\n", str[0], str[1]);
+			return ;
+		}	
+		lst_env_export = env_lst_search(str[0]);
+		if (!lst_env_export && str[1])
+			ft_envadd_back(&(g_data.env), ft_envnew(ft_strdup((*lst)->content[i])));
+		if (lst_env_export)
+		{
+			if (str[1])
+			{
+				free(lst_env_export->content);
+				lst_env_export->content = ft_strdup((*lst)->content[i]);
+			}
 		}
+		ft_free_matrix(&str);
+		i++;
 	}
-	ft_free_matrix(&str);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:01:28 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/30 16:08:27 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/29 21:01:11 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 struct global	g_data;
 
-t_list	*generate_list(char *input, char **env)
+t_list	*generate_list(char *input)
 {
 	t_list			*list;
 	char			**division;
@@ -29,7 +29,6 @@ t_list	*generate_list(char *input, char **env)
 	parse(pre_split, input, 0, array);
 	//printf("%s\n", pre_split);
 	division = ft_split(pre_split, 2);
-	division = expander(division, env);
 	list = NULL;
 	list = ft_lstnew(ft_matrixlen(division));
 	redirection(list, division);
@@ -55,7 +54,7 @@ void	prompt(char **env_og)
 		}
 		add_history(input);
 		syntax_treatment(input);
-		list = generate_list(input, env_og);
+		list = generate_list(input);
 		//print_list(list);
 		if (list->content[0])
 			execution(list, env_og);
@@ -91,6 +90,9 @@ int	main(int ac, char **av, char **env)
 // export | grep ola (ola nao tá no env; e tem de dar print declare -x ola)
 // export new (variavel nova) ; nao pode tar no env
 // export new=a (variavel nova) ; ja pode tar no env
+// export LOL=lala ROR=rara
+// unset LOL ROR
+// export "HI =hi"
 
 
 //O que falta:

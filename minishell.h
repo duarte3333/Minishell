@@ -125,6 +125,7 @@ void	__exec_echo(char **env, t_list **lst);
 void	__exec_env(char **env, t_list **lst);
 void	__exec_exit(char **env, t_list **lst);
 void	__exec_export(char **env, t_list **lst);
+void	__exec_unset(char **env, t_list **lst);
 
 //syntax
 void	syntax_treatment(char *input);

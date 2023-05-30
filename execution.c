@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 16:09:50 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/30 16:08:07 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/29 19:41:38 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	define_exec(t_list *lst)
 		lst->ft_exec = __exec_exit;
 	else if (!ft_strcmp(lst->content[0], "export"))
 		lst->ft_exec = __exec_export;
+	else if (!ft_strcmp(lst->content[0], "unset"))
+		lst->ft_exec = __exec_unset;
 	else
 		lst->ft_exec = __exec_default;
 }
@@ -84,7 +86,7 @@ void	command_execution(t_list *lst, char **env)
 		exit(0);
 	}
 	close_fds(&lst, 0);
-	g_data.status = 0;
+
 }
 
 void	execution(t_list *lst, char **env)
