@@ -8,6 +8,8 @@ char	*search_env(char **env, char *str)
 	i = 0;
 	while (env && env[i] && ft_strncmp(env[i], str, ft_strlen(str)))
 		i++;
+	if (*str == '?')
+		return (ft_itoa(g_data.status));
 	if (!env[i] || !str || !*str)
 		return ("");
 	temp = (env[i] + ft_strlen(str));
