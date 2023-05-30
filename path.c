@@ -12,16 +12,6 @@
 
 #include "minishell.h"
 
-char	*search_env(char **env, char *str)
-{
-	int	i;
-
-	i = 0;
-	while (env && ft_strncmp(env[i], str, ft_strlen(str)))
-		i++;
-	return (env[i]);
-}
-
 char	*get_cmd_path(char **env, char **cmd)
 {
 	char	**matrix;

@@ -73,23 +73,34 @@ int	main(int ac, char **av, char **env)
 }
 
 
-//Comandos que nao funcionam
+//Comandos malucos
+// <>
+// cat /dev/random | head
+// < Makefile < main.c cat > out > out2
+// << ola << oi << lol << final cat
+// << EOF cat
+// cat << EOF
 // cd  | cd
 // ls  | cd
 // cd  | ls
 // pwd | cat
 // cat | exit | cat | wc
-// export | grep ola
-// export AS=dads
-// ASDA=assa [no search]
-// AS=dads [str_pos_head]
+// cat >
+// exit 300
+// export | grep ola (ola nao tá no env; e tem de dar print declare -x ola)
+// export new (variavel nova) ; nao pode tar no env
+// export new=a (variavel nova) ; ja pode tar no env
+
 
 //O que falta:
-// Export
 // Unset
 // Acabar expander
 // Acrescentar $? ao expander
 // Mudar OLDPWD no exec_cd
 // Sinais CTRL-C
-// Criar funcao que passa nosso env de t_env para char** env
-// Evitar o fork para alguns comandos
+// Resolver aspas do echo """"""""
+
+// DONE
+// Export DONE
+// Criar funcao que passa nosso env de t_env para char** env DONE
+// Evitar o fork para alguns comandos DONE

@@ -1,6 +1,6 @@
 NAME = minishell
 CC = cc
-CFLAGS = -Wall -Wextra -g -fsanitize=address -Werror#-O3
+CFLAGS = -Wall -Wextra -g -fsanitize=address #-Werror#-O3
 
 #valgrind --leak-check=full --show-leak-kinds=all 
 #--track-fds=yes ./pipex /dev/random  head out.txt
@@ -32,6 +32,10 @@ SRCS =  Aux/ft_calloc.c \
 		Aux/ft_strncmp.c \
 		Aux/ft_strchr.c \
 		Aux/ft_atoi.c \
+		Aux/env_utils.c \
+		Aux/env_utils2.c \
+		Aux/ft_env_lst_to_arr.c \
+		Aux/ft_print_matrix.c \
 		Get_Next_Line/get_next_line_utils.c \
 		Get_Next_Line/get_next_line.c \
 		Built_ins/pwd.c \

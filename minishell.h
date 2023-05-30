@@ -75,9 +75,17 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strchr(const char *s, int c);
 char	**ft_matrixdup(char **matrix);
 int		ft_atoi(const char *nptr);
+void 	ft_print_matrix(char **array);
+
+//Env utils
 t_env	*ft_envnew(char *str);
+t_env	*ft_envlast(t_env *lst);
 void	ft_envadd_back(t_env **lst, t_env *new);
 void	env_go_head(t_env **lst);
+void	ft_free_env(t_env **lst);
+char 	**ft_env_lst_to_arr(t_env *lst_env);
+int		ft_env_lstsize(t_env *lst);
+char	*search_env(char **env, char *str);
 
 //Prompt
 void	prompt(char **env);
