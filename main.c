@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:01:28 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/30 17:21:48 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/30 18:53:56 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,6 @@ int	main(int ac, char **av, char **env)
 
 //O que falta:
 // Unset
-// Acabar expander
-// Acrescentar $? ao expander
 // Mudar OLDPWD no exec_cd
 // Sinais CTRL-C
 // Resolver aspas do echo """"""""
@@ -108,3 +106,5 @@ int	main(int ac, char **av, char **env)
 // Export DONE
 // Criar funcao que passa nosso env de t_env para char** env DONE
 // Evitar o fork para alguns comandos DONE
+// Acabar expander DONE
+// Acrescentar $? ao expander DONE
