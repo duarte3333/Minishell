@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 15:44:22 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/29 16:55:32 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/05/30 16:01:59 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	__exec_cd(char **env, t_list **lst)
 	char	*path_home;
 
 	go_head(lst);
-	path_home = search_env(env, "HOME") + 5;
+	path_home = search_env(env, "HOME");
 	if (!(*lst)->content[1] && change_dir(path_home, 0))
 		return ;
 	if ((*lst)->content[2])
@@ -77,7 +77,7 @@ void	__exec_cd(char **env, t_list **lst)
 			return ;
 		else if ((*lst)->content[1][0] == '-')
 		{
-			change_dir(search_env(env, "OLDPWD") + 7, 1);
+			change_dir(search_env(env, "OLDPWD"), 1);
 			return ;
 		}
 		change_dir((*lst)->content[1], 0);

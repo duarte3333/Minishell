@@ -3,11 +3,17 @@
 char	*search_env(char **env, char *str)
 {
 	int	i;
+	char	*temp;
 
 	i = 0;
-	while (env && ft_strncmp(env[i], str, ft_strlen(str)))
+	while (env && env[i] && ft_strncmp(env[i], str, ft_strlen(str)))
 		i++;
-	return (env[i]);
+	if (!env[i] || !str || !*str)
+		return ("");
+	temp = (env[i] + ft_strlen(str));
+	if (*temp == '=')
+		temp++;
+	return (temp);
 }
 
 int	ft_env_lstsize(t_env *lst)
