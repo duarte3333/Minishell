@@ -34,6 +34,7 @@ SRCS =  Aux/ft_calloc.c \
 		Aux/ft_atoi.c \
 		Aux/env_utils.c \
 		Aux/env_utils2.c \
+		Aux/ft_itoa.c \
 		Aux/ft_env_lst_to_arr.c \
 		Aux/ft_print_matrix.c \
 		Get_Next_Line/get_next_line_utils.c \
