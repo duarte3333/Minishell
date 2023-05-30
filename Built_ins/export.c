@@ -83,7 +83,7 @@ void	__exec_export(char **env, t_list **lst)
 		ft_free_matrix(&char_env);
 		return ;
 	}
-	i = 0;
+	i = 1;
 	while ((*lst)->content[i])
 	{
 		str = ft_split((*lst)->content[i], '=');

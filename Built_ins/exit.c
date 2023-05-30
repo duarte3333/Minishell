@@ -42,7 +42,7 @@ void	__exec_exit(char **env, t_list **lst)
 			nb -= 256;
 		g_data.status = nb;
 	}
-	printf("EXIT_STATUS: %i\n", g_data.status);
+	//printf("EXIT_STATUS: %i\n", g_data.status);
 	ft_free_env(&g_data.env);
 	exit(g_data.status);
 }

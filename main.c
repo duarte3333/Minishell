@@ -98,9 +98,9 @@ int	main(int ac, char **av, char **env)
 
 //O que falta:
 // Unset
-// Mudar OLDPWD no exec_cd
+// Mudar OLDPWD no exec_cd - POR CHECKAR NA ESCOLA
 // Sinais CTRL-C
-// Resolver aspas do echo """"""""
+// Overflow do exit
 
 // DONE
 // Export DONE
@@ -108,3 +108,4 @@ int	main(int ac, char **av, char **env)
 // Evitar o fork para alguns comandos DONE
 // Acabar expander DONE
 // Acrescentar $? ao expander DONE
+// Resolver aspas do echo """""""" DONE
