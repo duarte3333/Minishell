@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:04:26 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/24 17:33:52 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/30 19:27:10 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,20 +77,54 @@ void	delete_quotes(char **input, char c)
 	i = -1;
 	j = 0;
 	flag = 0;
-	//printf("%s\n", *input);
 	temp = ft_calloc(ft_strlen(*input) + 1, 1);
 	if (!temp)
 		return ;
 	while (input[0][++i])
 	{
-		if (flag == 2 || input[0][i] != c)
-			temp[j++] = input[0][i];
+		if ((input[0][i] == '\'' || input[0][i] == '\"') && (!c || c == input[0][i]) && (!flag || flag == input[0][i]))
+			c = input[0][i] * (c != input[0][i]);
 		else
-			flag++;
+			temp[j++] = input[0][i];
+		if (c)
+			flag = c;			
 	}
 	free(*input);
 	*input = temp;
 }
+
+
+// void	delete_quotes(char **input, char c)
+// {
+// 	char	*temp;
+// 	int		i;
+// 	int		j;
+// 	int		flag;
+	
+// 	i = -1;
+// 	j = 0;
+// 	flag = 0;
+// 	printf("<-- %s\n", *input);
+// 	temp = ft_calloc(ft_strlen(*input) + 1, 1);
+// 	if (!temp)
+// 		return ;
+// 	while (input[0][++i])
+// 	{
+// 		if (flag == 2 || input[0][i] != c)
+// 			temp[j++] = input[0][i];
+// 		else
+// 			flag++;
+// 	}
+// 	printf("flag == %d\n", flag);
+// 	if (flag == 2)
+// 	{
+// 		free(*input);
+// 		*input = temp;
+// 	}
+// 	else
+// 		free(temp);
+// 	printf("--> %s\n", *input);
+// }
 
 void	treat_quotes(char *input, int i, int *flag)
 {

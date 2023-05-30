@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 16:57:31 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/30 17:58:54 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/30 18:59:54 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,10 @@ char	**expander(char **divison, char **env)
 
 	i = -1;
 	while (divison[++i])
-		divison[i] = chg_dollar(divison[i], env);
+	{
+		if (*divison[i] != '\'')
+			divison[i] = chg_dollar(divison[i], env);
+	}
 	ft_free_matrix(&env);
 	return (divison);
 }

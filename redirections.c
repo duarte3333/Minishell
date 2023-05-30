@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 18:13:42 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/29 19:57:51 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/05/30 19:19:12 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,8 @@ void	redirection(t_list	*lst, char **division)
 			redirect(division, &i, temp);
 		else
 		{
-			if (ft_strchr(division[i], '\''))
-				delete_quotes(&division[i], '\'');
-			if (ft_strchr(division[i], '\"'))
-				delete_quotes(&division[i], '\"');
+			if (ft_strchr(division[i], '\'') || ft_strchr(division[i], '\"'))
+				delete_quotes(&division[i], 0);
 			temp->content[j] = ft_strdup(division[i]);
 			j++;
 		}
