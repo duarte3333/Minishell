@@ -72,13 +72,13 @@ void	__exec_cd(char **env, t_list **lst)
 	char	**env_char;
 
 	go_head(lst);
-	if ((*lst)->content[2])
+	if (ft_matrixlen((*lst)->content) > 2)
 	{
 		printf("cd: too many arguments\n");
 		return ;
 	}
 	env_char = ft_env_lst_to_arr(g_data.env);
-	path_home = search_env(env_char, "HOME") + 5;
+	path_home = search_env(env_char, "HOME");
 	if (!(*lst)->content[1] && change_dir(path_home, 0))
 	{
 		ft_free_matrix(&env_char);
@@ -93,7 +93,7 @@ void	__exec_cd(char **env, t_list **lst)
 		}
 		else if ((*lst)->content[1][0] == '-')
 		{
-			change_dir(search_env(env_char, "OLDPWD") + 7, 1);
+			change_dir(search_env(env_char, "OLDPWD"), 1);
 			ft_free_matrix(&env_char);
 			return ;
 		}
