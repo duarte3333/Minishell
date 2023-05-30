@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 18:47:55 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/29 21:02:13 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/30 16:23:31 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*ft_replacement(char *str, char *s1, char *s2)
 	k = -1;
 	while (str[++k])
 	{
-		if (!ft_strncmp(s1, &str[k], ft_strlen(s1) && !j))
+		if (!ft_strncmp(s1, &str[k], ft_strlen(s1)) && !j)
 		{
 			while (s2[j])
 				res[i++] = s2[j++];

@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 16:57:31 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/30 16:10:19 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/30 16:24:08 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,13 +111,14 @@ char	*chg_dollar(char *input, char **env)
 			buf[j++] = input[i];
 		
 	}
-	printf("%s\n", buf);
+	//printf("%s\n", buf);
 	if (!j)
 	{
 		free(buf);
 		return (input);
 	}
 	new = ft_replacement(input, buf, search_env(env, buf + 1));
+	//printf("--> %s\n", new);
 	free(input);
 	free(buf);
 	return (chg_dollar(new, env));
