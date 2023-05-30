@@ -38,7 +38,6 @@ int	change_dir(char *path, int print)
 		{
 			//printf_path(path);
 			printf("%s\n", path);
-			;
 		}
 		lst_env_export = env_lst_search("OLDPWD");
 		if (lst_env_export)
@@ -93,6 +92,7 @@ void	__exec_cd(char **env, t_list **lst)
 		}
 		else if ((*lst)->content[1][0] == '-')
 		{
+			printf("[str] %s \n", search_env(env_char, "OLDPWD"));
 			change_dir(search_env(env_char, "OLDPWD"), 1);
 			ft_free_matrix(&env_char);
 			return ;

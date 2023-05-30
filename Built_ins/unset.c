@@ -42,9 +42,7 @@ void	__exec_unset(char **env, t_list **lst)
 		return ;
 	while ((*lst)->content[i])
 	{
-		printf("lets go %s\n", (*lst)->content[i]);
 		lst_env_export = env_lst_search((*lst)->content[i]);
-		printf("%s\n", lst_env_export->content);
 		if (lst_env_export)
 			env_delete_element(&lst_env_export);
 		i++;
