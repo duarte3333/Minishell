@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 16:57:31 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/30 16:24:08 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/30 16:57:43 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ char	*chg_dollar(char *input, char **env)
 {
 	char	*buf;
 	char 	*new;
+	char	*temp;
 	int		j;
 	int		i;
 
@@ -105,20 +106,21 @@ char	*chg_dollar(char *input, char **env)
 	buf = ft_calloc(1024, 1);
 	while (input[++i])
 	{
-		if (j && !is_alphnum(input[i]))
-			break ;
 		if (input[i] == '$' || j)
 			buf[j++] = input[i];
+		if ((j && !is_alphnum(input[i + 1])) || buf[1] == '?')
+			break ;
 		
 	}
-	//printf("%s\n", buf);
 	if (!j)
 	{
 		free(buf);
 		return (input);
 	}
-	new = ft_replacement(input, buf, search_env(env, buf + 1));
-	//printf("--> %s\n", new);
+	temp = search_env(env, buf + 1);
+	new = ft_replacement(input, buf, temp);
+	if (buf + 1 == '?')
+		free(temp);
 	free(input);
 	free(buf);
 	return (chg_dollar(new, env));
