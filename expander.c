@@ -6,11 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 16:57:31 by mtiago-s          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/05/30 17:26:09 by mtiago-s         ###   ########.fr       */
-=======
-/*   Updated: 2023/05/30 16:57:43 by mtiago-s         ###   ########.fr       */
->>>>>>> 74943cb3334e37bfcf000c6370582f3078d17f49
+/*   Updated: 2023/05/30 17:58:54 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,12 +104,11 @@ char	*chg_dollar(char *input, char **env)
 	i = -1;
 	j = 0;
 	buf = ft_calloc(1024, 1);
-	//printf("entrou\n");
 	while (input[++i])
 	{
 		if (input[i] == '$' || j)
 			buf[j++] = input[i];
-		if ((j && !is_alphnum(input[i + 1])) || buf[1] == '?')
+		if ((j && !is_alphnum(input[i + 1]) && !(j == 1 && input[i + 1] == '?')) || buf[1] == '?')
 			break ;
 		
 	}

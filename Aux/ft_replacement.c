@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 18:47:55 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/30 16:23:31 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/30 17:58:48 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char	*ft_replacement(char *str, char *s1, char *s2)
 		{
 			while (s2[j])
 				res[i++] = s2[j++];
+			j++;
 			k += ft_strlen(s1) - 1;
 		}
 		else
