@@ -6,6 +6,7 @@ char	*search_env(char **env, char *str)
 	char	*temp;
 
 	i = 0;
+	printf("str == %s\n", str);
 	while (env && env[i] && ft_strncmp(env[i], str, ft_strlen(str)))
 		i++;
 	if (*str == '?')

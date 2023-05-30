@@ -30,6 +30,7 @@ SRCS =  Aux/ft_calloc.c \
 		Aux/ft_matrixlen.c \
 		Aux/ft_strcmp.c \
 		Aux/ft_strncmp.c \
+		Aux/ft_replacement.c \
 		Aux/ft_strchr.c \
 		Aux/ft_atoi.c \
 		Aux/env_utils.c \
@@ -50,6 +51,7 @@ SRCS =  Aux/ft_calloc.c \
 		redirections.c \
 		exec_types.c \
 		execution.c \
+		expander.c \
 		parser.c \
 		main.c \
 		path.c \

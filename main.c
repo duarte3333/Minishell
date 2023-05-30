@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:01:28 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/29 21:01:11 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/05/30 17:21:48 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_list	*generate_list(char *input)
 	parse(pre_split, input, 0, array);
 	//printf("%s\n", pre_split);
 	division = ft_split(pre_split, 2);
+	division = expander(division, ft_env_lst_to_arr(g_data.env));
 	list = NULL;
 	list = ft_lstnew(ft_matrixlen(division));
 	redirection(list, division);

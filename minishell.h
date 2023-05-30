@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/30 16:12:12 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/30 17:15:47 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ char	**ft_matrixdup(char **matrix);
 int		ft_atoi(const char *nptr);
 void 	ft_print_matrix(char **array);
 char	*ft_replacement(char *str, char *s1, char *s2);
+char	*ft_itoa(int nbr);
 
 //Env utils
 t_env	*ft_envnew(char *str);
@@ -86,6 +87,7 @@ void	env_go_head(t_env **lst);
 void	ft_free_env(t_env **lst);
 char 	**ft_env_lst_to_arr(t_env *lst_env);
 int		ft_env_lstsize(t_env *lst);
+t_env	*env_lst_search(char *input_var);
 char	*search_env(char **env, char *str);
 
 //Prompt

@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 16:57:31 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/30 16:57:43 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/30 17:26:09 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ char	*chg_dollar(char *input, char **env)
 	i = -1;
 	j = 0;
 	buf = ft_calloc(1024, 1);
+	//printf("entrou\n");
 	while (input[++i])
 	{
 		if (input[i] == '$' || j)
@@ -112,6 +113,7 @@ char	*chg_dollar(char *input, char **env)
 			break ;
 		
 	}
+	//printf("%s\n", buf);
 	if (!j)
 	{
 		free(buf);
@@ -119,7 +121,7 @@ char	*chg_dollar(char *input, char **env)
 	}
 	temp = search_env(env, buf + 1);
 	new = ft_replacement(input, buf, temp);
-	if (buf + 1 == '?')
+	if (*(buf + 1) == '?')
 		free(temp);
 	free(input);
 	free(buf);
@@ -133,6 +135,7 @@ char	**expander(char **divison, char **env)
 	i = -1;
 	while (divison[++i])
 		divison[i] = chg_dollar(divison[i], env);
+	ft_free_matrix(&env);
 	return (divison);
 }
 
