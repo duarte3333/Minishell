@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:04:26 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/31 15:15:35 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/31 19:17:37 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,39 +95,6 @@ void	delete_quotes(char **input, char c)
 	*input = temp;
 }
 
-
-// void	delete_quotes(char **input, char c)
-// {
-// 	char	*temp;
-// 	int		i;
-// 	int		j;
-// 	int		flag;
-	
-// 	i = -1;
-// 	j = 0;
-// 	flag = 0;
-// 	printf("<-- %s\n", *input);
-// 	temp = ft_calloc(ft_strlen(*input) + 1, 1);
-// 	if (!temp)
-// 		return ;
-// 	while (input[0][++i])
-// 	{
-// 		if (flag == 2 || input[0][i] != c)
-// 			temp[j++] = input[0][i];
-// 		else
-// 			flag++;
-// 	}
-// 	printf("flag == %d\n", flag);
-// 	if (flag == 2)
-// 	{
-// 		free(*input);
-// 		*input = temp;
-// 	}
-// 	else
-// 		free(temp);
-// 	printf("--> %s\n", *input);
-// }
-
 void	treat_quotes(char *input, int i, int *flag)
 {
 	char	c;
@@ -148,16 +115,20 @@ void	syntax_treatment(char *input)
 	int	j;
 	int	words;
 	int	flag;
+	int	sep;
 
 	i = 0;
 	j = 0;
 	words = 0;
 	flag = 0;
+	sep = 0;
 	if (!input)
 		return ;
 	while(input[i])
 	{
-		if (check_sep_2(&input[i], &j))
+		if ((input[i] == '\'' || input[i] == '\"') && (!sep || sep == input[i]))
+			sep = (input[i]) * (sep != input[i]);
+		if (!sep && check_sep_2(&input[i], &j))
 			treat_sep(input, i, j, &words);
 		else if ((input[i] == '\"' && !flag) || (input[i] == '\'' && !flag))
 			treat_quotes(input, i, &flag);
