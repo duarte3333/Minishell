@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:04:26 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/31 17:47:50 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/05/31 19:21:20 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,9 @@ void	delete_quotes(char **input, char c)
 		else
 			temp[j++] = input[0][i];
 		if (c)
-			flag = c;			
+			flag = c;
+		else
+			flag = 0;	
 	}
 	free(*input);
 	*input = temp;
