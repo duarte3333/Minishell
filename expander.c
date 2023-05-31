@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 16:57:31 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/31 18:49:03 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/31 19:34:59 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,6 @@ char	*chg_dollar(char *input, char **env)
 			buf[j++] = input[i];
 		if ((j && !is_alphnum(input[i + 1]) && !(j == 1 && input[i + 1] == '?')) || buf[1] == '?')
 			break ;
-		
 	}
 	if (!j)
 	{
@@ -197,6 +196,8 @@ char	**expander(char **divison, char **env)
 			}
 			ft_free_matrix(&temp);
 		}
+		else
+			divison[i] = chg_dollar(divison[i], env);
 	}
 	ft_free_matrix(&env);
 	return (divison);
