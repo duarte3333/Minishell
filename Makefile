@@ -38,6 +38,8 @@ SRCS =  Aux/ft_calloc.c \
 		Aux/ft_itoa.c \
 		Aux/ft_env_lst_to_arr.c \
 		Aux/ft_print_matrix.c \
+		Aux/ft_isalnum.c \
+		Aux/exec_error_handle.c \
 		Get_Next_Line/get_next_line_utils.c \
 		Get_Next_Line/get_next_line.c \
 		Built_ins/pwd.c \

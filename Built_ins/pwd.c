@@ -6,7 +6,7 @@
 /*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 15:44:32 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/23 15:45:22 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/05/31 17:46:02 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	__exec_pwd(char **env, t_list **lst)
 	(void)lst;
 	close_fds(lst, 1);
     if (getcwd(cwd, sizeof(cwd)) != NULL) 
-        printf("Current directory: %s\n", cwd);
+        printf("%s\n", cwd);
 	else {
         perror("Error getting current directory");
         exit(0);

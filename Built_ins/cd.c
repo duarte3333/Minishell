@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 15:44:22 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/30 17:14:52 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/31 18:33:20 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,21 +43,23 @@ int	change_dir(char *path, int print)
 		if (lst_env_export)
 		{
 		 	free(lst_env_export->content);
-		 	lst_env_export->content = getcwd(buff, PATH_MAX);
+		 	lst_env_export->content = ft_strdup(getcwd(buff, PATH_MAX));
+			;
 		}
 		//set_var("OLDPWD", getcwd(buff, PATH_MAX));
 		//Falta aqui mudar a variavel OLDPWD no env com getcwd
+		g_data.status = 0;
 	}
 	else
 	{
-		printf("cd: ");
 		if (access(path, F_OK) == -1)
-			printf("no such file or directory: ");
+			write(2, "minishell: cd: no such file or directory: ", 43);
 		else if (access(path, R_OK | W_OK | X_OK) == -1)
-			printf("permission denied: ");
+			write(2, "minishell: cd: permission denied: ", 35);
 		else
-			printf("not a directory: ");
-		printf("%s\n", path);
+			write(2, "minishell: cd: not a directory: ", 33);
+		write(2, path, ft_strlen(path));
+		g_data.status = 1;		
 	}
 	return (1);
 }
@@ -73,7 +75,8 @@ void	__exec_cd(char **env, t_list **lst)
 	go_head(lst);
 	if (ft_matrixlen((*lst)->content) > 2)
 	{
-		printf("cd: too many arguments\n");
+		write(2, "minishell: cd: too many arguments\n", 30);
+		g_data.status = 1;
 		return ;
 	}
 	env_char = ft_env_lst_to_arr(g_data.env);
@@ -81,6 +84,7 @@ void	__exec_cd(char **env, t_list **lst)
 	if (!(*lst)->content[1] && change_dir(path_home, 0))
 	{
 		ft_free_matrix(&env_char);
+		g_data.status = 0;
 		return ;
 	}
 	else
@@ -88,6 +92,7 @@ void	__exec_cd(char **env, t_list **lst)
 		if (!ft_strcmp((*lst)->content[1], "--") && change_dir(path_home, 0))
 		{
 			ft_free_matrix(&env_char);
+			g_data.status = 0;
 			return ;
 		}
 		else if ((*lst)->content[1][0] == '-')
@@ -95,6 +100,7 @@ void	__exec_cd(char **env, t_list **lst)
 			printf("[str] %s \n", search_env(env_char, "OLDPWD"));
 			change_dir(search_env(env_char, "OLDPWD"), 1);
 			ft_free_matrix(&env_char);
+			g_data.status = 0;
 			return ;
 		}
 		change_dir((*lst)->content[1], 0);

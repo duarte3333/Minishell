@@ -1,8 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   export.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/31 18:36:36 by dsa-mora          #+#    #+#             */
+/*   Updated: 2023/05/31 19:05:27 by dsa-mora         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 void ft_modify_print_matrix(char **array)
 {
     int	i;
+	int j;
+	int flag;
 
 	i = -1;
 	if (!array)
@@ -10,7 +24,19 @@ void ft_modify_print_matrix(char **array)
     while (array[++i])
     {
 		printf("declare -x ");
-        printf("%s\n", array[i]);
+		j = 0;
+		flag = 0; 
+		while (array[i][j])
+		{
+			printf("%c", array[i][j]);
+			if (array[i][j] == '=' && !flag)
+			{
+				printf("\"");
+				flag = 1;
+			}
+			j++;
+		}
+		printf("\"\n");
     }
 }
 
@@ -87,23 +113,30 @@ void	__exec_export(char **env, t_list **lst)
 	while ((*lst)->content[i])
 	{
 		str = ft_split((*lst)->content[i], '=');
-		if (ft_strchr(str[0], 32))
+		if ((*lst)->content[i][0] == '=' || !ft_str_islanum(str[0]) || ft_isdigit((*lst)->content[i][0]))
 		{
-			printf("minishell: export: \'%s=%s\' not a valid identifier\n", str[0], str[1]);
-			return ;
+			write(2, "minishell: export: \'", 21);
+			write(2, ((*lst)->content[i]), ft_strlen((*lst)->content[i]));
+			write(2, "\' not a valid identifier\n", 26);
+			ft_free_matrix(&str);
+			g_data.status = 1;
 		}	
-		lst_env_export = env_lst_search(str[0]);
-		if (!lst_env_export && str[1])
-			ft_envadd_back(&(g_data.env), ft_envnew(ft_strdup((*lst)->content[i])));
-		if (lst_env_export)
+		else
 		{
-			if (str[1])
+			lst_env_export = env_lst_search(str[0]);
+			if (!lst_env_export)
+				ft_envadd_back(&(g_data.env), ft_envnew(ft_strdup((*lst)->content[i])));
+			if (lst_env_export)
 			{
-				free(lst_env_export->content);
-				lst_env_export->content = ft_strdup((*lst)->content[i]);
+				if (str[1])
+				{
+					free(lst_env_export->content);
+					lst_env_export->content = ft_strdup((*lst)->content[i]);
+				}
 			}
+			ft_free_matrix(&str);
+			g_data.status = 0;
 		}
-		ft_free_matrix(&str);
 		i++;
 	}
 }

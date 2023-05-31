@@ -3,7 +3,8 @@
 		"wait.h": "c",
 		"readline.h": "c",
 		"time.h": "c",
-		"minishell.h": "c"
+		"minishell.h": "c",
+		"minishell": "c"
 	},
 	"C_Cpp.errorSquiggles": "disabled",
 	"C_Cpp.intelliSenseEngineFallback": "disabled"

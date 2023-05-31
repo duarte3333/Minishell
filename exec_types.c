@@ -6,7 +6,7 @@
 /*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 16:02:31 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/29 19:52:23 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/05/31 18:04:51 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,14 @@ void	close_fds(t_list **lst, int flag)
 
 void	__exec_default(char **env, t_list **lst)
 {
+	
 		close_fds(lst, 1);
 		if (execve((*lst)->path, (*lst)->content, env) == -1)
 		{
-			perror("");
+			error_handle((*lst)->content[0]);
 			go_head(lst);
 			ft_free_list(lst);
-			exit(errno);
+			exit(g_data.status);
 		}
 }
 

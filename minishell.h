@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/30 17:15:47 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/31 19:01:23 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,11 @@ int		ft_atoi(const char *nptr);
 void 	ft_print_matrix(char **array);
 char	*ft_replacement(char *str, char *s1, char *s2);
 char	*ft_itoa(int nbr);
+void	error_handle(char *cmd);
+int		ft_isalnum(int i);
+int		ft_str_islanum(char *str);
+int		ft_isdigit(int i);
+
 
 //Env utils
 t_env	*ft_envnew(char *str);

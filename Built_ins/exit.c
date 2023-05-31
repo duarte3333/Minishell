@@ -7,7 +7,7 @@ int	ft_str_is_num(const char *str)
 	i = 0;
 	if (str == NULL)
 		return (0);
-	if (str[0] == '-')
+	if (str[0] == '-' || str[0] == '+')
 		i++;
 	while (str[i])
 	{
@@ -23,10 +23,12 @@ void	__exec_exit(char **env, t_list **lst)
 	(void)env;
 	int	nb;
 	write(2, "exit :) 🏊\n", 14);
+	// if (!ft_strcmp("+9223372036854775807", (*lst)->content[1]) || \
+	// ft_strcmp("-9223372036854775807", (*lst)->content[1]) )
 	if ((*lst)->content[1] && (*lst)->content[2])
 	{
 		g_data.status = 1;
-		write(2, "exit: too many arguments", 24);
+		write(2, "minishell: exit: too many arguments", 36);
 	}
 	else if ((*lst)->content[1] && ft_str_is_num((*lst)->content[1]) == 0)
 	{
