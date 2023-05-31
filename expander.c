@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 16:57:31 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/30 18:59:54 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/31 18:49:03 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,15 +126,77 @@ char	*chg_dollar(char *input, char **env)
 	return (chg_dollar(new, env));
 }
 
-char	**expander(char **divison, char **env)
+char	*prepare_string(char *str, int i, int size)
 {
-	int	i;
+	char	*res;
+	int		j;
+
+	j = 0;
+	i -= size;
+	res = ft_calloc(size + 2, 1);
+	while (str[i] && j <= size)
+		res[j++] = str[i++];
+	return (res);
+}
+
+char	**prepare(char *str)
+{
+	int		i;
+	int		j;
+	int		size;
+	char	sep;
+	char	**matrix;
 
 	i = -1;
+	j = 0;
+	sep = 0;
+	size = 0;
+	matrix = ft_calloc(1024, sizeof(char *));
+	while (str[++i])
+	{
+		if ((str[i] == '\'' || str[i] == '\"') && (!sep || sep == str[i]))
+			sep = (str[i]) * (sep != str[i]);
+		if (sep)
+			size++;
+		if (!sep && size)
+		{
+			matrix[j++] = prepare_string(str, i, size);
+			size = 0;
+		}
+	}
+	*str = 0;
+	return (matrix);
+}
+
+char	**expander(char **divison, char **env)
+{
+	int		i;
+	int		j;
+	char	**temp;
+	char	*old;
+
+	i = -1;
+	temp = NULL;
 	while (divison[++i])
 	{
-		if (*divison[i] != '\'')
-			divison[i] = chg_dollar(divison[i], env);
+		if (ft_strchr(divison[i], '\'') || ft_strchr(divison[i], '\"'))
+		{
+			temp = prepare(divison[i]);
+			j = -1;
+			while (temp[++j])
+			{
+				if (*temp[j] != '\'')
+					temp[j] = chg_dollar(temp[j], env);
+			}
+			j = -1;
+			while (temp[++j])
+			{
+				old = divison[i];
+				divison[i] = ft_strjoin(old, temp[j]);
+				free(old);
+			}
+			ft_free_matrix(&temp);
+		}
 	}
 	ft_free_matrix(&env);
 	return (divison);

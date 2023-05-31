@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 16:31:52 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/29 19:33:53 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/05/31 16:42:43 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	__exec_env(char **env, t_list **lst)
 	(void)lst;
 	while (g_data.env && g_data.env->content)
 	{
-		printf("%s\n", g_data.env->content);
+		if (ft_strchr(g_data.env->content, '='))
+			printf("%s\n", g_data.env->content);
 		if (!g_data.env->next)
 			break ;
 		g_data.env = g_data.env->next;
