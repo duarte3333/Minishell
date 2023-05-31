@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 16:57:31 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/31 19:34:59 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/31 20:36:10 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,9 +131,9 @@ char	*prepare_string(char *str, int i, int size)
 	int		j;
 
 	j = 0;
-	i -= size;
-	res = ft_calloc(size + 2, 1);
-	while (str[i] && j <= size)
+	i -= size - 1;
+	res = ft_calloc(size + 1, 1);
+	while (str[i] && j < size)
 		res[j++] = str[i++];
 	return (res);
 }
@@ -143,21 +143,20 @@ char	**prepare(char *str)
 	int		i;
 	int		j;
 	int		size;
-	char	sep;
+	int		sep;
 	char	**matrix;
 
 	i = -1;
 	j = 0;
-	sep = 0;
+	sep = -1;
 	size = 0;
 	matrix = ft_calloc(1024, sizeof(char *));
 	while (str[++i])
 	{
-		if ((str[i] == '\'' || str[i] == '\"') && (!sep || sep == str[i]))
+		if ((str[i] == '\'' || str[i] == '\"') && (!sep || sep == str[i] || sep == -1))
 			sep = (str[i]) * (sep != str[i]);
-		if (sep)
-			size++;
-		if (!sep && size)
+		size++;
+		if ((!sep && size) || ((str[i + 1] == '\'' || str[i + 1] == '\"') && sep < 0 && size))
 		{
 			matrix[j++] = prepare_string(str, i, size);
 			size = 0;
@@ -182,6 +181,9 @@ char	**expander(char **divison, char **env)
 		{
 			temp = prepare(divison[i]);
 			j = -1;
+			// int k = -1;
+			// while (temp[++k])
+			// 	printf("-> %s\n", temp[k]);
 			while (temp[++j])
 			{
 				if (*temp[j] != '\'')
