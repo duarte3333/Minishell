@@ -350,7 +350,7 @@ cat: './mini_outfiles/*': No such file or directory
 bash outfiles:
 mini exit code = 2
 bash exit code = 1
-mini error = ( syntax error near unexpected token `>') \\'
+mini error = ( syntax error near unexpected token `>')
 bash error = ( Permission denied)
 Test 106: ❌ echo hi | echo bye >./test_files/invalid_permission >./outfiles/outfile01 
 Only in ./mini_outfiles: outfile01

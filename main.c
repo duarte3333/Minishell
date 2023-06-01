@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:01:28 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/01 12:47:17 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/31 19:22:50 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@ t_list	*generate_list(char *input)
 	division = expander(division, ft_env_lst_to_arr(g_data.env));
 	list = NULL;
 	list = ft_lstnew(ft_matrixlen(division));
-	// int  k = -1;
-	// while (division[++k])
-	// 	printf("--> %s\n", division[k]);
 	redirection(list, division);
 	free(pre_split);
 	free(division);
@@ -59,7 +56,7 @@ void	prompt(char **env_og)
 		add_history(input);
 		syntax_treatment(input);
 		list = generate_list(input);
-		// print_list(list);
+		//print_list(list);
 		if (list->content[0])
 			execution(list, env_og);
 		ft_free_list(&list);

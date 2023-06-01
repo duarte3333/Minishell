@@ -6,11 +6,39 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 16:57:31 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/01 12:41:39 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/01 11:24:12 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+// char	*get_dollar_word(char *str, char **env) // se calhar esta funcao tem de fazer ja o search path para ver se e suposto retornar essa palavra
+// {
+// 	int		i;
+// 	int		j;
+// 	char	*res;
+
+// 	i = -1;
+// 	while (str[++i])
+// 	{
+// 		if (i && str[i - 1] == '$' && str[i] != 32 && str[i] != '$')
+// 		{
+// 			j = 0;
+// 			while (str[i + j] && str[i + j] != 32 && str[i + j] != '$')
+// 				j++;
+// 			if (!j)
+// 				return (NULL);
+// 			res = ft_calloc(j + 1, 1);
+// 			while (--j != -1 && str[i + j])
+// 				res[j] = str[i + j];
+// 			if (search_env(env, res))
+// 				return (res);
+// 			else
+// 				free(res);
+// 		}
+// 	}
+// 	return (NULL);
+// }
 
 int	is_alphnum(char c)
 {
@@ -23,6 +51,46 @@ int	is_alphnum(char c)
 	else
 		return (0);
 }
+
+// int	how_many_dollars(char *str, char **env) // contagem de quantos $ serao subsituidos
+// {
+// 	int		res;
+// 	int		i;
+// 	char	*temp;
+
+// 	i = -1;
+// 	res = 0;
+// 	temp = NULL;
+// 	while (str[++i])
+// 	{
+// 		if (str[i] == '$' && str[i + 1] && str[i + 1] != 32 && str[i + 1] != '$')
+// 		{
+// 			temp = get_dollar_word(&str[i], env);
+// 			if (temp && !ft_strncmp(&str[i + 1], temp, ft_strlen(temp)) && search_env(env, temp))
+// 				res++;
+// 			if (temp)
+// 				free(temp);
+// 			temp = NULL;
+// 		}
+// 	}
+// 	return (res);
+// }
+
+// void	chg_dollar_loop(int *i, char **temp, char *res, int flag)
+// {
+// 	while (res[++i[0]]) // percorrer string anterior
+// 	{
+// 		if (res[i[0]] == '$' && !ft_strncmp(&res[i[0] + 1], temp[2], ft_strlen(temp[2])) &&!flag++ && ++i[0])
+// 		{
+// 			while (temp[1][i[2]]) //copiar para string nova a parte que e para substituir
+// 				temp[0][i[1]++] = temp[1][i[2]++];
+// 			while (res[i[0] + 1] && res[i[0] + 1] != 32 && res[i[0] + 1] != '$') // avancar a palarva ex $PATH palavra = PATH
+// 				i[0]++;
+// 		}
+// 		else // copiar o resto
+// 			temp[0][i[1]++] = res[i[0]];
+// 	}
+// }
 
 char	*chg_dollar(char *input, char **env)
 {
@@ -106,23 +174,24 @@ char	**prepare(char *str)
 	return (matrix);
 }
 
-char	**expander(char **division, char **env)
+char	**expander(char **divison, char **env)
 {
 	int		i;
 	int		j;
-	int		k;
 	char	**temp;
 	char	*old;
 
 	i = -1;
 	temp = NULL;
-	k = 0;
-	while (division[++i])
+	while (divison[++i])
 	{
-		if (ft_strchr(division[i], '\'') || ft_strchr(division[i], '\"'))
+		if (ft_strchr(divison[i], '\'') || ft_strchr(divison[i], '\"'))
 		{
-			temp = prepare(division[i]);
+			temp = prepare(divison[i]);
 			j = -1;
+			// int k = -1;
+			// while (temp[++k])
+			// 	printf("-> %s\n", temp[k]);
 			while (temp[++j])
 			{
 				if (*temp[j] != '\'')
@@ -131,23 +200,53 @@ char	**expander(char **division, char **env)
 			j = -1;
 			while (temp[++j])
 			{
-				old = division[i - k];
-				division[i - k] = ft_strjoin(old, temp[j]);
+				old = divison[i];
+				divison[i] = ft_strjoin(old, temp[j]);
 				free(old);
 			}
 			ft_free_matrix(&temp);
 		}
 		else
-			division[i - k] = chg_dollar(division[i], env);
-		if (!division[i - k][0])
-			k++;
-	}
-	while (k)
-	{
-		i--;
-		division[i] = NULL;
-		k--;
+			divison[i] = chg_dollar(divison[i], env);
 	}
 	ft_free_matrix(&env);
-	return (division);
+	return (divison);
 }
+
+
+// void	chg_dollar(char **str, char **env)
+// {
+// 	int		i[3];
+// 	char	*temp[3];
+// 	char	*res;
+// 	int		flag;
+
+// 	if (!*str || !ft_strchr(*str, '$'))
+// 		return ;
+// 	res = *str;
+// 	while (how_many_dollars(res, env))
+// 	{
+// 		i[0] = -1;
+// 		i[1] = 0;
+// 		i[2] = 0;
+// 		flag = 0;
+// 		temp[2] = get_dollar_word(res, env);
+// 		temp[1] = search_env(env, temp[2]) + ft_strlen(temp[2]) + 1;
+// 		temp[0] = ft_calloc(ft_strlen(temp[1]) + ft_strlen(res) + 1, 1);
+// 		chg_dollar_loop(i, temp, res, flag);
+// 		free(temp[2]);
+// 		free (res);
+// 		res = temp[0];
+// 	}
+// 	*str = res;
+// }
+
+// int	main(int ac, char **av, char **env)
+// {
+// 	(void)ac;
+// 	char *input = ft_strdup(av[1]);
+// 	chg_dollar(&input, env);
+// 	//printf("%d\n", how_many_dollars(input, env));
+// 	printf("%s\n", input);
+// 	free(input);
+// }

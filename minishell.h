@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/01 12:41:39 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/05/31 19:01:23 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ int		ft_here_doc(char *str);
 void	redirection(t_list	*pre_list, char **division);
 
 //expander
-char	**expander(char **division, char **env);
+char	**expander(char **divison, char **env);
 char	*chg_dollar(char *input, char **env);
 
 //Execution

@@ -24,7 +24,8 @@ void	__exec_exit(char **env, t_list **lst)
 	int	nb;
 	int i;
 
-	i = 0 + ((*lst)->content[1][0] == '-' || (*lst)->content[1][0] == '+');
+	if ((*lst)->content[1] && (*lst)->content[1][0])
+		i = 0 + ((*lst)->content[1][0] == '-' || (*lst)->content[1][0] == '+');
 	write(2, "exit :) 🏊\n", 14);
 	if (ft_strlen((*lst)->content[1] + i) > 19 || \
 		(i && ft_strlen((*lst)->content[1]) == 20 && \
