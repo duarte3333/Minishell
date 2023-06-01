@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_types.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 16:02:31 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/31 18:04:51 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/06/01 18:48:15 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,11 @@ void	__exec_default(char **env, t_list **lst)
 	
 		close_fds(lst, 1);
 		if (execve((*lst)->path, (*lst)->content, env) == -1)
-		{
 			error_handle((*lst)->content[0]);
-			go_head(lst);
-			ft_free_list(lst);
-			exit(g_data.status);
-		}
+		go_head(lst);
+		ft_free_list(lst);
+		exit(g_data.status);
+
 }
 
 

@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 18:13:42 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/01 18:33:31 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/01 19:07:22 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,11 @@ void	redirect(char **division, int *i, t_list *lst)
 		lst->fd_master[1] = open(division[++(*i)], \
 		O_WRONLY | O_TRUNC | O_CREAT, 0644);
 	free(division[(*i) - 1]);
-	if (lst->fd_master[0] == -1 || lst->fd_master[1] == -1)
+	if (!g_data.status && (lst->fd_master[0] == -1 || lst->fd_master[1] == -1))
+	{
 		perror("");
+		g_data.status = 1;
+	}
 }
 
 /* Esta funcao avalia cada token. 

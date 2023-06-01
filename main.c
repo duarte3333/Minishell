@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:01:28 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/01 18:34:46 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/01 19:23:27 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ t_list	*generate_list(char *input)
 	parse(pre_split, input, 0, array);
 	//printf("%s\n", pre_split);
 	division = ft_split(pre_split, 2);
+	// int k = -1;
+	// while (division[++k])
+	// 	printf("--> %s\n", division[k]);
 	division = expander(division, ft_env_lst_to_arr(g_data.env));
 	list = NULL;
 	list = ft_lstnew(ft_matrixlen(division));
@@ -46,6 +49,7 @@ void	prompt(char **env_og)
 	while (1)
 	{
 		input = readline("$ ");// colocar if input != a newline fazer o resto
+		g_data.status = 0;
 		if (!input)
 		{
 			if(input)
@@ -57,7 +61,7 @@ void	prompt(char **env_og)
 		syntax_treatment(input);
 		list = generate_list(input);
 		//print_list(list);
-		if (list->content[0])
+		if (list->content[0] && !g_data.status)
 			execution(list, env_og);
 		ft_free_list(&list);
 		free(input);
