@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 16:57:31 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/31 20:36:10 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/01 11:24:12 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,15 @@ char	*chg_dollar(char *input, char **env)
 		if (input[i] == '$' || j)
 			buf[j++] = input[i];
 		if ((j && !is_alphnum(input[i + 1]) && !(j == 1 && input[i + 1] == '?')) || buf[1] == '?')
-			break ;
+		{
+			if (j == 1)
+			{
+				buf[0] = 0;
+				j = 0;
+			}
+			else
+				break ;
+		}
 	}
 	if (!j)
 	{
