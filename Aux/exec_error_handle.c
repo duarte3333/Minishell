@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:51:24 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/01 15:53:10 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/01 17:38:52 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,32 @@ void	error_handle(char *cmd)
 	int	i;
 
 	i = 0;
-	if (!cmd[i] || !cmd)
-	{
-		write(2, "Permission denied\n", 18);
+	if (!ft_strchr(cmd, '/'))
+	{	
+		write(2, cmd, ft_strlen(cmd));
+		write(2, ": command not found: ", 19);
+		g_data.status = 127;
 		return ;
 	}
-	else if (access(cmd, X_OK) == 0)
+	else if (ft_strchr(cmd, '/') && access(cmd, X_OK) == 0)
 	{
 		write(2, cmd, ft_strlen(cmd));
-		write(2, ": is a directory\n", 17);
+		write(2, ": Is a directory\n", 17);
 		g_data.status = 126;
 		return ;
 	}
-	else
+	else if (access(cmd, F_OK) != 0)
 	{
-		write(2, "command not found: ", 19);
-		while (cmd[i])
-		{
-			write(2, &(cmd[i]), 1);
-			i++;
-		}
-		write(2, "\n", 1);
+		write(2, cmd, ft_strlen(cmd));
+		write(2, ": No such file or directory\n", 28);
 		g_data.status = 127;
+		return ;
+	}
+	else if (access(cmd, X_OK))
+	{
+		write(2, cmd, ft_strlen(cmd));
+		write(2, ": Permission denied\n", 20);
+		g_data.status = 126;
 		return ;
 	}
 	perror("");

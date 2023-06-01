@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 16:57:31 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/01 15:53:23 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/01 16:19:24 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,10 @@ char	**expander(char **division, char **env)
 		else
 			division[i - k] = chg_dollar(division[i], env);
 		if (!division[i - k][0])
+		{
+			free(division[i - k]);
 			k++;
+		}
 	}
 	while (k)
 	{
