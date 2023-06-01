@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 15:44:22 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/31 18:33:20 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/06/01 17:46:38 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	__exec_cd(char **env, t_list **lst)
 	go_head(lst);
 	if (ft_matrixlen((*lst)->content) > 2)
 	{
-		write(2, "minishell: cd: too many arguments\n", 30);
+		write(2, "minishell: cd: too many arguments\n", 34);
 		g_data.status = 1;
 		return ;
 	}

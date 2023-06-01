@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:04:26 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/31 19:22:45 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/01 18:33:57 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	treat_sep(char *input, int	i, int size, int *words)
 		syntax_error("newline", input, 8);
 }
 
-void	delete_quotes(char **input, char c)
+void	delete_quotes_string(char **input, char c)
 {
 	char	*temp;
 	int		i;
@@ -94,6 +94,18 @@ void	delete_quotes(char **input, char c)
 	}
 	free(*input);
 	*input = temp;
+}
+
+void	delete_quotes(char **input)
+{
+	int	k;
+
+	k = -1;
+	while (input[++k])
+	{
+		if (ft_strchr(input[k], '\'') || ft_strchr(input[k], '\"'))
+			delete_quotes_string(&input[k], 0);
+	}
 }
 
 void	treat_quotes(char *input, int i, int *flag)

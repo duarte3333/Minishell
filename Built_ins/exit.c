@@ -26,7 +26,7 @@ void	__exec_exit(char **env, t_list **lst)
 
 	if ((*lst)->content[1] && (*lst)->content[1][0])
 		i = 0 + ((*lst)->content[1][0] == '-' || (*lst)->content[1][0] == '+');
-	write(2, "exit :) 🏊\n", 14);
+	write(2, "exit\n", 5);
 	if (ft_strlen((*lst)->content[1] + i) > 19 || \
 		(i && ft_strlen((*lst)->content[1]) == 20 && \
 		ft_strncmp("-9223372036854775808", (*lst)->content[1], 20) < 0) || \
@@ -41,7 +41,7 @@ void	__exec_exit(char **env, t_list **lst)
 	else if ((*lst)->content[1] && (*lst)->content[2])
 	{
 		g_data.status = 1;
-		write(2, "minishell: exit: too many arguments", 36);
+		write(2, "minishell: exit: too many arguments\n", 37);
 	}
 	else if ((*lst)->content[1] && ft_str_is_num((*lst)->content[1]) == 0)
 	{
