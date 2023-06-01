@@ -22,10 +22,22 @@ void	__exec_exit(char **env, t_list **lst)
 {
 	(void)env;
 	int	nb;
+	int i;
+
+	i = 0 + ((*lst)->content[1][0] == '-' || (*lst)->content[1][0] == '+');
 	write(2, "exit :) 🏊\n", 14);
-	// if (!ft_strcmp("+9223372036854775807", (*lst)->content[1]) || \
-	// ft_strcmp("-9223372036854775807", (*lst)->content[1]) )
-	if ((*lst)->content[1] && (*lst)->content[2])
+	if (ft_strlen((*lst)->content[1] + i) > 19 || \
+		(i && ft_strlen((*lst)->content[1]) == 20 && \
+		ft_strncmp("-9223372036854775808", (*lst)->content[1], 20) < 0) || \
+		(!i && ft_strlen((*lst)->content[1]) == 19 && \
+		ft_strncmp("9223372036854775807", (*lst)->content[1], 19) < 0))
+	{
+		g_data.status = 2;
+		write(2, "minishell: exit: ", 17);
+		write(2, (*lst)->content[1], ft_strlen((*lst)->content[1]));
+		write(2, ": numeric argument required\n", 29);
+	}
+	else if ((*lst)->content[1] && (*lst)->content[2])
 	{
 		g_data.status = 1;
 		write(2, "minishell: exit: too many arguments", 36);
@@ -35,7 +47,7 @@ void	__exec_exit(char **env, t_list **lst)
 		g_data.status = 2;
 		write(2, "minishell: exit: ", 17);
 		write(2, (*lst)->content[1], ft_strlen((*lst)->content[1]));
-		write(2, ": numeric argument required", 27);
+		write(2, ": numeric argument required\n", 29);
 	}
 	else if ((*lst)->content[1])
 	{
