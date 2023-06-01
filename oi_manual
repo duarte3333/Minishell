@@ -1,0 +1,634 @@
+mkdir: cannot create directory ‘./outfiles’: File exists
+mkdir: cannot create directory ‘./mini_outfiles’: File exists
+mkdir: cannot create directory ‘./bash_outfiles’: File exists
+🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+                                                                                             
+ ██    ██ █ ██    █ █ █████ █   █ █████ █     █       ██████ █████ █████ ██████ █████ █████  
+ ███  ███ █ ███   █ █ █     █   █ █     █     █         ██   █     █       ██   █     █   ██ 
+ █ ████ █ █ █ ██  █ █ █████ █████ ████  █     █         ██   ████  █████   ██   ████  █████  
+ █  ██  █ █ █  ██ █ █     █ █   █ █     █     █         ██   █         █   ██   █     █   ██ 
+ █      █ █ █   ███ █ █████ █   █ █████ █████ █████     ██   █████ █████   ██   █████ █   ██ 
+                                                                                             
+🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+                                                                                              
+———————————— builtins
+Test   1: ✅ echo hello world 
+Test   2: ✅ echo "hello world" 
+Test   3: ✅ echo 'hello world' 
+Test   4: ✅ echo hello'world' 
+Test   5: ✅ echo hello""world 
+Test   6: ✅ echo '' 
+Test   7: ✅ echo "$PWD" 
+Test   8: ✅ echo '$PWD' 
+Test   9: ✅ echo "aspas ->'" 
+Test  10: ✅ echo "aspas -> ' " 
+Test  11: ✅ echo 'aspas ->"' 
+Test  12: ✅ echo 'aspas -> " ' 
+Test  13: ❌ echo "> >> < * ? [ ] | ; [ ] || && ( ) & # $  <<" 
+mini output = ()
+bash output = (> >> < bash_outfiles bash.supp bonus bonus_bonus builtins extras local.supp loop.out manual_tests mini_outfiles os_specific outfiles pipes README.md redirects syntax tester test_files wildcards ? [ ] | ; [ ] || && ( ) & # $ <<)
+Test  14: ❌ echo '> >> < * ? [ ] | ; [ ] || && ( ) & # $  <<' 
+mini output = ()
+bash output = (> >> < bash_outfiles bash.supp bonus bonus_bonus builtins extras local.supp loop.out manual_tests mini_outfiles os_specific outfiles pipes README.md redirects syntax tester test_files wildcards ? [ ] | ; [ ] || && ( ) & # $ <<)
+Test  15: ✅ echo "exit_code ->$? user ->$USER home -> $HOME" 
+Test  16: ✅ echo 'exit_code ->$? user ->$USER home -> $HOME' 
+Test  17: ✅ echo "$" 
+Test  18: ✅ echo '$' 
+Test  19: ✅ echo $ 
+Test  20: ✅ echo $? 
+Test  21: ✅ echo $?HELLO 
+Test  22: ✅ pwd 
+Test  23: ✅ pwd oi 
+Test  24: ✅ export hello 
+Test  25: ✅ export HELLO=123 
+grep: (standard input): binary file matches
+Test  26: ✅⚠️  export A- 
+mini error = ()
+bash error = ( not a valid identifier)
+Test  27: ✅ export HELLO=123 A 
+Test  28: ✅ export HELLO="123 A-" 
+Test  29: ✅ export hello world 
+grep: (standard input): binary file matches
+Test  30: ✅⚠️  export HELLO-=123 
+mini error = ()
+bash error = ( not a valid identifier)
+grep: (standard input): binary file matches
+Test  31: ✅⚠️  export = 
+mini error = ()
+bash error = ( not a valid identifier)
+grep: (standard input): binary file matches
+Test  32: ✅⚠️  export 123 
+mini error = ()
+bash error = ( not a valid identifier)
+Test  33: ✅ unset 
+Test  34: ✅ unset HELLO 
+Test  35: ✅ unset HELLO1 HELLO2 
+Test  36: ✅ unset HOME 
+Test  37: ✅ unset PATH 
+Test  38: ✅ unset SHELL 
+Test  39: ✅ cd $PWD 
+Test  40: ✅⚠️  cd $PWD hi 
+mini error = ( too many argume)
+bash error = ( too many arguments)
+grep: (standard input): binary file matches
+Test  41: ✅⚠️  cd 123123 
+mini error = ()
+bash error = ( No such file or directory)
+grep: (standard input): binary file matches
+Test  42: ✅ exit 123 
+grep: (standard input): binary file matches
+Test  43: ✅ exit 298 
+grep: (standard input): binary file matches
+Test  44: ✅ exit +100 
+grep: (standard input): binary file matches
+Test  45: ✅ exit "+100" 
+grep: (standard input): binary file matches
+Test  46: ✅ exit +"100" 
+grep: (standard input): binary file matches
+Test  47: ✅ exit -100 
+grep: (standard input): binary file matches
+Test  48: ✅ exit "-100" 
+grep: (standard input): binary file matches
+Test  49: ✅ exit -"100" 
+grep: (standard input): binary file matches
+Test  50: ✅⚠️  exit hello 
+mini error = ()
+bash error = ( numeric argument required)
+grep: (standard input): binary file matches
+Test  51: ✅⚠️  exit 42 world 
+mini error = ()
+bash error = ( too many arguments)
+grep: (standard input): binary file matches
+Test  52: ✅ exit 9223372036854775807 
+grep: (standard input): binary file matches
+Test  53: ✅⚠️  exit 9223372036854775808 
+mini error = ()
+bash error = ( numeric argument required)
+grep: (standard input): binary file matches
+Test  54: ✅ exit -9223372036854775807 
+grep: (standard input): binary file matches
+Test  55: ✅ exit -9223372036854775808 
+grep: (standard input): binary file matches
+Test  56: ✅⚠️  exit -9223372036854775809 
+mini error = ()
+bash error = ( numeric argument required)
+———————————— pipes
+Test  57: ✅ env | sort | grep -v SHLVL | grep -v ^_ 
+Test  58: ❌ export | sort | grep -v SHLVL | grep -v "declare -x _" | grep -v "PS.=" 
+mini output = (declare -x AMENT_PREFIX_PATH="/opt/ros/humble" declare -x BAMF_DESKTOP_FILE_HINT="/var/lib/snapd/desktop/applications/code_code.desktop" declare -x CHROME_DESKTOP="code-url-handler.desktop" declare -x COLORTERM="truecolor" declare -x DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus" declare -x DESKTOP_SESSION="ubuntu" declare -x DISPLAY=":1" declare -x GDK_BACKEND="x11" declare -x GDMSESSION="ubuntu" declare -x GIO_LAUNCHED_DESKTOP_FILE_PID="5186" declare -x GIO_LAUNCHED_DESKTOP_FILE="/var/lib/snapd/desktop/applications/code_code.desktop" declare -x GIO_MODULE_DIR="/home/duarte33/snap/code/common/.cache/gio-modules" declare -x GIT_ASKPASS="/snap/code/129/usr/share/code/resources/app/extensions/git/dist/askpass.sh" declare -x GJS_DEBUG_OUTPUT="stderr" declare -x GJS_DEBUG_TOPICS="JS ERROR;JS LOG" declare -x GNOME_DESKTOP_SESSION_ID="this-is-deprecated" declare -x GNOME_SHELL_SESSION_MODE="ubuntu" declare -x GPG_AGENT_INFO="/run/user/1000/gnupg/S.gpg-agent:0:1" declare -x GSETTINGS_SCHEMA_DIR="/home/duarte33/snap/code/129/.local/share/glib-2.0/schemas" declare -x GTK_EXE_PREFIX="/snap/code/129/usr" declare -x GTK_IM_MODULE_FILE="/home/duarte33/snap/code/common/.cache/immodules/immodules.cache" declare -x GTK_IM_MODULE="ibus" declare -x GTK_MODULES="gail:atk-bridge" declare -x GTK_PATH="/snap/code/129/usr/lib/x86_64-linux-gnu/gtk-3.0" declare -x HOME="/home/duarte33" declare -x INVOCATION_ID="5ce27f6b7d0b469e84fbd1a0761e81af" declare -x JOURNAL_STREAM="8:46327" declare -x LANG="en_US.UTF-8" declare -x LC_ADDRESS="pt_PT.UTF-8" declare -x LC_ALL="en_US.UTF-8" declare -x LC_CTYPE="pt_PT.UTF-8" declare -x LC_IDENTIFICATION="pt_PT.UTF-8" declare -x LC_MEASUREMENT="pt_PT.UTF-8" declare -x LC_MONETARY="pt_PT.UTF-8" declare -x LC_NAME="pt_PT.UTF-8" declare -x LC_NUMERIC="pt_PT.UTF-8" declare -x LC_PAPER="pt_PT.UTF-8" declare -x LC_TELEPHONE="pt_PT.UTF-8" declare -x LC_TIME="pt_PT.UTF-8" declare -x LD_LIBRARY_PATH="/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib" declare -x LESSCLOSE="/usr/bin/lesspipe %s %s" declare -x LESSOPEN="| /usr/bin/lesspipe %s" declare -x LOCPATH="/snap/code/129/usr/lib/locale" declare -x LOGNAME="duarte33" declare -x LS_COLORS="rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:" declare -x MANAGERPID="1976" declare -x NODE_OPTIONS="--require /home/duarte33/.config/Code/User/workspaceStorage/dcc6efc4df671e2dada64262b1fa2318/ms-vscode.js-debug/bootloader.js " declare -x OLDPWD="/home/duarte33/42School/minishell" declare -x ORIGINAL_XDG_CURRENT_DESKTOP="ubuntu:GNOME" declare -x PATH="/home/duarte33/.local/bin:/opt/ros/humble/bin:/home/duarte33/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" declare -x PWD="/home/duarte33/42School/minishell/minishell_tester" declare -x PYTHONPATH="/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages" declare -x QT_ACCESSIBILITY="1" declare -x QT_IM_MODULE="ibus" declare -x ROS_DISTRO="humble" declare -x ROS_LOCALHOST_ONLY="1" declare -x ROS_PYTHON_VERSION="3" declare -x ROS_VERSION="2" declare -x SESSION_MANAGER="local/xps15-duarte:@/tmp/.ICE-unix/2337,unix/xps15-duarte:/tmp/.ICE-unix/2337" declare -x SHELL="/bin/bash" declare -x SSH_AGENT_LAUNCHER="gnome-keyring" declare -x SSH_AUTH_SOCK="/run/user/1000/keyring/ssh" declare -x SYSTEMD_EXEC_PID="2356" declare -x TERM_PROGRAM_VERSION="1.78.2" declare -x TERM_PROGRAM="vscode" declare -x TERM="xterm-256color" declare -x USER="duarte33" declare -x USERNAME="duarte33" declare -x VSCODE_GIT_ASKPASS_EXTRA_ARGS="--ms-enable-electron-run-as-node" declare -x VSCODE_GIT_ASKPASS_MAIN="/snap/code/129/usr/share/code/resources/app/extensions/git/dist/askpass-main.js" declare -x VSCODE_GIT_ASKPASS_NODE="/snap/code/129/usr/share/code/code" declare -x VSCODE_GIT_IPC_HANDLE="/run/user/1000/vscode-git-f9a125fea2.sock" declare -x VSCODE_INSPECTOR_OPTIONS=":::{"inspectorIpc":"/tmp/node-cdp.9191-77235084-0.sock.deferred","deferredMode":true,"waitForDebugger":"","onlyEntrypoint":false,"autoAttachMode":"smart","aaPatterns":["/home/duarte33/42School/minishell/**","!**/node_modules/**","**/$KNOWN_TOOLS$/**"]}" declare -x WINDOWPATH="2" declare -x XAUTHORITY="/run/user/1000/gdm/Xauthority" declare -x XDG_CONFIG_DIRS="/etc/xdg/xdg-ubuntu:/etc/xdg" declare -x XDG_CURRENT_DESKTOP="Unity" declare -x XDG_DATA_DIRS="/home/duarte33/snap/code/129/.local/share:/home/duarte33/snap/code/129:/snap/code/129/usr/share:/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop" declare -x XDG_MENU_PREFIX="gnome-" declare -x XDG_RUNTIME_DIR="/run/user/1000" declare -x XDG_SESSION_CLASS="user" declare -x XDG_SESSION_DESKTOP="ubuntu" declare -x XDG_SESSION_TYPE="x11" declare -x XMODIFIERS="@im=ibus")
+bash output = (declare -x AMENT_PREFIX_PATH="/opt/ros/humble" declare -x BAMF_DESKTOP_FILE_HINT="/var/lib/snapd/desktop/applications/code_code.desktop" declare -x CHROME_DESKTOP="code-url-handler.desktop" declare -x COLORTERM="truecolor" declare -x DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus" declare -x DESKTOP_SESSION="ubuntu" declare -x DISPLAY=":1" declare -x GDK_BACKEND="x11" declare -x GDMSESSION="ubuntu" declare -x GIO_LAUNCHED_DESKTOP_FILE_PID="5186" declare -x GIO_LAUNCHED_DESKTOP_FILE="/var/lib/snapd/desktop/applications/code_code.desktop" declare -x GIO_MODULE_DIR="/home/duarte33/snap/code/common/.cache/gio-modules" declare -x GIT_ASKPASS="/snap/code/129/usr/share/code/resources/app/extensions/git/dist/askpass.sh" declare -x GJS_DEBUG_OUTPUT="stderr" declare -x GJS_DEBUG_TOPICS="JS ERROR;JS LOG" declare -x GNOME_DESKTOP_SESSION_ID="this-is-deprecated" declare -x GNOME_SHELL_SESSION_MODE="ubuntu" declare -x GPG_AGENT_INFO="/run/user/1000/gnupg/S.gpg-agent:0:1" declare -x GSETTINGS_SCHEMA_DIR="/home/duarte33/snap/code/129/.local/share/glib-2.0/schemas" declare -x GTK_EXE_PREFIX="/snap/code/129/usr" declare -x GTK_IM_MODULE_FILE="/home/duarte33/snap/code/common/.cache/immodules/immodules.cache" declare -x GTK_IM_MODULE="ibus" declare -x GTK_MODULES="gail:atk-bridge" declare -x GTK_PATH="/snap/code/129/usr/lib/x86_64-linux-gnu/gtk-3.0" declare -x HOME="/home/duarte33" declare -x INVOCATION_ID="5ce27f6b7d0b469e84fbd1a0761e81af" declare -x JOURNAL_STREAM="8:46327" declare -x LANG="en_US.UTF-8" declare -x LC_ADDRESS="pt_PT.UTF-8" declare -x LC_ALL="en_US.UTF-8" declare -x LC_CTYPE="pt_PT.UTF-8" declare -x LC_IDENTIFICATION="pt_PT.UTF-8" declare -x LC_MEASUREMENT="pt_PT.UTF-8" declare -x LC_MONETARY="pt_PT.UTF-8" declare -x LC_NAME="pt_PT.UTF-8" declare -x LC_NUMERIC="pt_PT.UTF-8" declare -x LC_PAPER="pt_PT.UTF-8" declare -x LC_TELEPHONE="pt_PT.UTF-8" declare -x LC_TIME="pt_PT.UTF-8" declare -x LD_LIBRARY_PATH="/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib" declare -x LESSCLOSE="/usr/bin/lesspipe %s %s" declare -x LESSOPEN="| /usr/bin/lesspipe %s" declare -x LOCPATH="/snap/code/129/usr/lib/locale" declare -x LOGNAME="duarte33" declare -x LS_COLORS="rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:" declare -x MANAGERPID="1976" declare -x NODE_OPTIONS="--require /home/duarte33/.config/Code/User/workspaceStorage/dcc6efc4df671e2dada64262b1fa2318/ms-vscode.js-debug/bootloader.js " declare -x OLDPWD="/home/duarte33/42School/minishell" declare -x ORIGINAL_XDG_CURRENT_DESKTOP="ubuntu:GNOME" declare -x PATH="/home/duarte33/.local/bin:/opt/ros/humble/bin:/home/duarte33/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" declare -x PWD="/home/duarte33/42School/minishell/minishell_tester" declare -x PYTHONPATH="/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages" declare -x QT_ACCESSIBILITY="1" declare -x QT_IM_MODULE="ibus" declare -x ROS_DISTRO="humble" declare -x ROS_LOCALHOST_ONLY="1" declare -x ROS_PYTHON_VERSION="3" declare -x ROS_VERSION="2" declare -x SESSION_MANAGER="local/xps15-duarte:@/tmp/.ICE-unix/2337,unix/xps15-duarte:/tmp/.ICE-unix/2337" declare -x SHELL="/bin/bash" declare -x SSH_AGENT_LAUNCHER="gnome-keyring" declare -x SSH_AUTH_SOCK="/run/user/1000/keyring/ssh" declare -x SYSTEMD_EXEC_PID="2356" declare -x TERM_PROGRAM_VERSION="1.78.2" declare -x TERM_PROGRAM="vscode" declare -x TERM="xterm-256color" declare -x USER="duarte33" declare -x USERNAME="duarte33" declare -x VSCODE_GIT_ASKPASS_EXTRA_ARGS="--ms-enable-electron-run-as-node" declare -x VSCODE_GIT_ASKPASS_MAIN="/snap/code/129/usr/share/code/resources/app/extensions/git/dist/askpass-main.js" declare -x VSCODE_GIT_ASKPASS_NODE="/snap/code/129/usr/share/code/code" declare -x VSCODE_GIT_IPC_HANDLE="/run/user/1000/vscode-git-f9a125fea2.sock" declare -x VSCODE_INSPECTOR_OPTIONS=":::{\"inspectorIpc\":\"/tmp/node-cdp.9191-77235084-0.sock.deferred\",\"deferredMode\":true,\"waitForDebugger\":\"\",\"onlyEntrypoint\":false,\"autoAttachMode\":\"smart\",\"aaPatterns\":[\"/home/duarte33/42School/minishell/**\",\"!**/node_modules/**\",\"**/\$KNOWN_TOOLS\$/**\"]}" declare -x WINDOWPATH="2" declare -x XAUTHORITY="/run/user/1000/gdm/Xauthority" declare -x XDG_CONFIG_DIRS="/etc/xdg/xdg-ubuntu:/etc/xdg" declare -x XDG_CURRENT_DESKTOP="Unity" declare -x XDG_DATA_DIRS="/home/duarte33/snap/code/129/.local/share:/home/duarte33/snap/code/129:/snap/code/129/usr/share:/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop" declare -x XDG_MENU_PREFIX="gnome-" declare -x XDG_RUNTIME_DIR="/run/user/1000" declare -x XDG_SESSION_CLASS="user" declare -x XDG_SESSION_DESKTOP="ubuntu" declare -x XDG_SESSION_TYPE="x11" declare -x XMODIFIERS="@im=ibus")
+Test  59: ✅ cat ./test_files/infile_big | grep oi 
+Test  60: ✅ cat minishell.h | grep ");"$ 
+Test  61: ✅ export GHOST=123 | env | grep GHOST 
+———————————— redirects
+Test  62: ✅ grep hi <./test_files/infile 
+Test  63: ✅ grep hi "<infile" <         ./test_files/infile 
+Test  64: ✅ echo hi < ./test_files/infile bye bye 
+Test  65: ✅ grep hi <./test_files/infile_big <./test_files/infile 
+Test  66: ✅⚠️  echo <"./test_files/infile" "bonjour       42" 
+mini error = (No such file or directory)
+bash error = ()
+Test  67: ❌ cat <"./test_files/file name with spaces" 
+mini output = ()
+bash output = (😈 😈 😈 This will break your minishell 😈 😈 😈)
+mini exit code =
+bash exit code = 0
+mini error = (No such file or directory)
+bash error = ()
+Test  68: ✅ cat <./test_files/infile_big ./test_files/infile 
+Test  69: ❌ cat <"1""2""3""4""5" 
+mini exit code =
+bash exit code = 1
+mini error = (No such file or directory)
+bash error = ( No such file or directory)
+Test  70: ✅⚠️  echo <"./test_files/infile" <missing <"./test_files/infile" 
+mini error = (No such file or directory No such file or directory No such file or directory DEADLYSIGNAL ================================================================= SEGV on unknown address 0x000000000000 (pc 0x55692e716d90 bp 0x7ffd42f886b0 sp 0x7ffd42f88690 T0) ==9462==The signal is caused by a READ memory access. address points to the zero page. 35 83 100 61 73 58 392 #7 0x55692e712504 in _start (/home/duarte33/42School/minishell/minishell+0x3504) AddressSanitizer can not provide additional info. 35 in __exec_echo ==9462==ABORTING)
+bash error = ( No such file or directory)
+Test  71: ✅⚠️  echo <missing <"./test_files/infile" <missing 
+mini error = (No such file or directory No such file or directory No such file or directory DEADLYSIGNAL ================================================================= SEGV on unknown address 0x000000000000 (pc 0x564dfe9b1d90 bp 0x7ffdb45433b0 sp 0x7ffdb4543390 T0) ==9505==The signal is caused by a READ memory access. address points to the zero page. 35 83 100 61 73 58 392 #7 0x564dfe9ad504 in _start (/home/duarte33/42School/minishell/minishell+0x3504) AddressSanitizer can not provide additional info. 35 in __exec_echo ==9505==ABORTING)
+bash error = ( No such file or directory)
+Test  72: ❌ cat <"./test_files/infile" 
+mini output = ()
+bash output = (hi hello world 42)
+mini exit code =
+bash exit code = 0
+mini error = (No such file or directory)
+bash error = ()
+Test  73: ❌ echo <"./test_files/infile_big" | cat <"./test_files/infile" 
+mini output = ()
+bash output = (hi hello world 42)
+mini error = (No such file or directory No such file or directory DEADLYSIGNAL ================================================================= SEGV on unknown address 0x000000000000 (pc 0x55dea6a8cd90 bp 0x7fff575774e0 sp 0x7fff575774c0 T0) ==9594==The signal is caused by a READ memory access. address points to the zero page. 35 83 100 61 73 58 392 #7 0x55dea6a88504 in _start (/home/duarte33/42School/minishell/minishell+0x3504) AddressSanitizer can not provide additional info. 35 in __exec_echo ==9594==ABORTING)
+bash error = ()
+Test  74: ❌ echo <"./test_files/infile_big" | cat "./test_files/infile" 
+mini exit code = 1
+bash exit code = 0
+mini error = (No such file or directory DEADLYSIGNAL ================================================================= SEGV on unknown address 0x000000000000 (pc 0x55726cfa2d90 bp 0x7fff2ae45cf0 sp 0x7fff2ae45cd0 T0) ==9644==The signal is caused by a READ memory access. address points to the zero page. 35 83 100 61 73 58 392 #7 0x55726cf9e504 in _start (/home/duarte33/42School/minishell/minishell+0x3504) AddressSanitizer can not provide additional info. 35 in __exec_echo ==9644==ABORTING)
+bash error = ()
+Test  75: ❌ echo <"./test_files/infile_big" | echo <"./test_files/infile" 
+mini exit code = 1
+bash exit code = 0
+mini error = (No such file or directory No such file or directory DEADLYSIGNAL ================================================================= SEGV on unknown address 0x000000000000 (pc 0x55feb7046d90 bp 0x7ffe693831d0 sp 0x7ffe693831b0 T0) ==9722==The signal is caused by a READ memory access. address points to the zero page. DEADLYSIGNAL ================================================================= SEGV on unknown address 0x000000000000 (pc 0x55feb7046d90 bp 0x7ffe693831d0 sp 0x7ffe693831b0 T0) ==9723==The signal is caused by a READ memory access. address points to the zero page. 35 83 100 61 73 58 392 #7 0x55feb7042504 in _start (/home/duarte33/42School/minishell/minishell+0x3504) AddressSanitizer can not provide additional info. 35 in __exec_echo ==9722==ABORTING 35 83 100 61 73 58 392 #7 0x55feb7042504 in _start (/home/duarte33/42School/minishell/minishell+0x3504) AddressSanitizer can not provide additional info. 35 in __exec_echo ==9723==ABORTING)
+bash error = ()
+Test  76: ❌ echo hi | cat <"./test_files/infile" 
+mini output = (hi)
+bash output = (hi hello world 42)
+mini error = (No such file or directory)
+bash error = ()
+Test  77: ❌ echo hi | cat "./test_files/infile" 
+mini exit code = 13
+bash exit code = 0
+Test  78: ❌ cat <"./test_files/infile" | echo hi 
+mini exit code = hi
+bash exit code = 0
+mini error = (No such file or directory)
+bash error = ( Broken pipe)
+Test  79: ❌ cat <"./test_files/infile" | grep hello 
+mini output = ()
+bash output = (hello)
+mini exit code =
+bash exit code = 0
+mini error = (No such file or directory)
+bash error = ()
+Test  80: ❌ cat <"./test_files/infile_big" | echo hi 
+mini exit code = hi
+bash exit code = 0
+mini error = (No such file or directory)
+bash error = ( Broken pipe)
+Test  81: ❌ cat <missing 
+mini exit code =
+bash exit code = 1
+mini error = (No such file or directory)
+bash error = ( No such file or directory)
+Test  82: ❌ cat <missing | cat 
+mini exit code =
+bash exit code = 0
+mini error = (No such file or directory)
+bash error = ( No such file or directory)
+Test  83: ❌ cat <missing | echo oi 
+mini exit code = oi
+bash exit code = 0
+mini error = (No such file or directory)
+bash error = ( No such file or directory)
+Test  84: ❌ cat <missing | cat <"./test_files/infile" 
+mini output = ()
+bash output = (hi hello world 42)
+mini exit code =
+bash exit code = 0
+mini error = (No such file or directory No such file or directory)
+bash error = ( No such file or directory)
+Test  85: ✅⚠️  echo <123 <456 hi | echo 42 
+mini error = (No such file or directory No such file or directory)
+bash error = ( No such file or directory)
+Test  86: ✅ ls >./outfiles/outfile01 
+Test  87: ✅ ls >         ./outfiles/outfile01 
+Test  88: ✅ echo hi >         ./outfiles/outfile01 bye 
+Test  89: ✅ ls >./outfiles/outfile01 >./outfiles/outfile02 
+Test  90: ❌ ls >./outfiles/outfile01 >./test_files/invalid_permission 
+mini output = (bash_outfiles bash.supp bonus bonus_bonus builtins extras local.supp loop.out manual_tests mini_outfiles os_specific outfiles pipes README.md redirects syntax tester test_files wildcards)
+bash output = ()
+mini exit code = 0
+bash exit code = 1
+mini error = (Permission denied)
+bash error = ( Permission denied)
+Test  91: ❌ ls >"./outfiles/outfile with spaces" 
+Only in ./bash_outfiles: outfile with spaces
+mini outfiles:
+cat: './mini_outfiles/*': No such file or directory
+bash outfiles:
+bash_outfiles
+bash.supp
+bonus
+bonus_bonus
+builtins
+extras
+local.supp
+loop.out
+manual_tests
+mini_outfiles
+os_specific
+outfiles
+pipes
+README.md
+redirects
+syntax
+tester
+test_files
+wildcards
+mini output = (bash_outfiles bash.supp bonus bonus_bonus builtins extras local.supp loop.out manual_tests mini_outfiles os_specific outfiles pipes README.md redirects syntax tester test_files wildcards)
+bash output = ()
+mini error = (No such file or directory)
+bash error = ()
+Test  92: ❌ ls >"./outfiles/outfile""1""2""3""4""5" 
+Only in ./bash_outfiles: outfile12345
+mini outfiles:
+cat: './mini_outfiles/*': No such file or directory
+bash outfiles:
+bash_outfiles
+bash.supp
+bonus
+bonus_bonus
+builtins
+extras
+local.supp
+loop.out
+manual_tests
+mini_outfiles
+os_specific
+outfiles
+pipes
+README.md
+redirects
+syntax
+tester
+test_files
+wildcards
+mini output = (bash_outfiles bash.supp bonus bonus_bonus builtins extras local.supp loop.out manual_tests mini_outfiles os_specific outfiles pipes README.md redirects syntax tester test_files wildcards)
+bash output = ()
+mini error = (No such file or directory)
+bash error = ()
+Test  93: ❌ ls >"./outfiles/outfile01" >./test_files/invalid_permission >"./outfiles/outfile02" 
+Only in ./bash_outfiles: outfile01
+mini outfiles:
+cat: './mini_outfiles/*': No such file or directory
+bash outfiles:
+mini output = (bash_outfiles bash.supp bonus bonus_bonus builtins extras local.supp loop.out manual_tests mini_outfiles os_specific outfiles pipes README.md redirects syntax tester test_files wildcards)
+bash output = ()
+mini exit code = 0
+bash exit code = 1
+mini error = (No such file or directory Permission denied No such file or directory)
+bash error = ( Permission denied)
+Test  94: ❌ ls >./test_files/invalid_permission >"./outfiles/outfile01" >./test_files/invalid_permission 
+mini output = (bash_outfiles bash.supp bonus bonus_bonus builtins extras local.supp loop.out manual_tests mini_outfiles os_specific outfiles pipes README.md redirects syntax tester test_files wildcards)
+bash output = ()
+mini exit code = 0
+bash exit code = 1
+mini error = (Permission denied No such file or directory Permission denied)
+bash error = ( Permission denied)
+Test  95: ❌ cat <"./test_files/infile" >"./outfiles/outfile01" 
+Only in ./bash_outfiles: outfile01
+mini outfiles:
+cat: './mini_outfiles/*': No such file or directory
+bash outfiles:
+hi
+hello
+world
+42
+mini exit code =
+bash exit code = 0
+mini error = (No such file or directory No such file or directory)
+bash error = ()
+Test  96: ✅ echo hi >./outfiles/outfile01 | echo bye 
+Test  97: ✅ echo hi >./outfiles/outfile01 >./outfiles/outfile02 | echo bye 
+Test  98: ✅ echo hi | echo >./outfiles/outfile01 bye 
+Test  99: ✅ echo hi | echo bye >./outfiles/outfile01 >./outfiles/outfile02 
+Test 100: ✅ echo hi >./outfiles/outfile01 | echo bye >./outfiles/outfile02 
+Test 101: ✅⚠️  echo hi >./outfiles/outfile01 >./test_files/invalid_permission | echo bye 
+mini error = (Permission denied)
+bash error = ( Permission denied)
+Test 102: ✅⚠️  echo hi >./test_files/invalid_permission | echo bye 
+mini error = (Permission denied)
+bash error = ( Permission denied)
+Test 103: ❌ echo hi >./test_files/invalid_permission >./outfiles/outfile01 | echo bye 
+Only in ./mini_outfiles: outfile01
+mini outfiles:
+hi
+bash outfiles:
+cat: './bash_outfiles/*': No such file or directory
+mini error = (Permission denied)
+bash error = ( Permission denied)
+Test 104: ❌ echo hi | echo bye >./test_files/invalid_permission 
+mini output = (bye)
+bash output = ()
+mini exit code = 0
+bash exit code = 1
+mini error = (Permission denied)
+bash error = ( Permission denied)
+Test 105: ❌ echo hi | >./outfiles/outfile01 echo bye >./test_files/invalid_permission 
+Only in ./bash_outfiles: outfile01
+mini outfiles:
+cat: './mini_outfiles/*': No such file or directory
+bash outfiles:
+mini exit code = 2
+bash exit code = 1
+mini error = ( syntax error near unexpected token `>')
+bash error = ( Permission denied)
+Test 106: ❌ echo hi | echo bye >./test_files/invalid_permission >./outfiles/outfile01 
+Only in ./mini_outfiles: outfile01
+mini outfiles:
+bye
+bash outfiles:
+cat: './bash_outfiles/*': No such file or directory
+mini exit code = 0
+bash exit code = 1
+mini error = (Permission denied)
+bash error = ( Permission denied)
+Test 107: ❌ cat <"./test_files/infile" >./test_files/invalid_permission 
+mini exit code =
+bash exit code = 1
+mini error = (No such file or directory Permission denied)
+bash error = ( Permission denied)
+Test 108: ❌ cat >./test_files/invalid_permission <"./test_files/infile" 
+mini exit code =
+bash exit code = 1
+mini error = (Permission denied No such file or directory)
+bash error = ( Permission denied)
+Test 109: ❌ cat <missing >./outfiles/outfile01 
+Only in ./mini_outfiles: outfile01
+mini outfiles:
+bash outfiles:
+cat: './bash_outfiles/*': No such file or directory
+mini exit code =
+bash exit code = 1
+mini error = (No such file or directory Invalid argument)
+bash error = ( No such file or directory)
+Test 110: ❌ cat >./outfiles/outfile01 <missing 
+mini exit code =
+bash exit code = 1
+mini error = (No such file or directory)
+bash error = ( No such file or directory)
+Test 111: ❌ cat <missing >./test_files/invalid_permission 
+mini exit code =
+bash exit code = 1
+mini error = (No such file or directory Permission denied)
+bash error = ( No such file or directory)
+Test 112: ❌ cat >./test_files/invalid_permission <missing 
+mini exit code =
+bash exit code = 1
+mini error = (Permission denied No such file or directory)
+bash error = ( Permission denied)
+Test 113: ❌ cat >./outfiles/outfile01 <missing >./test_files/invalid_permission 
+mini exit code =
+bash exit code = 1
+mini error = (No such file or directory Permission denied)
+bash error = ( No such file or directory)
+Test 114: ✅ ls >>./outfiles/outfile01 
+Test 115: ✅ ls >>      ./outfiles/outfile01 
+Test 116: ✅ ls >>./outfiles/outfile01 >./outfiles/outfile01 
+Test 117: ✅ ls >./outfiles/outfile01 >>./outfiles/outfile01 
+Test 118: ✅ ls >./outfiles/outfile01 >>./outfiles/outfile01 >./outfiles/outfile02 
+Test 119: ✅ ls >>./outfiles/outfile01 >>./outfiles/outfile02 
+Test 120: ❌ ls >>./test_files/invalid_permission 
+mini output = (bash_outfiles bash.supp bonus bonus_bonus builtins extras local.supp loop.out manual_tests mini_outfiles os_specific outfiles pipes README.md redirects syntax tester test_files wildcards)
+bash output = ()
+mini exit code = 0
+bash exit code = 1
+mini error = (Permission denied)
+bash error = ( Permission denied)
+Test 121: ❌ ls >>./test_files/invalid_permission >>./outfiles/outfile01 
+Only in ./mini_outfiles: outfile01
+mini outfiles:
+bash_outfiles
+bash.supp
+bonus
+bonus_bonus
+builtins
+extras
+local.supp
+loop.out
+manual_tests
+mini_outfiles
+os_specific
+outfiles
+pipes
+README.md
+redirects
+syntax
+tester
+test_files
+wildcards
+bash outfiles:
+cat: './bash_outfiles/*': No such file or directory
+mini exit code = 0
+bash exit code = 1
+mini error = (Permission denied)
+bash error = ( Permission denied)
+Test 122: ❌ ls >>./outfiles/outfile01 >>./test_files/invalid_permission 
+mini output = (bash_outfiles bash.supp bonus bonus_bonus builtins extras local.supp loop.out manual_tests mini_outfiles os_specific outfiles pipes README.md redirects syntax tester test_files wildcards)
+bash output = ()
+mini exit code = 0
+bash exit code = 1
+mini error = (Permission denied)
+bash error = ( Permission denied)
+Test 123: ❌ ls >./outfiles/outfile01 >>./test_files/invalid_permission >>./outfiles/outfile02 
+Only in ./mini_outfiles: outfile02
+mini outfiles:
+bash_outfiles
+bash.supp
+bonus
+bonus_bonus
+builtins
+extras
+local.supp
+loop.out
+manual_tests
+mini_outfiles
+os_specific
+outfiles
+pipes
+README.md
+redirects
+syntax
+tester
+test_files
+wildcards
+bash outfiles:
+mini exit code = 0
+bash exit code = 1
+mini error = (Permission denied)
+bash error = ( Permission denied)
+Test 124: ❌ ls <missing >>./test_files/invalid_permission >>./outfiles/outfile02 
+Only in ./mini_outfiles: outfile02
+mini outfiles:
+bash_outfiles
+bash.supp
+bonus
+bonus_bonus
+builtins
+extras
+local.supp
+loop.out
+manual_tests
+mini_outfiles
+os_specific
+outfiles
+pipes
+README.md
+redirects
+syntax
+tester
+test_files
+wildcards
+bash outfiles:
+cat: './bash_outfiles/*': No such file or directory
+mini exit code = 0
+bash exit code = 1
+mini error = (No such file or directory Permission denied Permission denied)
+bash error = ( No such file or directory)
+Test 125: ❌ ls >>./test_files/invalid_permission >>./outfiles/outfile02 <missing 
+Only in ./mini_outfiles: outfile02
+mini outfiles:
+bash_outfiles
+bash.supp
+bonus
+bonus_bonus
+builtins
+extras
+local.supp
+loop.out
+manual_tests
+mini_outfiles
+os_specific
+outfiles
+pipes
+README.md
+redirects
+syntax
+tester
+test_files
+wildcards
+bash outfiles:
+cat: './bash_outfiles/*': No such file or directory
+mini exit code = 0
+bash exit code = 1
+mini error = (Permission denied No such file or directory)
+bash error = ( Permission denied)
+Test 126: ✅ echo hi >>./outfiles/outfile01 | echo bye 
+Test 127: ✅ echo hi >>./outfiles/outfile01 >>./outfiles/outfile02 | echo bye 
+Test 128: ✅ echo hi | echo >>./outfiles/outfile01 bye 
+Test 129: ✅ echo hi | echo bye >>./outfiles/outfile01 >>./outfiles/outfile02 
+Test 130: ✅ echo hi >>./outfiles/outfile01 | echo bye >>./outfiles/outfile02 
+Test 131: ✅⚠️  echo hi >>./test_files/invalid_permission | echo bye 
+mini error = (Permission denied)
+bash error = ( Permission denied)
+Test 132: ❌ echo hi >>./test_files/invalid_permission >./outfiles/outfile01 | echo bye 
+Only in ./mini_outfiles: outfile01
+mini outfiles:
+hi
+bash outfiles:
+cat: './bash_outfiles/*': No such file or directory
+mini error = (Permission denied)
+bash error = ( Permission denied)
+Test 133: ❌ echo hi | echo bye >>./test_files/invalid_permission 
+mini output = (bye)
+bash output = ()
+mini exit code = 0
+bash exit code = 1
+mini error = (Permission denied)
+bash error = ( Permission denied)
+Test 134: ❌ echo hi | echo >>./outfiles/outfile01 bye >./test_files/invalid_permission 
+mini output = (bye)
+bash output = ()
+mini exit code = 0
+bash exit code = 1
+mini error = (Permission denied)
+bash error = ( Permission denied)
+Test 135: ❌ cat <minishell.h>./outfiles/outfile 
+Only in ./mini_outfiles: outfile
+mini outfiles:
+bash outfiles:
+cat: './bash_outfiles/*': No such file or directory
+mini exit code =
+bash exit code = 1
+mini error = (No such file or directory Invalid argument)
+bash error = ( No such file or directory)
+Test 136: ❌ cat <minishell.h|ls 
+mini output = ()
+bash output = (bash_outfiles bash.supp bonus bonus_bonus builtins extras local.supp loop.out manual_tests mini_outfiles os_specific outfiles pipes README.md redirects syntax tester test_files wildcards)
+mini exit code = 1
+bash exit code = 0
+mini error = (No such file or directory No such file or directory)
+bash error = ( No such file or directory)
+———————————— extras
+Test 137: ✅  
+Test 138: ❌ $PWD 
+mini exit code = 127
+bash exit code = 126
+mini error = ( /home/duarte33/42School/minishell/minishell_tester)
+bash error = ( Is a directory)
+Test 139: ✅⚠️  $EMPTY 
+mini error = (Permission denied)
+bash error = ()
+Test 140: ❌ $EMPTY echo hi 
+mini output = ()
+bash output = (hi)
+mini error = (Permission denied)
+bash error = ()
+Test 141: ❌ ./test_files/invalid_permission 
+mini exit code = 127
+bash exit code = 126
+mini error = ( ./test_files/invalid_permission)
+bash error = ( Permission denied)
+Test 142: ✅⚠️  ./missing.out 
+mini error = ( ./missing.out)
+bash error = ( No such file or directory)
+Test 143: ✅⚠️  missing.out 
+mini error = ( missing.out)
+bash error = ( command not found)
+Test 144: ✅⚠️  "aaa" 
+mini error = ( aaa)
+bash error = ( command not found)
+Test 145: ✅⚠️  test_files 
+mini error = ( test_files)
+bash error = ( command not found)
+Test 146: ❌ ./test_files 
+mini exit code = 127
+bash exit code = 126
+mini error = ( ./test_files)
+bash error = ( Is a directory)
+Test 147: ✅⚠️  /test_files 
+mini error = ( /test_files)
+bash error = ( No such file or directory)
+Test 148: ✅⚠️  minishell.h 
+mini error = ( minishell.h)
+bash error = ( command not found)
+Test 149: ✅⚠️  $ 
+mini error = ( $)
+bash error = ( command not found)
+Test 150: ✅⚠️  $? 
+mini error = ( 0)
+bash error = ( command not found)
+Test 151: ✅⚠️  README.md 
+mini error = ( README.md)
+bash error = ( command not found)
+101/151
+😭 😭 😭
