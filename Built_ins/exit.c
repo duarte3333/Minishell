@@ -22,7 +22,7 @@ void	__exec_exit(char **env, t_list **lst)
 {
 	(void)env;
 	int	nb;
-	write(2, "exit :) 🏊\n", 14);
+	//write(2, "exit :) 🏊\n", 14);
 	// if (!ft_strcmp("+9223372036854775807", (*lst)->content[1]) || \
 	// ft_strcmp("-9223372036854775807", (*lst)->content[1]) )
 	if ((*lst)->content[1] && (*lst)->content[2])
