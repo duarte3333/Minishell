@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:01:28 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/01 18:34:46 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/02 18:56:40 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,9 @@ int	main(int ac, char **av, char **env)
 	(void)av;
 	g_data.env = get_env(env);
 	g_data.env_og = env;
+	g_data.status = 0;
+	signal(SIGINT, handle_sign);
+	signal(SIGQUIT, SIG_IGN);
 	prompt(env);
 }
 

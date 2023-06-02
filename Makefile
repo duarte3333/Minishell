@@ -45,6 +45,7 @@ SRCS =  Aux/ft_calloc.c \
 		Built_ins/pwd.c \
 		Built_ins/cd.c \
 		Built_ins/env.c \
+		signals.c \
 		Built_ins/echo.c \
 		Built_ins/exit.c \
 		Built_ins/export.c \

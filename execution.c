@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 16:09:50 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/01 19:22:54 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/02 19:31:37 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,27 @@ void	command_execution(t_list *lst, char **env)
 		else if (lst->fd_master[1] > 2)
 			dup2(lst->fd_master[1], 1);
 		lst->ft_exec(env, &lst);
+		//printf(">> %d\n", g_data.status);
 		ft_free_list(&lst);
 		ft_free_env(&g_data.env);
 		exit(0);
 	}
 	close_fds(&lst, 0);
 
+}
+
+int	check_fds(t_list *lst)
+{
+	int	res;
+
+	res = 0;
+	while (lst)
+	{
+		if (lst->fd_master[0] == -1 || lst->fd_master[1] == -1 || lst->master_error[0] || lst->master_error[1])
+			res++;
+		lst = lst->next;
+	}
+	return (res);
 }
 
 void	execution(t_list *lst, char **env)
@@ -104,6 +119,7 @@ void	execution(t_list *lst, char **env)
 		lst = lst->next;
 	}
 	go_head(&lst);
+	//printf("--> %d\n", g_data.status);
 	while (lst)
 	{
 		if (lst->content[0])
@@ -112,7 +128,11 @@ void	execution(t_list *lst, char **env)
 			if (WIFEXITED(g_data.status))
 				g_data.status = WEXITSTATUS(g_data.status);
 		}
-
+		if (!lst->next)
+			break ;
 		lst = lst->next;
 	}
+	if (check_fds(lst))
+		g_data.status = 1;
+	//printf("-> %d\n", g_data.status);
 }

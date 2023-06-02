@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/01 18:33:38 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/02 17:48:28 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <errno.h>
+# include <signal.h>
 # include "Get_Next_Line/get_next_line.h"
 
 typedef struct s_env
@@ -98,6 +99,10 @@ char	*search_env(char **env, char *str);
 
 //Prompt
 void	prompt(char **env);
+
+//signals
+void	handle_sign(int sign);
+void	handle_quit(int sign);
 
 //Parse Function
 void	parse(char *res, char *str, char sep, int *array);
