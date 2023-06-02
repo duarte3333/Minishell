@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 18:13:42 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/01 19:07:22 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/02 16:05:55 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,33 +32,36 @@ void	redirect(char **division, int *i, t_list *lst)
 {
 	int	option;
 
-	option = check_token(division[*i]);
-	if (lst->fd_master[0] > 2 && (option == 1 || option == 3))
-		close(lst->fd_master[0]);
-	if (lst->fd_master[1] > 2 && (option == 2 || option == 4))
-		close(lst->fd_master[1]);
-	if (option == 2)
-		lst->fd_master[1] = open(division[++(*i)], \
-		O_WRONLY | O_APPEND | O_CREAT, 0644);
-	else if (option == 1)
-		lst->fd_master[0] = ft_here_doc(division[++(*i)]);
-	else if (option == 3)
-		lst->fd_master[0] = open(division[++(*i)], O_RDONLY, 0644);
-	else if (option == 4)
-		lst->fd_master[1] = open(division[++(*i)], \
-		O_WRONLY | O_TRUNC | O_CREAT, 0644);
-	free(division[(*i) - 1]);
-	if (lst->fd_master[0] == -1)
+	if (lst->fd_master[0] != -1 && lst->fd_master[1] != -1)
 	{
-		perror("");
-		g_data.status = 1;
-		lst->master_error[0] = 1;
-	}
-	if (lst->fd_master[1] == -1)
-	{
-		perror("");
-		g_data.status = 1;
-		lst->master_error[1] = 1;
+		option = check_token(division[*i]);
+		if (lst->fd_master[0] > 2 && (option == 1 || option == 3))
+			close(lst->fd_master[0]);
+		if (lst->fd_master[1] > 2 && (option == 2 || option == 4))
+			close(lst->fd_master[1]);
+		if (option == 2)
+			lst->fd_master[1] = open(division[++(*i)], \
+			O_WRONLY | O_APPEND | O_CREAT, 0644);
+		else if (option == 1)
+			lst->fd_master[0] = ft_here_doc(division[++(*i)]);
+		else if (option == 3)
+			lst->fd_master[0] = open(division[++(*i)], O_RDONLY, 0644);
+		else if (option == 4)
+			lst->fd_master[1] = open(division[++(*i)], \
+			O_WRONLY | O_TRUNC | O_CREAT, 0644);
+		free(division[(*i) - 1]);
+		if (lst->fd_master[0] == -1)
+		{
+			perror("");
+			g_data.status = 1;
+			lst->master_error[0] = 1;
+		}
+		if (lst->fd_master[1] == -1)
+		{
+			perror("");
+			g_data.status = 1;
+			lst->master_error[1] = 1;
+		}
 	}
 }
 

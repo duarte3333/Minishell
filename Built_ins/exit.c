@@ -27,11 +27,11 @@ void	__exec_exit(char **env, t_list **lst)
 	if ((*lst)->content[1] && (*lst)->content[1][0])
 		i = 0 + ((*lst)->content[1][0] == '-' || (*lst)->content[1][0] == '+');
 	write(2, "exit\n", 5);
-	if (ft_strlen((*lst)->content[1] + i) > 19 || \
+	if ((*lst)->content[1] && (ft_strlen((*lst)->content[1] + i) > 19 || \
 		(i && ft_strlen((*lst)->content[1]) == 20 && \
 		ft_strncmp("-9223372036854775808", (*lst)->content[1], 20) < 0) || \
 		(!i && ft_strlen((*lst)->content[1]) == 19 && \
-		ft_strncmp("9223372036854775807", (*lst)->content[1], 19) < 0))
+		ft_strncmp("9223372036854775807", (*lst)->content[1], 19) < 0)))
 	{
 		g_data.status = 2;
 		write(2, "minishell: exit: ", 17);

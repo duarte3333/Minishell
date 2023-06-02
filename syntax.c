@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:04:26 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/01 18:33:57 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/02 15:56:37 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,21 @@ void	treat_sep(char *input, int	i, int size, int *words)
 {
 	int temp;
 	int	w;
+	int	sep;
 
 	temp = 0;
 	w = 0;
-	if (*words == 0 && input[i] == '|' && input[i + 1] == '|')
+	sep = 0;
+	if (input[i] == '|')
+		sep = input[i];
+	if (input[i] == '|' && input[i + 1] == '|')
 		syntax_error("||", input, 2);
 	else if (*words == 0 && input[i] == '|')
 		syntax_error("|", input, 1);
 	i += size;
 	while (input[i])
 	{
-		if (check_sep_2(&input[i], &temp) && !w)
+		if (!sep && check_sep_2(&input[i], &temp) && !w)
 			syntax_error(&input[i], input, temp);
 		else if (input[i] != 32)
 			w++;
