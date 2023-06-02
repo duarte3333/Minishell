@@ -23,6 +23,8 @@ t_list	*ft_lstnew(int i)
 	new->content = ft_calloc(sizeof(char *), i + 1);
 	new->fd_master[0] = 0;
 	new->fd_master[1] = 1;
+	new->master_error[0] = 0;
+	new->master_error[0] = 0;
 	if (pipe(new->fd) == -1)
 		perror("");
 	return (new);

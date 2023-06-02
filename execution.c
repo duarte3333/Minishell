@@ -93,7 +93,7 @@ void	execution(t_list *lst, char **env)
 {
 	while (lst)
 	{	
-		if (lst->content[0])
+		if (lst->content[0] && !lst->master_error[0] && !lst->master_error[1])
 		{
 			lst->path = get_cmd_path(env, lst->content);
 			define_exec(lst);

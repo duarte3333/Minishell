@@ -49,6 +49,7 @@ typedef struct s_list
 	char			*path;
 	int				fd_master[2];
 	int				fd[2];
+	int				master_error[2];
 	struct s_list	*next;
 	struct s_list	*prev;
 	void			(*ft_exec)(char **env, struct s_list **list);
