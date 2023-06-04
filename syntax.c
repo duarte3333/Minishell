@@ -6,7 +6,7 @@
 /*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:04:26 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/03 14:30:26 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/04 21:18:17 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,45 +100,6 @@ void	delete_quotes_string(char **input, char c)
 	free(*input);
 	*input = temp;
 }
-
-// void	syntax_treatment(char *input)
-// {
-// 	int	i;
-// 	int	j;
-// 	int	words;
-// 	int	flag;
-// 	int	sep;
-
-// 	i = 0;
-// 	j = 0;
-// 	words = 0;
-// 	flag = 0;
-// 	sep = 0;
-// 	if (!input)
-// 		return ;
-// 	while (input[i])
-// 	{
-// 		if ((input[i] == '\'' || input[i] == '\"') && (!sep || sep == input[i]))
-// 			sep = (input[i]) * (sep != input[i]);
-// 		if (!sep && check_sep_2(&input[i], &j))
-// 			treat_sep(input, i, j, &words);
-// 		else if ((input[i] == '\"' && !flag) || (input[i] == '\'' && !flag))
-// 			treat_quotes(input, i, &flag);
-// 		else if (input[i] == flag)
-// 			flag = 0;
-// 		else if (input[i] != 32)
-// 			words++;
-// 		if (j == 2)
-// 			i++;
-// 		i++;
-// 	}
-// }
-
-// i -> arr[0]
-// j -> arr[1]
-// words -> arr[2]
-// flag -> arr[3]
-// sep -> arr[4]
 
 void	syntax_treatment(char *input)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
+/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 15:44:32 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/31 17:46:02 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/06/04 20:39:47 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,21 @@
 /* Esta funcao utiliza a funcao getcwd() da biblioteca unistd.h.
 Essa funcao permite obter o diretório de trabalho atual. Ela recebe 
 como argumentos o buffer cwd para armazenar o diretório atual 
-e o tamanho máximo do buffer. cwd - current working directory
- */
+e o tamanho máximo do buffer. cwd - current working directory */
 void	__exec_pwd(char **env, t_list **lst)
 {
-    char cwd[PATH_MAX];
+	char	cwd[PATH_MAX];
 
-    (void)env;
+	(void)env;
 	(void)lst;
 	close_fds(lst, 1);
-    if (getcwd(cwd, sizeof(cwd)) != NULL) 
-        printf("%s\n", cwd);
-	else {
-        perror("Error getting current directory");
-        exit(0);
-    }
+	if (getcwd(cwd, sizeof(cwd)) != NULL)
+		printf("%s\n", cwd);
+	else
+	{
+		perror("Error getting current directory");
+		exit(0);
+	}
 }
 
 //Theory

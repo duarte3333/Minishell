@@ -6,12 +6,13 @@
 /*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 10:58:47 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/03 14:47:28 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/04 21:47:43 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/* Esta realiza o comportamento do comando << no bash */
 int	ft_here_doc(char *str)
 {
 	char		*in;

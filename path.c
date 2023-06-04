@@ -3,15 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
+/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 18:31:12 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/31 17:59:26 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/06/04 21:25:44 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/* Esta funcao procura a variavel ambiente denominada
+de PATH e verifica com o comando acess se o comando que
+se pretende executar existe ou nao, caso exista
+retorna esse caminho */
 char	*get_cmd_path(char **env, char **cmd)
 {
 	char	**matrix;

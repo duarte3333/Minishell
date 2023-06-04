@@ -6,7 +6,7 @@
 /*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:51:24 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/04 20:12:34 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/04 20:52:19 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,9 @@ void	error_handle(char *cmd)
 		g_data.status = 126;
 		return ;
 	}
-	perror("");
-	g_data.status = errno;
+	else
+	{
+		perror("");
+		g_data.status = errno;
+	}
 }

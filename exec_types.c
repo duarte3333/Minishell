@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_types.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 16:02:31 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/01 18:48:15 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/04 22:00:25 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	close_fds(t_list **lst, int flag)
 	(*lst) = temp;
 }
 
+/* Funcao de execucao default, caso nao seja um built in */
 void	__exec_default(char **env, t_list **lst)
 {
 	close_fds(lst, 1);

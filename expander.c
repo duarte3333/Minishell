@@ -6,7 +6,7 @@
 /*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 16:57:31 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/03 14:47:35 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/04 21:48:21 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	is_alphnum(char c)
 char	*chg_dollar(char *input, char **env)
 {
 	char	*buf;
-	char 	*new;
+	char	*new;
 	char	*temp;
 	int		j;
 	int		i;
@@ -39,7 +39,8 @@ char	*chg_dollar(char *input, char **env)
 	{
 		if (input[i] == '$' || j)
 			buf[j++] = input[i];
-		if ((j && !is_alphnum(input[i + 1]) && !(j == 1 && input[i + 1] == '?')) || buf[1] == '?')
+		if ((j && !is_alphnum(input[i + 1]) && \
+			!(j == 1 && input[i + 1] == '?')) || buf[1] == '?')
 		{
 			if (j == 1)
 			{
@@ -92,10 +93,12 @@ char	**prepare(char *str)
 	matrix = ft_calloc(1024, sizeof(char *));
 	while (str[++i])
 	{
-		if ((str[i] == '\'' || str[i] == '\"') && (!sep || sep == str[i] || sep == -1))
+		if ((str[i] == '\'' || str[i] == '\"') && \
+			(!sep || sep == str[i] || sep == -1))
 			sep = (str[i]) * (sep != str[i]);
 		size++;
-		if ((!sep && size) || ((str[i + 1] == '\'' || str[i + 1] == '\"') && sep < 0 && size))
+		if ((!sep && size) || ((str[i + 1] == '\'' \
+			|| str[i + 1] == '\"') && sep < 0 && size))
 		{
 			matrix[j++] = prepare_string(str, i, size);
 			size = 0;

@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   echo.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/04 21:06:56 by duarte33          #+#    #+#             */
+/*   Updated: 2023/06/04 21:16:40 by duarte33         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 void	print_matrix(char **str, size_t i)
 {
-	size_t j;
+	size_t	j;
 
 	j = 0;
 	while (str[j])
@@ -11,7 +23,7 @@ void	print_matrix(char **str, size_t i)
 	{
 		if ((i + 1) != j)
 			printf("%s ", str[i]);
-		else 
+		else
 			printf("%s", str[i]);
 		i++;
 	}
@@ -24,29 +36,36 @@ int	is_a_n(char letter)
 	return (0);
 }
 
+/* Esta funcao realiza a opcao -n */
+void	option_in_echo(t_list **lst, int *flag)
+{
+	int	i;
+
+	i = 1;
+	while ((*lst)->content[1][i])
+	{
+		if (!(is_a_n((*lst)->content[1][i])))
+		{
+			(*flag)++;
+			break ;
+		}
+		i++;
+	}
+	if (!(*flag))
+		(*flag) = 2;
+}
+
+/* Esta funcao replica o comando echo do bash,
+incluindo a opcao -n que remova a quebra de linha*/
 void	__exec_echo(char **env, t_list **lst)
 {
-	int 	i;
-	int		flag;
+	int	flag;
 
+	(void)env;
 	flag = 0;
-	(void)env; 
 	close_fds(lst, 1);
 	if ((*lst)->content[1] && (*lst)->content[1][0] == '-')
-	{
-		i = 1;
-		while ((*lst)->content[1][i])
-		{
-			if (!(is_a_n((*lst)->content[1][i])))
-			{
-				flag++;
-				break;
-			}
-			i++;
-		}
-		if (!flag)
-			flag = 2;
-	}
+		option_in_echo(lst, &flag);
 	if (flag == 1 || !flag)
 	{
 		print_matrix((*lst)->content, 1);

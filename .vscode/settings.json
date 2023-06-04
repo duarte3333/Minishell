@@ -9,5 +9,5 @@
 		"signal.h": "c"
 	},
 	"C_Cpp.errorSquiggles": "disabled",
-	"C_Cpp.intelliSenseEngineFallback": "disabled"
+	"C_Cpp.intelliSenseEngineFallback": "enabled"
 }

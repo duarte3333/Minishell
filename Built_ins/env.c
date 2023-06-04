@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 16:31:52 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/31 16:42:43 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/04 21:15:37 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+/* Esta funcao cria a linked list do tipo t_env
+com todas as variaveis ambiente*/
 t_env	*get_env(char **env)
 {
 	int		i;
@@ -19,11 +21,13 @@ t_env	*get_env(char **env)
 
 	i = -1;
 	res = NULL;
-	while(env[++i])
+	while (env[++i])
 		ft_envadd_back(&res, ft_envnew(ft_strdup(env[i])));
 	return (res);
 }
 
+/* Esta funcao replica o comando env do bash, 
+dando print a todas as variaveis de ambiente*/
 void	__exec_env(char **env, t_list **lst)
 {
 	(void)env;
@@ -36,7 +40,5 @@ void	__exec_env(char **env, t_list **lst)
 			break ;
 		g_data.env = g_data.env->next;
 	}
-	//go_head(lst);
-	//ft_free_list(lst);
 	env_go_head(&g_data.env);
 }

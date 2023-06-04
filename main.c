@@ -6,7 +6,7 @@
 /*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:01:28 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/03 14:10:22 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/04 22:05:37 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ int	main(int ac, char **av, char **env)
 	prompt(env);
 }
 
-
 //Comandos malucos
 // <>
 // cat /dev/random | head
@@ -96,7 +95,6 @@ int	main(int ac, char **av, char **env)
 // unset LOL ROR
 // export "HI =hi"
 // echo ""''
-
 
 //O que falta:
 //Ctrl-D no here doc

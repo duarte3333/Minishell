@@ -6,7 +6,7 @@
 /*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 18:13:42 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/03 14:45:00 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/04 21:23:37 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	redirect(char **division, int *i, t_list *lst)
 }
 
 /* Esta funcao avalia cada token. 
-- Caso de encontre uma redirecao cria os file descriptors 
+ - Caso de encontre uma redirecao cria os file descriptors 
  - Caso encontre um comando ou um argumento coloca no content do node
  - Caso encontre um 3, finaliza o node e inicializa um novo 
  node na linked list */
@@ -97,10 +97,7 @@ void	redirection(t_list	*lst, char **division)
 		else if (check_token(division[i]))
 			redirect(division, &i, temp);
 		else
-		{
-			temp->content[j] = ft_strdup(division[i]);
-			j++;
-		}
+			temp->content[j++] = ft_strdup(division[i]);
 		free(division[i]);
 	}
 }

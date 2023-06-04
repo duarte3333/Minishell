@@ -6,7 +6,7 @@
 /*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:57:38 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/03 14:46:59 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/04 22:09:29 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	check_sep(char *str, int *arr)
 		arr[0] = 1;
 	return (arr[0]);
 }
+
 /* Esta funcao faz o parsing do minishell 
 Linha 47: -Se sep encontrado e se encontrado novamente desligado
 		if (sep != *str) -> inicializa sep -> sep = 1
@@ -62,7 +63,8 @@ void	parse(char *res, char *str, char sep, int *arr)
 			*res++ = 2;
 			len++;
 		}
-		else if ((*str == 2 && arr[1]) || ((*str != 2 || *str++ != 2) && ++arr[1]))
+		else if ((*str == 2 && arr[1]) || \
+			((*str != 2 || *str++ != 2) && ++arr[1]))
 		{	
 			*res++ = *str++;
 			len = 0;

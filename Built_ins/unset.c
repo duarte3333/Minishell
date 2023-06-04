@@ -1,12 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   unset.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/04 20:37:13 by duarte33          #+#    #+#             */
+/*   Updated: 2023/06/04 20:38:58 by duarte33         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
-void env_delete_element(t_env **lst)
+void	both_prev_next(t_env **lst)
 {
-	t_env *temp;
+	(*lst)->prev->next = (*lst)->next;
+	(*lst)->next->prev = (*lst)->prev;
+	*lst = (*lst)->prev;
+}
+
+void	env_delete_element(t_env **lst)
+{
+	t_env	*temp;
 
 	temp = (*lst);
-    if (lst && *lst)
-    {
+	if (lst && *lst)
+	{
 		if (!(*lst)->prev && !(*lst)->next)
 			*lst = NULL;
 		else if (!(*lst)->prev && (*lst)->next)
@@ -20,22 +39,21 @@ void env_delete_element(t_env **lst)
 			*lst = (*lst)->prev;
 		}
 		else if ((*lst)->prev && (*lst)->next)
-		{
-			(*lst)->prev->next = (*lst)->next;
-			(*lst)->next->prev = (*lst)->prev;
-			*lst = (*lst)->prev;
-		}
+			both_prev_next(lst);
 		if (temp->content)
 			free(temp->content);
 		free(temp);
-    }
+	}
 }
 
+/* Esta funcao replica o comportamento do unset, um comando built in
+do bash. Para realizar foi eliminado o node do env da variavel que
+escolhida no prompt para eliminar*/
 void	__exec_unset(char **env, t_list **lst)
 {
 	t_env	*lst_env_export;
 	int		i;
-	
+
 	(void)env;
 	i = 1;
 	if (!(*lst)->content[1])

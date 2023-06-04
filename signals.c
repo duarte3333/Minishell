@@ -6,13 +6,13 @@
 /*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:34:53 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/03 14:46:02 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/04 21:19:28 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	handle_quit(int sign)
+/* void	handle_quit(int sign)
 {
 	// // pid_t pid;
 	// // int	status;
@@ -28,6 +28,11 @@ void	handle_quit(int sign)
 	// // 	write(1, "Quit (core dumped)\n", 20);
 	// // 	return ;
 	// // }
+} */
+
+void	handle_quit(int sign)
+{
+	(void)sign;
 }
 
 void	handle_sign(int sign)

@@ -3,32 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 16:09:50 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/02 20:17:18 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/04 22:05:07 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-//printf("cmd: %s\n", lst->content[0]);
-//printf("STDIN replaced by %d\n", lsGLOBALt->fd[0]);
-//printf("STDOUT replaced by %d\n", lst->next->fd[1]);
-//Esta funcao calcula o tamanho de uma linked list
-
-int	is_built_in(t_list *lst)
-{
-	if (!ft_strcmp(lst->content[0], "pwd") || \
-		!ft_strcmp(lst->content[0], "cd") || \
-		!ft_strcmp(lst->content[0], "exit") || \
-		!ft_strcmp(lst->content[0], "env") || \
-		!ft_strcmp(lst->content[0], "export") || \
-		!ft_strcmp(lst->content[0], "unset"))
-		return (1);
-	else
-		return (0);
-}
 
 /* Esta funcao vai definir a funcao de execucao para cada node */
 void	define_exec(t_list *lst)
@@ -74,7 +56,6 @@ void	command_execution(t_list *lst, char **env)
 		exit(0);
 	}
 	close_fds(&lst, 0);
-
 }
 
 int	check_fds(t_list *lst)
@@ -92,10 +73,8 @@ int	check_fds(t_list *lst)
 	return (res);
 }
 
-void	execution(t_list *lst, char **env)
+void	core_execution(t_list *lst, char **env)
 {
-	int	status;
-
 	while (lst)
 	{	
 		if (lst->content[0] && !lst->master_error[0] && !lst->master_error[1])
@@ -108,6 +87,13 @@ void	execution(t_list *lst, char **env)
 			break ;
 		lst = lst->next;
 	}
+}
+
+void	execution(t_list *lst, char **env)
+{
+	int	status;
+
+	core_execution(lst, env);
 	go_head(&lst);
 	while (lst)
 	{
@@ -124,3 +110,7 @@ void	execution(t_list *lst, char **env)
 	if (check_fds(lst))
 		g_data.status = 1;
 }
+
+//printf("cmd: %s\n", lst->content[0]);
+//printf("STDIN replaced by %d\n", lsGLOBALt->fd[0]);
+//printf("STDOUT replaced by %d\n", lst->next->fd[1]);

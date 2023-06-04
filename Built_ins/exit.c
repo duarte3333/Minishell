@@ -1,5 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exit.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/04 20:57:12 by duarte33          #+#    #+#             */
+/*   Updated: 2023/06/04 21:01:33 by duarte33         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
+/* Esta funcao verifica se uma str tem apenas digitos */
 int	ft_str_is_num(const char *str)
 {
 	int	i;
@@ -18,38 +31,53 @@ int	ft_str_is_num(const char *str)
 	return (1);
 }
 
-void	__exec_exit(char **env, t_list **lst)
+/* Esta funcao verifica se o exit code ultrapassa do long long max */
+int	exit_overflow(t_list **lst)
 {
-	(void)env;
-	int	nb;
-	int i;
+	int	i;
 
+	i = 0;
 	if ((*lst)->content[1] && (*lst)->content[1][0])
 		i = 0 + ((*lst)->content[1][0] == '-' || (*lst)->content[1][0] == '+');
-	write(2, "exit\n", 5);
 	if ((*lst)->content[1] && (ft_strlen((*lst)->content[1] + i) > 19 || \
 		(i && ft_strlen((*lst)->content[1]) == 20 && \
 		ft_strncmp("-9223372036854775808", (*lst)->content[1], 20) < 0) || \
 		(!i && ft_strlen((*lst)->content[1]) == 19 && \
 		ft_strncmp("9223372036854775807", (*lst)->content[1], 19) < 0)))
 	{
-		g_data.status = 2;
 		write(2, "minishell: exit: ", 17);
 		write(2, (*lst)->content[1], ft_strlen((*lst)->content[1]));
 		write(2, ": numeric argument required\n", 29);
+		return (1);
 	}
+	return (0);
+}
+
+void	is_numeric_arg(t_list **lst)
+{
+	g_data.status = 2;
+	write(2, "minishell: exit: ", 17);
+	write(2, (*lst)->content[1], ft_strlen((*lst)->content[1]));
+	write(2, ": numeric argument required\n", 29);
+}
+
+/* Esta funcao replica o comportamento do exit, um comando built in
+do bash.*/
+void	__exec_exit(char **env, t_list **lst)
+{
+	int	nb;
+
+	(void)env;
+	write(2, "exit\n", 5);
+	if (exit_overflow(lst))
+		g_data.status = 2;
 	else if ((*lst)->content[1] && (*lst)->content[2])
 	{
 		g_data.status = 1;
 		write(2, "minishell: exit: too many arguments\n", 37);
 	}
 	else if ((*lst)->content[1] && ft_str_is_num((*lst)->content[1]) == 0)
-	{
-		g_data.status = 2;
-		write(2, "minishell: exit: ", 17);
-		write(2, (*lst)->content[1], ft_strlen((*lst)->content[1]));
-		write(2, ": numeric argument required\n", 29);
-	}
+		is_numeric_arg(lst);
 	else if ((*lst)->content[1])
 	{
 		nb = ft_atoi((*lst)->content[1]);
@@ -57,10 +85,10 @@ void	__exec_exit(char **env, t_list **lst)
 			nb -= 256;
 		g_data.status = nb;
 	}
-	//printf("EXIT_STATUS: %i\n", g_data.status);
 	ft_free_env(&g_data.env);
 	exit(g_data.status);
 }
+
 // 0: Indica que o comando foi executado com sucesso, sem erros.
 // 1: Indica um erro genérico ou não especificado.
 // 2: Indica um erro de sintaxe no comando.

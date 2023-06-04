@@ -6,7 +6,7 @@
 /*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/03 14:33:45 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/04 22:04:49 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int		ft_isalnum(int i);
 int		ft_str_islanum(char *str);
 int		ft_isdigit(int i);
 int		ft_lstsize(t_list *lst);
+int		is_built_in(t_list *lst);
 
 //Syntax
 void	syntax_treatment(char *input);
