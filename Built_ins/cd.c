@@ -6,7 +6,7 @@
 /*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 15:44:22 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/04 23:26:04 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/04 23:36:25 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,11 @@ void	finish_cd(char **env_char)
 
 /* Esta funcao replica o comando cd apenas com path relativo ou absoluto.
    Existem os seguintes caos: "cd" ; "cd --" ; "cd -" ; "cd <algum caminho>" */
-void	__exec_cd(char **env, t_list **lst)
+void	__exec_cd(t_list **lst)
 {
 	char	*path_home;
 	char	**env_char;
 
-	(void)env;
 	go_head(lst);
 	if (ft_matrixlen((*lst)->content) > 2)
 	{

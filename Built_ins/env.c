@@ -6,7 +6,7 @@
 /*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 16:31:52 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/04 23:20:45 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/04 23:36:47 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,8 @@ t_env	*get_env(char **env)
 
 /* Esta funcao replica o comando env do bash, 
 dando print a todas as variaveis de ambiente*/
-void	__exec_env(char **env, t_list **lst)
+void	__exec_env(t_list **lst)
 {
-	(void)env;
 	(void)lst;
 	while (g_data.env && g_data.env->content)
 	{

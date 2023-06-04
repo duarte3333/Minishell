@@ -6,7 +6,7 @@
 /*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:36:36 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/04 22:31:52 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/04 23:37:04 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,11 @@ void	export_only(void)
 	return ;
 }
 
-void	__exec_export(char **env, t_list **lst)
+void	__exec_export(t_list **lst)
 {
 	char	**str;
 	int		i;
 
-	(void)env;
 	if (!(*lst)->content[1])
 		export_only();
 	i = 1;

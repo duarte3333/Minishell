@@ -6,7 +6,7 @@
 /*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/04 22:04:49 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/04 23:38:44 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct s_list
 	int				master_error[2];
 	struct s_list	*next;
 	struct s_list	*prev;
-	void			(*ft_exec)(char **env, struct s_list **list);
+	void			(*ft_exec)(struct s_list **list);
 }	t_list;
 
 void	print_list(t_list *list);
@@ -106,7 +106,7 @@ t_env	*env_lst_search(char *input_var);
 char	*search_env(char **env, char *str);
 
 //Prompt
-void	prompt(char **env);
+void	prompt(void);
 
 //Signals
 void	handle_sign(int sign);
@@ -134,18 +134,18 @@ char	**expander(char **divison, char **env);
 char	*chg_dollar(char *input, char **env);
 
 //Execution
-void	execution(t_list *lst, char **env);
+void	execution(t_list *lst);
 
 //Exec functions
 void	close_fds(t_list **lst, int flag);
 int		check_token(char *str);
-void	__exec_default(char **env, t_list **lst);
-void	__exec_pwd(char **env, t_list **lst);
-void	__exec_cd(char **env, t_list **lst);
-void	__exec_echo(char **env, t_list **lst);
-void	__exec_env(char **env, t_list **lst);
-void	__exec_exit(char **env, t_list **lst);
-void	__exec_export(char **env, t_list **lst);
-void	__exec_unset(char **env, t_list **lst);
+void	__exec_default(t_list **lst);
+void	__exec_pwd(t_list **lst);
+void	__exec_cd(t_list **lst);
+void	__exec_echo(t_list **lst);
+void	__exec_env(t_list **lst);
+void	__exec_exit(t_list **lst);
+void	__exec_export(t_list **lst);
+void	__exec_unset(t_list **lst);
 
 #endif

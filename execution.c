@@ -6,7 +6,7 @@
 /*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 16:09:50 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/04 23:22:59 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/04 23:36:00 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ void	define_exec(t_list *lst)
 		lst->ft_exec = __exec_default;
 }
 
-void	command_execution(t_list *lst, char **env)
+void	command_execution(t_list *lst)
 {
 	if (is_built_in(lst) && (ft_lstsize(lst) == 1))
 	{
-		lst->ft_exec(env, &lst);
+		lst->ft_exec(&lst);
 		return ;
 	}
 	if (fork() == 0)
@@ -50,7 +50,7 @@ void	command_execution(t_list *lst, char **env)
 			dup2(lst->next->fd[1], 1);
 		else if (lst->fd_master[1] > 2)
 			dup2(lst->fd_master[1], 1);
-		lst->ft_exec(env, &lst);
+		lst->ft_exec(&lst);
 		ft_free_list(&lst);
 		ft_free_env(&g_data.env);
 		exit(g_data.status);
@@ -73,27 +73,31 @@ int	check_fds(t_list *lst)
 	return (res);
 }
 
-void	core_execution(t_list *lst, char **env)
+void	core_execution(t_list *lst)
 {
+	char	**our_env;
+
+	our_env = ft_env_lst_to_arr(g_data.env);
 	while (lst)
 	{	
 		if (lst->content[0] && !lst->master_error[0] && !lst->master_error[1])
 		{
-			lst->path = get_cmd_path(env, lst->content);
+			lst->path = get_cmd_path(our_env, lst->content);
 			define_exec(lst);
-			command_execution(lst, env);
+			command_execution(lst);
 		}
 		if (!lst->next)
 			break ;
 		lst = lst->next;
 	}
+	ft_free_matrix(&our_env);
 }
 
-void	execution(t_list *lst, char **env)
+void	execution(t_list *lst)
 {
 	int	status;
 
-	core_execution(lst, env);
+	core_execution(lst);
 	go_head(&lst);
 	while (lst)
 	{

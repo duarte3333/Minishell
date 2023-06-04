@@ -6,7 +6,7 @@
 /*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 21:06:56 by duarte33          #+#    #+#             */
-/*   Updated: 2023/06/04 23:20:10 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/04 23:36:35 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,10 @@ void	option_in_echo(t_list **lst, int *flag)
 
 /* Esta funcao replica o comando echo do bash,
 incluindo a opcao -n que remova a quebra de linha*/
-void	__exec_echo(char **env, t_list **lst)
+void	__exec_echo(t_list **lst)
 {
 	int	flag;
 
-	(void)env;
 	flag = 0;
 	close_fds(lst, 1);
 	if ((*lst)->content[1] && (*lst)->content[1][0] == '-')

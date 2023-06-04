@@ -6,7 +6,7 @@
 /*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 15:44:32 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/04 23:21:23 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/04 23:37:12 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,10 @@
 Essa funcao permite obter o diretório de trabalho atual. Ela recebe 
 como argumentos o buffer cwd para armazenar o diretório atual 
 e o tamanho máximo do buffer. cwd - current working directory */
-void	__exec_pwd(char **env, t_list **lst)
+void	__exec_pwd(t_list **lst)
 {
 	char	cwd[PATH_MAX];
 
-	(void)env;
 	(void)lst;
 	close_fds(lst, 1);
 	if (getcwd(cwd, sizeof(cwd)) != NULL)

@@ -6,7 +6,7 @@
 /*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 20:37:13 by duarte33          #+#    #+#             */
-/*   Updated: 2023/06/04 23:21:03 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/04 23:37:18 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,11 @@ void	env_delete_element(t_env **lst)
 /* Esta funcao replica o comportamento do unset, um comando built in
 do bash. Para realizar foi eliminado o node do env da variavel que
 escolhida no prompt para eliminar*/
-void	__exec_unset(char **env, t_list **lst)
+void	__exec_unset(t_list **lst)
 {
 	t_env	*lst_env_export;
 	int		i;
 
-	(void)env;
 	i = 1;
 	if (!(*lst)->content[1])
 		return ;

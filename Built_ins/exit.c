@@ -6,7 +6,7 @@
 /*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 20:57:12 by duarte33          #+#    #+#             */
-/*   Updated: 2023/06/04 21:01:33 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/04 23:36:54 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,10 @@ void	is_numeric_arg(t_list **lst)
 
 /* Esta funcao replica o comportamento do exit, um comando built in
 do bash.*/
-void	__exec_exit(char **env, t_list **lst)
+void	__exec_exit(t_list **lst)
 {
 	int	nb;
 
-	(void)env;
 	write(2, "exit\n", 5);
 	if (exit_overflow(lst))
 		g_data.status = 2;

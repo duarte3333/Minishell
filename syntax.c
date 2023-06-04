@@ -6,7 +6,7 @@
 /*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:04:26 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/04 21:18:17 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/04 23:39:18 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	syntax_error(char *str, char *input, int size)
 	if (input)
 		free(input);
 	g_data.status = 2;
-	prompt(g_data.env_og);
+	prompt();
 }
 
 void	treat_sep(char *input, int i, int size, int *words)
