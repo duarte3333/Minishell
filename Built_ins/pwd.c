@@ -6,7 +6,7 @@
 /*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 15:44:32 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/04 20:39:47 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/04 23:21:23 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	__exec_pwd(char **env, t_list **lst)
 		perror("Error getting current directory");
 		exit(0);
 	}
+	g_data.status = 0;
 }
 
 //Theory

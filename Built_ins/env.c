@@ -6,7 +6,7 @@
 /*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 16:31:52 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/04 21:15:37 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/04 23:20:45 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,5 @@ void	__exec_env(char **env, t_list **lst)
 		g_data.env = g_data.env->next;
 	}
 	env_go_head(&g_data.env);
+	g_data.status = 0;
 }

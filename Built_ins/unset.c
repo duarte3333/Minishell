@@ -6,7 +6,7 @@
 /*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 20:37:13 by duarte33          #+#    #+#             */
-/*   Updated: 2023/06/04 20:38:58 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/04 23:21:03 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,5 @@ void	__exec_unset(char **env, t_list **lst)
 			env_delete_element(&lst_env_export);
 		i++;
 	}
+	g_data.status = 0;
 }

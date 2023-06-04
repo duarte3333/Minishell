@@ -6,19 +6,11 @@
 /*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 15:44:22 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/04 20:48:35 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/04 23:26:04 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-void	print_path(char *path)
-{
-	//char	*parsed_home;
-	(void) path;
-	//parsed_home = search_env_var("HOME");
-	//printf("%s\n", parsed_home);
-}
 
 // R_OK: Verifica se o arquivo pode ser lido.
 // W_OK: Verifica se o arquivo pode ser escrito.
@@ -27,29 +19,10 @@ void	print_path(char *path)
 
 /* Esta funcao muda o diretorio e atualiza a variavel de
 ambiente OLDPWD caso seja necessario. Em caso de sucesso chdir retorna 0 */
-int	change_dir(char *path, int print)
+int	change_dir(char *path)
 {
-	char	buff[PATH_MAX];
-	t_env	*lst_env_export;
-
 	if (!chdir(path))
-	{
-		if (print)
-		{
-			//printf_path(path);
-			printf("%s\n", path);
-		}
-		lst_env_export = env_lst_search("OLDPWD");
-		if (lst_env_export)
-		{
-		 	free(lst_env_export->content);
-		 	lst_env_export->content = ft_strdup(getcwd(buff, PATH_MAX));
-			;
-		}
-		//set_var("OLDPWD", getcwd(buff, PATH_MAX));
-		//Falta aqui mudar a variavel OLDPWD no env com getcwd
 		g_data.status = 0;
-	}
 	else
 	{
 		if (access(path, F_OK) == -1)
@@ -59,19 +32,26 @@ int	change_dir(char *path, int print)
 		else
 			write(2, "minishell: cd: not a directory: ", 33);
 		write(2, path, ft_strlen(path));
-		g_data.status = 1;		
+		g_data.status = 1;
 	}
 	return (1);
+}
+
+void	finish_cd(char **env_char)
+{
+	ft_free_matrix(&env_char);
+	g_data.status = 0;
+	return ;
 }
 
 /* Esta funcao replica o comando cd apenas com path relativo ou absoluto.
    Existem os seguintes caos: "cd" ; "cd --" ; "cd -" ; "cd <algum caminho>" */
 void	__exec_cd(char **env, t_list **lst)
 {
-	(void)env;
 	char	*path_home;
 	char	**env_char;
 
+	(void)env;
 	go_head(lst);
 	if (ft_matrixlen((*lst)->content) > 2)
 	{
@@ -81,29 +61,13 @@ void	__exec_cd(char **env, t_list **lst)
 	}
 	env_char = ft_env_lst_to_arr(g_data.env);
 	path_home = search_env(env_char, "HOME");
-	if (!(*lst)->content[1] && change_dir(path_home, 0))
-	{
-		ft_free_matrix(&env_char);
-		g_data.status = 0;
-		return ;
-	}
+	if (!(*lst)->content[1] && change_dir(path_home))
+		return (finish_cd(env_char));
 	else
 	{
-		if (!ft_strcmp((*lst)->content[1], "--") && change_dir(path_home, 0))
-		{
-			ft_free_matrix(&env_char);
-			g_data.status = 0;
-			return ;
-		}
-		else if ((*lst)->content[1][0] == '-')
-		{
-			printf("[str] %s \n", search_env(env_char, "OLDPWD"));
-			change_dir(search_env(env_char, "OLDPWD"), 1);
-			ft_free_matrix(&env_char);
-			g_data.status = 0;
-			return ;
-		}
-		change_dir((*lst)->content[1], 0);
+		if (!ft_strcmp((*lst)->content[1], "--") && change_dir(path_home))
+			return (finish_cd(env_char));
+		change_dir((*lst)->content[1]);
 	}
 	ft_free_matrix(&env_char);
 	return ;

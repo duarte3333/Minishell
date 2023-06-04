@@ -6,7 +6,7 @@
 /*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 16:09:50 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/04 22:05:07 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/04 23:22:59 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	command_execution(t_list *lst, char **env)
 		lst->ft_exec(env, &lst);
 		ft_free_list(&lst);
 		ft_free_env(&g_data.env);
-		exit(0);
+		exit(g_data.status);
 	}
 	close_fds(&lst, 0);
 }
