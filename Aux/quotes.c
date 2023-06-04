@@ -1,35 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   here_doc.c                                         :+:      :+:    :+:   */
+/*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/22 10:58:47 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/03 14:47:28 by duarte33         ###   ########.fr       */
+/*   Created: 2023/06/03 14:06:19 by duarte33          #+#    #+#             */
+/*   Updated: 2023/06/03 14:23:31 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-int	ft_here_doc(char *str)
+void	delete_quotes(char **input)
 {
-	char		*in;
-	int			fd[2];
+	int	k;
 
-	if (pipe(fd) == -1)
-		perror("");
-	while (1)
+	k = -1;
+	while (input[++k])
 	{
-		write(0, ">", 1);
-		in = get_next_line(0);
-		if ((ft_strncmp(in, str, ft_strlen(str)) == 0) && \
-			(ft_strlen(in) - 1 == ft_strlen(str)))
-			break ;
-		write(fd[1], in, ft_strlen(in));
-		free(in);
+		if (ft_strchr(input[k], '\'') || ft_strchr(input[k], '\"'))
+			delete_quotes_string(&input[k], 0);
 	}
-	free(in);
-	close(fd[1]);
-	return (fd[0]);
+}
+
+void	treat_quotes(char *input, int i, int *flag)
+{
+	char	c;
+
+	c = input[i];
+	*flag = c;
+	while (input[++i])
+	{
+		if (c == input[i])
+			return ;
+	}
+	syntax_error(&c, input, 1);
 }

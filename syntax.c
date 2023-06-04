@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:04:26 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/02 15:56:37 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/03 14:30:26 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	check_sep_2(char *str, int *arr)
 	return (arr[0]);
 }
 
-void	syntax_error(char* str, char *input, int size)
+void	syntax_error(char *str, char *input, int size)
 {
 	int	i;
 
@@ -44,9 +44,9 @@ void	syntax_error(char* str, char *input, int size)
 	prompt(g_data.env_og);
 }
 
-void	treat_sep(char *input, int	i, int size, int *words)
+void	treat_sep(char *input, int i, int size, int *words)
 {
-	int temp;
+	int	temp;
 	int	w;
 	int	sep;
 
@@ -78,7 +78,7 @@ void	delete_quotes_string(char **input, char c)
 	int		i;
 	int		j;
 	int		flag;
-	
+
 	i = -1;
 	j = 0;
 	flag = 0;
@@ -87,75 +87,83 @@ void	delete_quotes_string(char **input, char c)
 		return ;
 	while (input[0][++i])
 	{
-		if ((input[0][i] == '\'' || input[0][i] == '\"') && (!c || c == input[0][i]) && (!flag || flag == input[0][i]))
+		if ((input[0][i] == '\'' || input[0][i] == '\"') \
+			&& (!c || c == input[0][i]) && (!flag || flag == input[0][i]))
 			c = input[0][i] * (c != input[0][i]);
 		else
 			temp[j++] = input[0][i];
 		if (c)
 			flag = c;
 		else
-			flag = 0;	
+			flag = 0;
 	}
 	free(*input);
 	*input = temp;
 }
 
-void	delete_quotes(char **input)
-{
-	int	k;
+// void	syntax_treatment(char *input)
+// {
+// 	int	i;
+// 	int	j;
+// 	int	words;
+// 	int	flag;
+// 	int	sep;
 
-	k = -1;
-	while (input[++k])
-	{
-		if (ft_strchr(input[k], '\'') || ft_strchr(input[k], '\"'))
-			delete_quotes_string(&input[k], 0);
-	}
-}
+// 	i = 0;
+// 	j = 0;
+// 	words = 0;
+// 	flag = 0;
+// 	sep = 0;
+// 	if (!input)
+// 		return ;
+// 	while (input[i])
+// 	{
+// 		if ((input[i] == '\'' || input[i] == '\"') && (!sep || sep == input[i]))
+// 			sep = (input[i]) * (sep != input[i]);
+// 		if (!sep && check_sep_2(&input[i], &j))
+// 			treat_sep(input, i, j, &words);
+// 		else if ((input[i] == '\"' && !flag) || (input[i] == '\'' && !flag))
+// 			treat_quotes(input, i, &flag);
+// 		else if (input[i] == flag)
+// 			flag = 0;
+// 		else if (input[i] != 32)
+// 			words++;
+// 		if (j == 2)
+// 			i++;
+// 		i++;
+// 	}
+// }
 
-void	treat_quotes(char *input, int i, int *flag)
-{
-	char	c;
-
-	c = input[i];
-	*flag = c;
-	while (input[++i])
-	{
-		if (c == input[i])
-			return ;
-	}
-	syntax_error(&c, input, 1);
-}
+// i -> arr[0]
+// j -> arr[1]
+// words -> arr[2]
+// flag -> arr[3]
+// sep -> arr[4]
 
 void	syntax_treatment(char *input)
 {
-	int	i;
-	int	j;
-	int	words;
-	int	flag;
-	int	sep;
+	int	*arr;
 
-	i = 0;
-	j = 0;
-	words = 0;
-	flag = 0;
-	sep = 0;
+	arr = (int *)ft_calloc(5, sizeof(int));
 	if (!input)
 		return ;
-	while(input[i])
+	while (input[arr[0]])
 	{
-		if ((input[i] == '\'' || input[i] == '\"') && (!sep || sep == input[i]))
-			sep = (input[i]) * (sep != input[i]);
-		if (!sep && check_sep_2(&input[i], &j))
-			treat_sep(input, i, j, &words);
-		else if ((input[i] == '\"' && !flag) || (input[i] == '\'' && !flag))
-			treat_quotes(input, i, &flag);
-		else if (input[i] == flag)
-			flag = 0;
-		else if (input[i] != 32)
-			words++;
-		if (j == 2)
-			i++;
-		i++;
+		if ((input[arr[0]] == '\'' || input[arr[0]] == '\"') \
+			&& (!arr[4] || arr[4] == input[arr[0]]))
+			arr[4] = (input[arr[0]]) * (arr[4] != input[arr[0]]);
+		if (!arr[4] && check_sep_2(&input[arr[0]], &(arr[1])))
+			treat_sep(input, arr[0], arr[1], &(arr[2]));
+		else if ((input[arr[0]] == '\"' && !arr[3]) || \
+			(input[arr[0]] == '\'' && !arr[3]))
+			treat_quotes(input, arr[0], &arr[3]);
+		else if (input[arr[0]] == arr[3])
+			arr[3] = 0;
+		else if (input[arr[0]] != 32)
+			(arr[2])++;
+		if (arr[1] == 2)
+			(arr[0])++;
+		(arr[0])++;
 	}
+	free(arr);
 }
-

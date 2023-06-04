@@ -16,26 +16,14 @@
 //printf("STDIN replaced by %d\n", lsGLOBALt->fd[0]);
 //printf("STDOUT replaced by %d\n", lst->next->fd[1]);
 //Esta funcao calcula o tamanho de uma linked list
-int	ft_lstsize(t_list *lst)
-{
-	size_t	i;
-
-	i = 0;
-	while (lst)
-	{
-		lst = lst->next;
-		i++;
-	}
-	return (i);
-}
 
 int	is_built_in(t_list *lst)
 {
-	if (!ft_strcmp(lst->content[0], "pwd")   || \
-		!ft_strcmp(lst->content[0], "cd")    || \
-		!ft_strcmp(lst->content[0], "exit")  || \
-		!ft_strcmp(lst->content[0], "env")   || \
-		!ft_strcmp(lst->content[0], "export")   || \
+	if (!ft_strcmp(lst->content[0], "pwd") || \
+		!ft_strcmp(lst->content[0], "cd") || \
+		!ft_strcmp(lst->content[0], "exit") || \
+		!ft_strcmp(lst->content[0], "env") || \
+		!ft_strcmp(lst->content[0], "export") || \
 		!ft_strcmp(lst->content[0], "unset"))
 		return (1);
 	else
@@ -96,7 +84,8 @@ int	check_fds(t_list *lst)
 	res = 0;
 	while (lst)
 	{
-		if (lst->fd_master[0] == -1 || lst->fd_master[1] == -1 || lst->master_error[0] || lst->master_error[1])
+		if (lst->fd_master[0] == -1 || lst->fd_master[1] == -1 \
+			|| lst->master_error[0] || lst->master_error[1])
 			res++;
 		lst = lst->next;
 	}
@@ -105,6 +94,8 @@ int	check_fds(t_list *lst)
 
 void	execution(t_list *lst, char **env)
 {
+	int	status;
+
 	while (lst)
 	{	
 		if (lst->content[0] && !lst->master_error[0] && !lst->master_error[1])
@@ -122,14 +113,9 @@ void	execution(t_list *lst, char **env)
 	{
 		if (lst->content[0])
 		{
-			//printf("str == %s\n--> %d\n", lst->content[0], g_data.status);
-			waitpid(-1, &g_data.status, 0);
-			//printf("-> %d\n", g_data.status);
-			if (WIFEXITED(g_data.status))
-			{
-				g_data.status = WEXITSTATUS(g_data.status);
-				//printf("entrou\n");
-			}			
+			waitpid(-1, &status, 0);
+			if (WIFEXITED(status))
+				g_data.status = WEXITSTATUS(status);
 		}
 		if (!lst->next)
 			break ;

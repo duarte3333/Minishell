@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_error_handle.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:51:24 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/02 18:54:59 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/03 14:24:45 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	error_handle(char *cmd)
 {
-	int	i;
-
-	i = 0;
 	if (!ft_strchr(cmd, '/'))
 	{	
 		write(2, cmd, ft_strlen(cmd));

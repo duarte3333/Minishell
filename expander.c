@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 16:57:31 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/01 16:19:24 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/03 14:47:35 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ char	*chg_dollar(char *input, char **env)
 	int		j;
 	int		i;
 
-	
 	i = -1;
 	j = 0;
 	buf = ft_calloc(1024, 1);

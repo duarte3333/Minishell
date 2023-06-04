@@ -64,38 +64,17 @@ void	go_head(t_list **lst)
 	while ((lst) && (*lst) && (*lst)->prev)
 		(*lst) = (*lst)->prev;
 }
-// void delete_element(t_list **lst)
-// {
-// 	t_list *temp;
 
-// 	temp = (*lst);
-//     if (lst && *lst)
-//     {
-// 		if ((*lst)->path)
-// 			free((*lst)->path);
-// 		if (!(*lst)->prev && !(*lst)->next)
-// 			*lst = NULL;
-// 		else if (!(*lst)->prev && (*lst)->next)
-// 		{
-// 			(*lst)->next->prev = NULL;
-// 			*lst = (*lst)->next;
-// 		}
-// 		else if ((*lst)->prev && !(*lst)->next)
-// 		{
-// 			(*lst)->prev->next = NULL;
-// 			*lst = (*lst)->prev;
-// 		}
-// 		else if ((*lst)->prev && (*lst)->next)
-// 		{
-// 			(*lst)->prev->next = (*lst)->next;
-// 			(*lst)->next->prev = (*lst)->prev;
-// 			*lst = (*lst)->prev;
-// 		}
-// 		//printf("[content] %s\n", (*lst)->content);
-// 		if ((temp)->content)
-// 			ft_free_matrix(&(temp->content));
-// 		close(temp->fd[0]);
-// 		close(temp->fd[1]);
-// 		free(temp);
-//     }
-// }
+/* Conta o numero de elementos na linked list */
+int	ft_lstsize(t_list *lst)
+{
+	size_t	i;
+
+	i = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
+}

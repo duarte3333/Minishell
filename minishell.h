@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/02 20:08:25 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/03 14:33:45 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,18 @@
 typedef struct s_env
 {
 	char			*content;
-	struct	s_env	*next;
-	struct	s_env	*prev;
+	struct s_env	*next;
+	struct s_env	*prev;
 }	t_env;
 
-struct global
+struct s_global
 {
 	int			status;
 	t_env		*env;
 	char		**env_og;
 };
 
-extern struct global g_data;
+extern struct s_global	g_data;
 
 typedef struct s_list
 {
@@ -77,14 +77,21 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strchr(const char *s, int c);
 char	**ft_matrixdup(char **matrix);
 int		ft_atoi(const char *nptr);
-void 	ft_print_matrix(char **array);
+void	ft_print_matrix(char **array);
 char	*ft_replacement(char *str, char *s1, char *s2);
 char	*ft_itoa(int nbr);
 void	error_handle(char *cmd);
 int		ft_isalnum(int i);
 int		ft_str_islanum(char *str);
 int		ft_isdigit(int i);
+int		ft_lstsize(t_list *lst);
 
+//Syntax
+void	syntax_treatment(char *input);
+void	delete_quotes(char **input);
+void	treat_quotes(char *input, int i, int *flag);
+void	delete_quotes_string(char **input, char c);
+void	syntax_error(char *str, char *input, int size);
 
 //Env utils
 t_env	*ft_envnew(char *str);
@@ -92,7 +99,7 @@ t_env	*ft_envlast(t_env *lst);
 void	ft_envadd_back(t_env **lst, t_env *new);
 void	env_go_head(t_env **lst);
 void	ft_free_env(t_env **lst);
-char 	**ft_env_lst_to_arr(t_env *lst_env);
+char	**ft_env_lst_to_arr(t_env *lst_env);
 int		ft_env_lstsize(t_env *lst);
 t_env	*env_lst_search(char *input_var);
 char	*search_env(char **env, char *str);
@@ -100,7 +107,7 @@ char	*search_env(char **env, char *str);
 //Prompt
 void	prompt(char **env);
 
-//signals
+//Signals
 void	handle_sign(int sign);
 void	handle_quit(int sign);
 
@@ -111,7 +118,7 @@ void	parse(char *res, char *str, char sep, int *array);
 char	*search_env(char **env, char *str);
 char	*get_cmd_path(char **env, char **cmd);
 
-//env
+//Env
 t_env	*get_env(char **env);
 void	ft_free_env(t_env **lst);
 
@@ -121,7 +128,7 @@ int		ft_here_doc(char *str);
 //Redirections
 void	redirection(t_list	*pre_list, char **division);
 
-//expander
+//Expander
 char	**expander(char **divison, char **env);
 char	*chg_dollar(char *input, char **env);
 
@@ -139,9 +146,5 @@ void	__exec_env(char **env, t_list **lst);
 void	__exec_exit(char **env, t_list **lst);
 void	__exec_export(char **env, t_list **lst);
 void	__exec_unset(char **env, t_list **lst);
-
-//syntax
-void	syntax_treatment(char *input);
-void	delete_quotes(char **input);
 
 #endif

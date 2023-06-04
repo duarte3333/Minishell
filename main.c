@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:01:28 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/02 18:56:40 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/03 14:10:22 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-struct global	g_data;
+struct s_global	g_data;
 
 t_list	*generate_list(char *input)
 {
@@ -27,7 +27,6 @@ t_list	*generate_list(char *input)
 	array[0] = 0;
 	array[1] = 0;
 	parse(pre_split, input, 0, array);
-	//printf("%s\n", pre_split);
 	division = ft_split(pre_split, 2);
 	division = expander(division, ft_env_lst_to_arr(g_data.env));
 	list = NULL;
@@ -45,10 +44,10 @@ void	prompt(char **env_og)
 
 	while (1)
 	{
-		input = readline("$ ");// colocar if input != a newline fazer o resto
+		input = readline("$ ");
 		if (!input)
 		{
-			if(input)
+			if (input)
 				free(input);
 			ft_free_env(&g_data.env);
 			exit(0);
@@ -56,7 +55,6 @@ void	prompt(char **env_og)
 		add_history(input);
 		syntax_treatment(input);
 		list = generate_list(input);
-		//print_list(list);
 		if (list->content[0])
 			execution(list, env_og);
 		ft_free_list(&list);
@@ -101,10 +99,7 @@ int	main(int ac, char **av, char **env)
 
 
 //O que falta:
-// Unset
-// Mudar OLDPWD no exec_cd - POR CHECKAR NA ESCOLA
-// Sinais CTRL-C
-// Overflow do exit
+//Ctrl-D no here doc
 
 // DONE
 // Export DONE
@@ -113,3 +108,7 @@ int	main(int ac, char **av, char **env)
 // Acabar expander DONE
 // Acrescentar $? ao expander DONE
 // Resolver aspas do echo """""""" DONE
+// Unset DONE
+// Mudar OLDPWD no exec_cd - POR CHECKAR NA ESCOLA DONE
+// Sinais CTRL-C DONE
+// Overflow do exit DONE

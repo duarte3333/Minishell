@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:34:53 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/02 18:37:28 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/03 14:46:02 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void	handle_quit(int sign)
 
 void	handle_sign(int sign)
 {
-	pid_t pid;
-	int	status;
+	pid_t	pid;
+	int		status;
 
-	pid = waitpid(-1,  &status, 0);
+	pid = waitpid(-1, &status, 0);
 	if (sign == SIGINT)
 	{
 		if (pid == -1)

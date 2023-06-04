@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 18:13:42 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/02 16:05:55 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/03 14:45:00 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,22 @@ int	check_token(char *str)
 	else if (!ft_strcmp(str, ">"))
 		return (4);
 	return (0);
+}
+
+void	invalid_fd(t_list *lst)
+{
+	if (lst->fd_master[0] == -1)
+	{
+		perror("");
+		g_data.status = 1;
+		lst->master_error[0] = 1;
+	}
+	if (lst->fd_master[1] == -1)
+	{
+		perror("");
+		g_data.status = 1;
+		lst->master_error[1] = 1;
+	}
 }
 
 /* Esta funcao cria os files descriptors consoante o caso
@@ -50,18 +66,7 @@ void	redirect(char **division, int *i, t_list *lst)
 			lst->fd_master[1] = open(division[++(*i)], \
 			O_WRONLY | O_TRUNC | O_CREAT, 0644);
 		free(division[(*i) - 1]);
-		if (lst->fd_master[0] == -1)
-		{
-			perror("");
-			g_data.status = 1;
-			lst->master_error[0] = 1;
-		}
-		if (lst->fd_master[1] == -1)
-		{
-			perror("");
-			g_data.status = 1;
-			lst->master_error[1] = 1;
-		}
+		invalid_fd(lst);
 	}
 }
 
