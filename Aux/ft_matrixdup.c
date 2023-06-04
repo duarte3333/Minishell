@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_matrixdup.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:56:18 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/24 16:08:23 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/04 20:18:41 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+/* Cria uma copia com malloc de uma 
+variavel do tipo char** */
 char	**ft_matrixdup(char **matrix)
 {
 	char	**res;

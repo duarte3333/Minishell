@@ -12,7 +12,9 @@
 
 #include "../minishell.h"
 
-
+/* Compara duas strings ate o contador n acabar, mas
+tambem pode parar caso alguma das strings acabe ou deixe 
+de ser igual*/
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;

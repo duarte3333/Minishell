@@ -1,5 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_free_list.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/04 19:57:30 by duarte33          #+#    #+#             */
+/*   Updated: 2023/06/04 20:15:17 by duarte33         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
+/* Esta funcao liberta a memorai da linked list gerada
+para guardar os comandos a executar */
 void	ft_free_list(t_list **lst)
 {
 	t_list	*temp;
@@ -15,6 +29,9 @@ void	ft_free_list(t_list **lst)
 	}
 }
 
+/* Esta funcao serve para dar print da linked list
+gerada para guardar o varios inputs do utilizador apos
+o parser */
 void	print_list(t_list *list)
 {
 	int	i;
@@ -33,7 +50,6 @@ void	print_list(t_list *list)
 		printf("[fd out] %i\n", list->fd[1]);
 		printf("[fd OW in] %i\n", list->fd_master[0]);
 		printf("[fd OW out] %i\n", list->fd_master[1]);
-		//printf("[path] %s\n", list->path);
 		list = list->next;
 	}
 }

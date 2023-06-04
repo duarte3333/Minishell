@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_matrix.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 16:07:11 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/09 18:55:09 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/04 20:16:07 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+/* Liberta a memoria de uma variavel do tipo char** */
 void	ft_free_matrix(char ***m)
 {
 	int	i;

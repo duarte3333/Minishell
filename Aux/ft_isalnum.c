@@ -3,18 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
+/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:45:12 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/31 19:01:12 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/06/04 20:17:41 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+/* Verifica se toda a string tem elementos char 
+que sejam alfabumericos */
 int	ft_str_islanum(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -26,6 +28,7 @@ int	ft_str_islanum(char *str)
 	return (1);
 }
 
+/* Verica se um elemento e alfanumerico */
 int	ft_isalnum(int i)
 {
 	if ((i >= '0' && i <= '9'))
@@ -35,7 +38,7 @@ int	ft_isalnum(int i)
 	return (0);
 }
 
-
+/* Verifica se um elemento e um digito */
 int	ft_isdigit(int i)
 {
 	if ((i >= '0' && i <= '9'))

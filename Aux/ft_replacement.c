@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_replacement.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 18:47:55 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/30 17:58:48 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/04 19:58:55 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ char	*ft_replacement(char *str, char *s1, char *s2)
 	if (!str)
 		return (NULL);
 	res = ft_calloc(ft_strlen(str) + ft_strlen(s2) + 1, 1);
-	if (!res)
-		return (NULL);
 	i = 0;
 	j = 0;
 	k = -1;

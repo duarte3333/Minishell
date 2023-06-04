@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 10:05:58 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/31 18:48:28 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/04 20:22:47 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-//Esta funcao recebe duas strings e faz a concatenação de ambas
-//ou seja, junta-as
+/* Esta funcao recebe duas strings e faz a concatenação de ambas
+ou seja, junta-as */
 char	*ft_strjoin(char *s1, char const *s2)
 {
 	int		size_concat;

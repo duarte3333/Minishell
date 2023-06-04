@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
+/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 16:31:52 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/05/29 19:33:53 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/06/04 20:05:59 by duarte33         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+/* Esta funcao retorno o ultimo elemento de uma lista do tipo t_env */
 t_env	*ft_envlast(t_env *lst)
 {
 	while (lst)
@@ -23,6 +24,7 @@ t_env	*ft_envlast(t_env *lst)
 	return (lst);
 }
 
+/* Adiciona um novo elemento a uma lista t_env */
 void	ft_envadd_back(t_env **lst, t_env *new)
 {
 	if (lst)
@@ -37,6 +39,7 @@ void	ft_envadd_back(t_env **lst, t_env *new)
 	}
 }
 
+/* Cria um novo node para uma lista do tipo t_env */
 t_env	*ft_envnew(char *str)
 {
 	t_env	*new;
@@ -48,6 +51,7 @@ t_env	*ft_envnew(char *str)
 	return (new);
 }
 
+/* Liberta toda a memoria de uma lista do tipo do t_env */
 void	ft_free_env(t_env **lst)
 {
 	t_env	*temp;
@@ -61,6 +65,7 @@ void	ft_free_env(t_env **lst)
 	}
 }
 
+/* Esta funcao faz o ponteiro da lista voltar a apontar para a cabeca */
 void	env_go_head(t_env **lst)
 {
 	while ((lst) && (*lst) && (*lst)->prev)
