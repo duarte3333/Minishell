@@ -41,6 +41,8 @@ SRCS =  Aux/ft_calloc.c \
 		Aux/ft_isalnum.c \
 		Aux/exec_error_handle.c \
 		Aux/quotes.c \
+		Aux/env_lst_search.c \
+		Aux/is_built_in.c \
 		Get_Next_Line/get_next_line_utils.c \
 		Get_Next_Line/get_next_line.c \
 		Built_ins/pwd.c \
