@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 10:58:47 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/04 21:47:43 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/05 17:16:35 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,13 @@ int	ft_here_doc(char *str)
 	{
 		write(0, ">", 1);
 		in = get_next_line(0);
+		if (!in)
+		{
+			write(2, "warning: here-document at line 1 delimited by end-of-file (wanted `", 67);
+			write(2, str, ft_strlen(str));
+			write(2, "')\n", 3);
+			break ;
+		}
 		if ((ft_strncmp(in, str, ft_strlen(str)) == 0) && \
 			(ft_strlen(in) - 1 == ft_strlen(str)))
 			break ;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/04 23:38:44 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/05 17:14:31 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ char	*search_env(char **env, char *str);
 void	prompt(void);
 
 //Signals
+void	signals_default(void);
 void	handle_sign(int sign);
 void	handle_quit(int sign);
 

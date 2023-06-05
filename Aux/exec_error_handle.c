@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_error_handle.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:51:24 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/04 20:52:19 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/05 17:28:19 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ diretorio e atualiza o respetivo exit code */
 void	command_not_found(char *cmd)
 {
 	write(2, cmd, ft_strlen(cmd));
-	write(2, ": command not found: ", 19);
+	write(2, ": command not found\n", 20);
 	g_data.status = 127;
 	return ;
 }

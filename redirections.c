@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 18:13:42 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/04 21:23:37 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/05 18:58:00 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ void	redirect(char **division, int *i, t_list *lst)
 {
 	int	option;
 
-	if (lst->fd_master[0] != -1 && lst->fd_master[1] != -1)
+	option = check_token(division[*i]);
+	if ((lst->fd_master[0] != -1 && lst->fd_master[1] != -1) || option == 1)
 	{
-		option = check_token(division[*i]);
 		if (lst->fd_master[0] > 2 && (option == 1 || option == 3))
 			close(lst->fd_master[0]);
 		if (lst->fd_master[1] > 2 && (option == 2 || option == 4))

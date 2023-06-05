@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:01:28 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/04 23:39:09 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/05 18:29:37 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ void	prompt(void)
 		add_history(input);
 		syntax_treatment(input);
 		list = generate_list(input);
+		//print_list(list);
+		if (!input[0] || !list->content[0] || !list->content[0][0])
+			g_data.status = 0;
 		if (list->content[0])
 			execution(list);
 		ft_free_list(&list);
@@ -69,8 +72,7 @@ int	main(int ac, char **av, char **env)
 	g_data.env = get_env(env);
 	g_data.env_og = env;
 	g_data.status = 0;
-	signal(SIGINT, handle_sign);
-	signal(SIGQUIT, SIG_IGN);
+	signals_default();
 	prompt();
 }
 

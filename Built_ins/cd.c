@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 15:44:22 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/04 23:36:25 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/05 18:25:50 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,37 @@
 
 /* Esta funcao muda o diretorio e atualiza a variavel de
 ambiente OLDPWD caso seja necessario. Em caso de sucesso chdir retorna 0 */
+
+void atualiza(char *str)
+{
+	char	buf[PATH_MAX];
+	t_env	*temp_env;
+	char	*temp_char;
+	char	*temp_char_2;
+
+	if (getcwd(buf, sizeof(buf))!= NULL)
+	{
+		temp_env = env_lst_search(str);
+		if (temp_env)
+		{
+			free(temp_env->content);
+			temp_char = ft_strdup(buf);
+			temp_char_2 = ft_strjoin(str, "=");
+			temp_env->content = ft_strjoin(temp_char_2, temp_char);
+			free(temp_char_2);
+			free(temp_char);
+		}
+	}
+}
+
 int	change_dir(char *path)
 {
+	atualiza("OLDPWD");
 	if (!chdir(path))
+	{
+		atualiza("PWD");
 		g_data.status = 0;
+	}
 	else
 	{
 		if (access(path, F_OK) == -1)
@@ -32,6 +59,7 @@ int	change_dir(char *path)
 		else
 			write(2, "minishell: cd: not a directory: ", 33);
 		write(2, path, ft_strlen(path));
+		write(2, "\n", 1);
 		g_data.status = 1;
 	}
 	return (1);

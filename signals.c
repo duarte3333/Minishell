@@ -3,36 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:34:53 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/04 21:19:28 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/05 17:16:00 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/* void	handle_quit(int sign)
+void	signals_default(void)
 {
-	// // pid_t pid;
-	// // int	status;
+	signal(SIGINT, handle_sign);
+	signal(SIGQUIT, handle_quit);
+}
 
-	// 	SIG_IGN ;
-	// 	return ;
-	(void)sign;
-	// // pid = waitpid(-1,  &status, 0);
-	// // if (pid == -1)
+void	signals_here_doc(void)
+{
 	
-	// // else
-	// // {
-	// // 	write(1, "Quit (core dumped)\n", 20);
-	// // 	return ;
-	// // }
-} */
+}
 
 void	handle_quit(int sign)
 {
+	pid_t pid;
+	int	status;
+
 	(void)sign;
+	pid = waitpid(-1,  &status, 0);
+	if (pid == -1)
+		SIG_IGN ;	
+	else
+	{
+		write(1, "Quit (core dumped)\n", 20);
+		return ;
+	}
 }
 
 void	handle_sign(int sign)
