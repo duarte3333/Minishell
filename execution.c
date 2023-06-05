@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 16:09:50 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/05 18:31:34 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/05 20:49:11 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void	core_execution(t_list *lst)
 void	execution(t_list *lst)
 {
 	int	status;
+	pid_t i;
 
 	core_execution(lst);
 	go_head(&lst);
@@ -103,14 +104,15 @@ void	execution(t_list *lst)
 	{
 		if (lst->content[0])
 		{
-			waitpid(-1, &status, 0);
-			if (WIFEXITED(status))
+			i = waitpid(-1, &status, 0);
+			if (i != -1 && WIFEXITED(status))
 				g_data.status = WEXITSTATUS(status);
 		}
 		if (!lst->next)
 			break ;
 		lst = lst->next;
 	}
+	// printf("--> %d\n", g_data.status);
 	if (check_fds(lst))
 		g_data.status = 1;
 }
