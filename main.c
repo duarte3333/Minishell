@@ -6,7 +6,7 @@
 /*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:01:28 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/06 18:34:24 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/06/06 18:41:12 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void	prompt(void)
 		if (list->content[0])
 			execution(list);
 		ft_free_list(&list);
+		if (g_data.env_og)
+			ft_free_matrix(&g_data.env_og);
 		free(input);
 	}
 }
@@ -69,7 +71,7 @@ int	main(int ac, char **av, char **env)
 	(void)ac;
 	(void)av;
 	g_data.env = get_env(env);
-	g_data.env_og = env;
+	g_data.env_og = ft_matrixdup(env);
 	g_data.status = 0;
 	signals_default();
 	prompt();
