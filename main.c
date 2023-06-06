@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:01:28 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/06 18:11:21 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/06 18:46:25 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ int	main(int ac, char **av, char **env)
 // unset LOL ROR
 // export "HI =hi"
 // echo ""''
+// echo test > file test1
+// export a=c b=a c=t e dps $a$b$c main.c 
 
 //O que falta:
 //Ctrl-D no here doc

@@ -6,7 +6,7 @@
 /*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 15:44:22 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/06 14:18:08 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/06/06 17:38:23 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 /* Esta funcao muda o diretorio e atualiza a variavel de
 ambiente OLDPWD caso seja necessario. Em caso de sucesso chdir retorna 0 */
 
-void	update_pwd_oldpwd(char *str)
+int	update_pwd_oldpwd(char *str)
 {
 	char	buf[PATH_MAX];
 	t_env	*temp_env;
@@ -40,24 +40,22 @@ void	update_pwd_oldpwd(char *str)
 			free(temp_char);
 		}
 	}
+	return (1);
 }
 
 int	change_dir(char *path)
 {
 	update_pwd_oldpwd("OLDPWD");
-	if (!chdir(path))
-	{
-		update_pwd_oldpwd("PWD");
+	if (!chdir(path) && update_pwd_oldpwd("PWD"))
 		g_data.status = 0;
-	}
 	else
 	{
 		if (access(path, F_OK) == -1)
-			write(2, "minishell: cd: no such file or directory: ", 43);
+			write(2, "minishell: cd: no such file or directory\n", 42);
 		else if (access(path, R_OK | W_OK | X_OK) == -1)
-			write(2, "minishell: cd: permission denied: ", 35);
+			write(2, "minishell: cd: permission denied\n", 34);
 		else
-			write(2, "minishell: cd: not a directory: ", 33);
+			write(2, "minishell: cd: not a directory\n", 32);
 		write(2, path, ft_strlen(path));
 		write(2, "\n", 1);
 		g_data.status = 1;

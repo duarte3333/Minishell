@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/06 18:32:12 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/06 18:46:19 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int		ft_str_islanum(char *str);
 int		ft_isdigit(int i);
 int		ft_lstsize(t_list *lst);
 int		is_built_in(t_list *lst);
+void	ft_bubble_sort(char **arr, int size);
 
 //Syntax
 void	syntax_treatment(char *input);

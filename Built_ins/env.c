@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 16:31:52 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/04 23:36:47 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/06 18:30:41 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,14 @@ dando print a todas as variaveis de ambiente*/
 void	__exec_env(t_list **lst)
 {
 	(void)lst;
+	if (lst && (*lst)->content[1])
+	{
+		write(2, "env: '", 6);
+		write(2, (*lst)->content[1], ft_strlen((*lst)->content[1]));
+		write(2, "': No such file or directory\n", 29);
+		g_data.status = 127;
+		return ;
+	}
 	while (g_data.env && g_data.env->content)
 	{
 		if (ft_strchr(g_data.env->content, '='))
