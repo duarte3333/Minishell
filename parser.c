@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:57:38 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/04 22:09:29 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/06 15:09:24 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ int	check_sep(char *str, int *arr)
 	else if (str[0] == '|')
 		arr[0] = 1;
 	return (arr[0]);
+}
+
+void	parse_aux(int *len, char **res, char **str)
+{
+	*(*res)++ = *(*str)++;
+	*len = 0;
 }
 
 /* Esta funcao faz o parsing do minishell 
@@ -65,9 +71,8 @@ void	parse(char *res, char *str, char sep, int *arr)
 		}
 		else if ((*str == 2 && arr[1]) || \
 			((*str != 2 || *str++ != 2) && ++arr[1]))
-		{	
-			*res++ = *str++;
-			len = 0;
+		{
+			parse_aux(&len, &res, &str);
 		}
 	}
 }

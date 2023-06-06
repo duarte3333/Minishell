@@ -6,7 +6,7 @@
 /*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 15:44:22 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/05 20:41:36 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/06/06 14:18:08 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@
 /* Esta funcao muda o diretorio e atualiza a variavel de
 ambiente OLDPWD caso seja necessario. Em caso de sucesso chdir retorna 0 */
 
-void atualiza(char *str)
+void	update_pwd_oldpwd(char *str)
 {
 	char	buf[PATH_MAX];
 	t_env	*temp_env;
 	char	*temp_char;
 	char	*temp_char_2;
 
-	if (getcwd(buf, sizeof(buf))!= NULL)
+	if (getcwd(buf, sizeof(buf)) != NULL)
 	{
 		temp_env = env_lst_search(str);
 		if (temp_env)
@@ -44,10 +44,10 @@ void atualiza(char *str)
 
 int	change_dir(char *path)
 {
-	atualiza("OLDPWD");
+	update_pwd_oldpwd("OLDPWD");
 	if (!chdir(path))
 	{
-		atualiza("PWD");
+		update_pwd_oldpwd("PWD");
 		g_data.status = 0;
 	}
 	else

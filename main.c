@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:01:28 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/05 18:29:37 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/06 14:28:20 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	prompt(void)
 		add_history(input);
 		syntax_treatment(input);
 		list = generate_list(input);
-		//print_list(list);
 		if (!input[0] || !list->content[0] || !list->content[0][0])
 			g_data.status = 0;
 		if (list->content[0])

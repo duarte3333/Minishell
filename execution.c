@@ -6,7 +6,7 @@
 /*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 16:09:50 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/05 20:49:11 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/06/06 14:27:48 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ void	core_execution(t_list *lst)
 
 void	execution(t_list *lst)
 {
-	int	status;
-	pid_t i;
+	int		status;
+	pid_t	i;
 
 	core_execution(lst);
 	go_head(&lst);
@@ -112,7 +112,6 @@ void	execution(t_list *lst)
 			break ;
 		lst = lst->next;
 	}
-	// printf("--> %d\n", g_data.status);
 	if (check_fds(lst))
 		g_data.status = 1;
 }

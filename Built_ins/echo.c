@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 21:06:56 by duarte33          #+#    #+#             */
-/*   Updated: 2023/06/05 17:47:05 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/06 14:26:39 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ void	__exec_echo(t_list **lst)
 
 	flag = 0;
 	close_fds(lst, 1);
-	if ((*lst)->content[1] && (*lst)->content[1][0] == '-' && (*lst)->content[1][1])
+	if ((*lst)->content[1] && (*lst)->content[1][0] \
+		== '-' && (*lst)->content[1][1])
 		option_in_echo(lst, &flag);
 	if (flag == 1 || !flag)
 	{

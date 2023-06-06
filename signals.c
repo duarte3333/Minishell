@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:34:53 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/05 17:16:00 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/06 14:27:22 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,19 @@ void	signals_default(void)
 	signal(SIGQUIT, handle_quit);
 }
 
-void	signals_here_doc(void)
-{
-	
-}
+// void	signals_here_doc(void)
+// {
+// }
 
 void	handle_quit(int sign)
 {
-	pid_t pid;
-	int	status;
+	pid_t	pid;
+	int		status;
 
 	(void)sign;
-	pid = waitpid(-1,  &status, 0);
+	pid = waitpid(-1, &status, 0);
 	if (pid == -1)
-		SIG_IGN ;	
+		SIG_IGN ;
 	else
 	{
 		write(1, "Quit (core dumped)\n", 20);
