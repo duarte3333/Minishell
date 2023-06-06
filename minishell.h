@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/06 17:24:55 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/06/06 18:46:19 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # include <readline/history.h>
 # include <errno.h>
 # include <signal.h>
+# include <term.h> 
+# include <termios.h>
 # include "Get_Next_Line/get_next_line.h"
 
 typedef struct s_env
@@ -37,9 +39,12 @@ typedef struct s_env
 
 struct s_global
 {
-	int			status;
-	t_env		*env;
-	char		**env_og;
+	int				status;
+	t_env			*env;
+	int				hd;
+	int				interrupted;
+	char			**env_og;
+	struct termios	termios_save;
 };
 
 extern struct s_global	g_data;
@@ -111,6 +116,7 @@ void	prompt(void);
 
 //Signals
 void	signals_default(void);
+void	signals_here_doc(int sign);
 void	handle_sign(int sign);
 void	handle_quit(int sign);
 

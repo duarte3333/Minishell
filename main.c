@@ -6,7 +6,7 @@
 /*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:01:28 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/06 18:41:12 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/06/06 18:51:27 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	prompt(void)
 
 	while (1)
 	{
+		g_data.interrupted = 0;
 		input = readline("$ ");
 		if (!input)
 		{
@@ -57,7 +58,7 @@ void	prompt(void)
 		list = generate_list(input);
 		if (!input[0] || !list->content[0] || !list->content[0][0])
 			g_data.status = 0;
-		if (list->content[0])
+		if (list->content[0] && !g_data.interrupted)
 			execution(list);
 		ft_free_list(&list);
 		if (g_data.env_og)
@@ -73,6 +74,8 @@ int	main(int ac, char **av, char **env)
 	g_data.env = get_env(env);
 	g_data.env_og = ft_matrixdup(env);
 	g_data.status = 0;
+	g_data.hd = 0;
+	rl_catch_signals = 0;
 	signals_default();
 	prompt();
 }

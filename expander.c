@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 16:57:31 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/06 16:39:48 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/06 17:33:18 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	chg_dollar_loop(char **input, char **buf, int *i, int *j)
 {
-	while (input[0][++i[0]])
+	while (input && input[0] && input[0][++i[0]])
 	{
 		if (input[0][i[0]] == '$' || j[0])
 			buf[0][j[0]++] = input[0][i[0]];
