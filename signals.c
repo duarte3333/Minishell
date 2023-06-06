@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:34:53 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/06 18:23:09 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/06 18:59:22 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ void	signals_here_doc(int sign)
 	if (sign == SIGQUIT)
 		SIG_IGN;
 	else if (sign == SIGINT)
+	{
+		ft_free_env(&g_data.env);
 		exit(1);
+	}
 }
 
 void	handle_quit(int sign)

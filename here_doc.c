@@ -6,17 +6,11 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 10:58:47 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/06 18:20:07 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/06 18:59:00 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	reset_the_terminal(void)
-{
-	tcsetattr(0, 0, &g_data.termios_save);
-	exit (0);
-}
 
 void	term_change(void)
 {
@@ -78,6 +72,7 @@ int	ft_here_doc(char *str)
 			free(in);
 		}
 		ft_free_matrix(&our_env);
+		ft_free_env(&g_data.env);
 		free(in);
 		close(fd[1]);
 		close(fd[0]);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_types.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 16:02:31 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/04 23:33:59 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/06 18:56:40 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ void	__exec_default(t_list **lst)
 	go_head(lst);
 	ft_free_list(lst);
 	ft_free_matrix(&our_env);
+	ft_free_env(&g_data.env);
 	exit(g_data.status);
 }

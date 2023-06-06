@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/06 18:46:19 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/06 18:55:59 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ struct s_global
 	t_env			*env;
 	int				hd;
 	int				interrupted;
-	char			**env_og;
 	struct termios	termios_save;
 };
 
