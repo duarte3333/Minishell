@@ -6,7 +6,7 @@
 /*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:57:38 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/06 15:09:24 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/06/06 15:24:43 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,27 +26,20 @@ int	check_sep(char *str, int *arr)
 	return (arr[0]);
 }
 
-void	parse_aux(int *len, char **res, char **str)
-{
-	*(*res)++ = *(*str)++;
-	*len = 0;
-}
-
 /* Esta funcao faz o parsing do minishell 
-Linha 47: -Se sep encontrado e se encontrado novamente desligado
+Linha 50: -Se sep encontrado e se encontrado novamente desligado
 		if (sep != *str) -> inicializa sep -> sep = 1
 		if (sep == *str) -> reinicia sep -> sep = 0;
-Linha 49: -Se seo = 0 e ' ' torna em 2 na str
-Linha 51: -Se for um token {<, <<, >, >>, |} e sep = 0: 
+Linha 52: -Se sep = 0 e ' ' torna em 2 na str
+Linha 54: -Se for um token {<, <<, >, >>, |} e sep = 0: 
 		  meter um 3 na casa do separador (tem de ser o unico 3 até ver uma 
 		  algo diferente de token -> len = 0).
 		  -Se nao for um pipe e len>0 --> manter o elemento na str
 		  -Se nao for um pipe e arr==2 --> manter o proximo, fazendo dois
 		  -No final meter um 2 extra e len passa para 1
-Linha 56: Incrementamos o str aqui para poupar linhas
-Linha 61: -Caso geral: é ir colando as letras na string res e dizer que 
+Linha 60: Incrementamos o str aqui para poupar linhas
+Linha 65: -Caso geral: é ir colando as letras na string res e dizer que 
 		  pode começar um novo token -> len = 0*/
-
 void	parse(char *res, char *str, char sep, int *arr)
 {
 	int		len;
@@ -71,9 +64,7 @@ void	parse(char *res, char *str, char sep, int *arr)
 		}
 		else if ((*str == 2 && arr[1]) || \
 			((*str != 2 || *str++ != 2) && ++arr[1]))
-		{
-			parse_aux(&len, &res, &str);
-		}
+			len = !(!!(*res++ = *str++));
 	}
 }
 

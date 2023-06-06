@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:04:26 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/04 23:39:18 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/06 15:27:30 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ void	delete_quotes_string(char **input, char c)
 	*input = temp;
 }
 
+/* 0 = i ; 1 = j ; 2 = words; 3 = flag ; 4 = sep */
 void	syntax_treatment(char *input)
 {
 	int	*arr;
