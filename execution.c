@@ -6,7 +6,7 @@
 /*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 16:09:50 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/06 14:27:48 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/06/06 18:57:58 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	command_execution(t_list *lst)
 		lst->ft_exec(&lst);
 		ft_free_list(&lst);
 		ft_free_env(&g_data.env);
+		ft_free_matrix(&our_env);
 		exit(g_data.status);
 	}
 	close_fds(&lst, 0);
@@ -83,6 +84,7 @@ void	core_execution(t_list *lst)
 		if (lst->content[0] && !lst->master_error[0] && !lst->master_error[1])
 		{
 			lst->path = get_cmd_path(our_env, lst->content);
+			ft_free_matrix(&our_env);
 			define_exec(lst);
 			command_execution(lst);
 		}
@@ -90,7 +92,6 @@ void	core_execution(t_list *lst)
 			break ;
 		lst = lst->next;
 	}
-	ft_free_matrix(&our_env);
 }
 
 void	execution(t_list *lst)

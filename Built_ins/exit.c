@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 20:57:12 by duarte33          #+#    #+#             */
-/*   Updated: 2023/06/06 19:03:40 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/06 19:07:31 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	__exec_exit(t_list **lst)
 			nb -= 256;
 		g_data.status = nb;
 	}
+	ft_free_list(list);
 	ft_free_env(&g_data.env);
 	ft_free_list(lst);
 	exit(g_data.status);
