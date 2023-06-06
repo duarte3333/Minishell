@@ -4,6 +4,7 @@ CFLAGS = -Wall -Wextra -g #-fsanitize=address #-Werror#-O3
 
 #valgrind --leak-check=full --show-leak-kinds=all 
 #--track-fds=yes ./pipex /dev/random  head out.txt
+# valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --suppressions=.ignore_readline ./minishell
 
 # ANSI color codes
 RED=\033[0;31m
