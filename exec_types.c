@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 16:02:31 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/06 18:56:40 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/06 20:03:24 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	__exec_default(t_list **lst)
 	if (execve((*lst)->path, (*lst)->content, our_env) == -1)
 		error_handle((*lst)->content[0]);
 	go_head(lst);
-	ft_free_list(lst);
 	ft_free_matrix(&our_env);
 	ft_free_env(&g_data.env);
+	free_vars();
 	exit(g_data.status);
 }

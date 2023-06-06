@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:01:28 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/06 19:07:23 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/06 19:59:09 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ struct s_global	g_data;
 t_list	*generate_list(char *input)
 {
 	t_list			*list;
-	char			**division;
 	char			*pre_split;
 	int				array[2];
 
@@ -27,13 +26,16 @@ t_list	*generate_list(char *input)
 	array[0] = 0;
 	array[1] = 0;
 	parse(pre_split, input, 0, array);
-	division = ft_split(pre_split, 2);
-	division = expander(division, ft_env_lst_to_arr(g_data.env));
-	list = NULL;
-	list = ft_lstnew(ft_matrixlen(division));
-	redirection(list, division);
+	g_data.vars->division = ft_split(pre_split, 2);
 	free(pre_split);
-	free(division);
+	g_data.vars->division = expander(g_data.vars->division, \
+	ft_env_lst_to_arr(g_data.env));
+	list = NULL;
+	list = ft_lstnew(ft_matrixlen(g_data.vars->division));
+	g_data.vars->head = list;
+	redirection(list, g_data.vars->division);
+	free(g_data.vars->division);
+	g_data.vars->division = NULL;
 	return (list);
 }
 
@@ -50,8 +52,8 @@ void	prompt(void)
 		{
 			if (input)
 				free(input);
-			ft_free_list(&list);
 			ft_free_env(&g_data.env);
+			free_vars();
 			exit(0);
 		}
 		add_history(input);
@@ -73,6 +75,7 @@ int	main(int ac, char **av, char **env)
 	g_data.env = get_env(env);
 	g_data.status = 0;
 	g_data.hd = 0;
+	g_data.vars = init_vars();
 	rl_catch_signals = 0;
 	signals_default();
 	prompt();
