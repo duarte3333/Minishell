@@ -58,6 +58,7 @@ SRCS =  Aux/ft_calloc.c \
 		exec_types.c \
 		execution.c \
 		expander.c \
+		expander_utils.c \
 		parser.c \
 		main.c \
 		path.c \

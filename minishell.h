@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/05 17:14:31 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/06 16:44:28 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,11 @@ void	redirection(t_list	*pre_list, char **division);
 //Expander
 char	**expander(char **divison, char **env);
 char	*chg_dollar(char *input, char **env);
+
+//expander utils
+int		is_alphnum(char c);
+char	*prepare_string(char *str, int i, int size);
+char	**prepare(char *str);
 
 //Execution
 void	execution(t_list *lst);
