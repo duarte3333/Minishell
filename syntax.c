@@ -6,7 +6,7 @@
 /*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:04:26 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/06 16:43:00 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/06/06 18:33:00 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ int	check_sep_2(char *str, int *arr)
 		arr[0] = 1;
 	else if (str[0] == ';')
 		arr[0] = 1;
-	return (arr[0]);
+	if (str[0] == '|')
+		return (4);
+	else
+		return (arr[0]);
 }
 
 void	syntax_error(char *str, char *input, int size)
@@ -62,7 +65,8 @@ void	treat_sep(char *input, int i, int size, int *words)
 	i += size;
 	while (input[i])
 	{
-		if (!sep && check_sep_2(&input[i], &temp) && !w)
+		if (((!sep && check_sep_2(&input[i], &temp)) \
+		|| (sep && check_sep_2(&input[i], &temp) == 4)) && !w)
 			syntax_error(&input[i], input, temp);
 		else if (input[i] != 32)
 			w++;
