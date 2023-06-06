@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/06 16:44:28 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/06 17:24:55 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ int		ft_str_islanum(char *str);
 int		ft_isdigit(int i);
 int		ft_lstsize(t_list *lst);
 int		is_built_in(t_list *lst);
+void	ft_bubble_sort(char **arr, int size);
 
 //Syntax
 void	syntax_treatment(char *input);

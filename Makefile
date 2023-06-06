@@ -43,6 +43,7 @@ SRCS =  Aux/ft_calloc.c \
 		Aux/quotes.c \
 		Aux/env_lst_search.c \
 		Aux/is_built_in.c \
+		Aux/ft_bubble_sort.c \
 		Get_Next_Line/get_next_line_utils.c \
 		Get_Next_Line/get_next_line.c \
 		Built_ins/pwd.c \

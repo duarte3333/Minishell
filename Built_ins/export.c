@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:36:36 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/04 23:37:04 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/06 17:25:26 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,36 +40,25 @@ void	ft_modify_print_matrix(char **array)
 	}
 }
 
-void	ft_bubble_sort(char **arr, int size)
+void	export_error(t_list **lst, char **str, int i)
 {
-	int		i;
-	int		swapped;
-	char	*temp;
-
-	swapped = 1;
-	while (swapped)
-	{
-		swapped = 0;
-		i = 0;
-		while (i < size - 1)
-		{
-			if (ft_strcmp(arr[i], arr[i + 1]) > 0)
-			{
-				temp = arr[i];
-				arr[i] = arr[i + 1];
-				arr[i + 1] = temp;
-				swapped = 1;
-			}
-		i++;
-		}
-		size--;
-	}
+	write(2, "minishell: export: \'", 21);
+	write(2, ((*lst)->content[i]), ft_strlen((*lst)->content[i]));
+	write(2, "\' not a valid identifier\n", 26);
+	ft_free_matrix(&str);
+	g_data.status = 1;
 }
 
 void	core_export(t_list **lst, char **str, int i)
 {
 	t_env	*lst_env_export;
 
+	lst_env_export = NULL;
+	if (!str || !str[0])
+	{
+		export_error(lst, str, i);
+		return ;
+	}
 	lst_env_export = env_lst_search(str[0]);
 	if (!lst_env_export)
 		ft_envadd_back(&(g_data.env), \
@@ -108,15 +97,9 @@ void	__exec_export(t_list **lst)
 	while ((*lst)->content[i])
 	{
 		str = ft_split((*lst)->content[i], '=');
-		if ((*lst)->content[i][0] == '=' || !ft_str_islanum(str[0]) \
+		if ((*lst)->content[i][0] == '=' || (str && !ft_str_islanum(str[0])) \
 		|| ft_isdigit((*lst)->content[i][0]))
-		{
-			write(2, "minishell: export: \'", 21);
-			write(2, ((*lst)->content[i]), ft_strlen((*lst)->content[i]));
-			write(2, "\' not a valid identifier\n", 26);
-			ft_free_matrix(&str);
-			g_data.status = 1;
-		}	
+			export_error(lst, str, i);
 		else
 			core_export(lst, str, i);
 		i++;
