@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:01:28 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/06 15:55:43 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/06 18:11:21 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	prompt(void)
 
 	while (1)
 	{
+		g_data.interrupted = 0;
 		input = readline("$ ");
 		if (!input)
 		{
@@ -57,7 +58,7 @@ void	prompt(void)
 		list = generate_list(input);
 		if (!input[0] || !list->content[0] || !list->content[0][0])
 			g_data.status = 0;
-		if (list->content[0])
+		if (list->content[0] && !g_data.interrupted)
 			execution(list);
 		ft_free_list(&list);
 		free(input);
@@ -71,6 +72,8 @@ int	main(int ac, char **av, char **env)
 	g_data.env = get_env(env);
 	g_data.env_og = env;
 	g_data.status = 0;
+	g_data.hd = 0;
+	rl_catch_signals = 0;
 	signals_default();
 	prompt();
 }

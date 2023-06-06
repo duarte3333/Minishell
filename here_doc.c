@@ -3,14 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 10:58:47 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/06 15:46:45 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/06/06 18:20:07 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	reset_the_terminal(void)
+{
+	tcsetattr(0, 0, &g_data.termios_save);
+	exit (0);
+}
+
+void	term_change(void)
+{
+	int				rc;
+	struct termios	termios_new;
+
+	rc = tcgetattr(0, &g_data.termios_save);
+	if (rc)
+	{
+		perror("");
+		return ;
+	}
+	termios_new = g_data.termios_save;
+	termios_new.c_lflag &= ~ECHOCTL;
+	rc = tcsetattr(0, 0, &termios_new);
+	if (rc)
+	{
+		perror("");
+		return ;
+	}
+}
 
 int	error_here_doc(char *str)
 {
@@ -28,24 +55,38 @@ int	ft_here_doc(char *str)
 	int			fd[2];
 	char		**our_env;
 
-	our_env = ft_env_lst_to_arr(g_data.env);
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, signals_here_doc);
+	g_data.hd = 1;
 	if (pipe(fd) == -1)
 		perror("");
-	while (1)
+	if (fork() == 0)
 	{
-		write(0, ">", 1);
-		in = get_next_line(0);
-		in = chg_dollar(in, our_env);
-		if (!in && error_here_doc(str))
-			break ;
-		if ((ft_strncmp(in, str, ft_strlen(str)) == 0) && \
-			(ft_strlen(in) - 1 == ft_strlen(str)))
-			break ;
-		write(fd[1], in, ft_strlen(in));
+		term_change();
+		our_env = ft_env_lst_to_arr(g_data.env);
+		while (1)
+		{
+			write(0, ">", 1);
+			in = get_next_line(0);
+			in = chg_dollar(in, our_env);
+			if (!in && error_here_doc(str))
+				break ;
+			if ((ft_strncmp(in, str, ft_strlen(str)) == 0) && \
+				(ft_strlen(in) - 1 == ft_strlen(str)))
+				break ;
+			write(fd[1], in, ft_strlen(in));
+			free(in);
+		}
+		ft_free_matrix(&our_env);
 		free(in);
+		close(fd[1]);
+		close(fd[0]);
+		exit(0);
 	}
-	ft_free_matrix(&our_env);
-	free(in);
+	signals_default();
 	close(fd[1]);
+	int status = 0;
+	waitpid(0, &status, 0);
+	g_data.hd = 0;
 	return (fd[0]);
 }
