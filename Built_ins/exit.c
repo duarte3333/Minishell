@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 20:57:12 by duarte33          #+#    #+#             */
-/*   Updated: 2023/06/04 23:36:54 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/06 19:03:30 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	__exec_exit(t_list **lst)
 			nb -= 256;
 		g_data.status = nb;
 	}
+	ft_free_list(list);
 	ft_free_env(&g_data.env);
 	exit(g_data.status);
 }
