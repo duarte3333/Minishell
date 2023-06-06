@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/06 18:55:59 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/06 19:59:40 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,6 @@ typedef struct s_env
 	struct s_env	*prev;
 }	t_env;
 
-struct s_global
-{
-	int				status;
-	t_env			*env;
-	int				hd;
-	int				interrupted;
-	struct termios	termios_save;
-};
-
-extern struct s_global	g_data;
-
 typedef struct s_list
 {
 	char			**content;
@@ -59,6 +48,26 @@ typedef struct s_list
 	struct s_list	*prev;
 	void			(*ft_exec)(struct s_list **list);
 }	t_list;
+
+typedef struct s_vars
+{
+	t_list			*head;
+	char			*str;
+	char			**env;
+	char			**division;
+}	t_vars;
+
+struct s_global
+{
+	t_vars			*vars;
+	int				status;
+	t_env			*env;
+	int				hd;
+	int				interrupted;
+	struct termios	termios_save;
+};
+
+extern struct s_global	g_data;
 
 void	print_list(t_list *list);
 
@@ -147,6 +156,10 @@ char	**prepare(char *str);
 
 //Execution
 void	execution(t_list *lst);
+
+//vars
+void	free_vars(void);
+t_vars	*init_vars(void);
 
 //Exec functions
 void	close_fds(t_list **lst, int flag);

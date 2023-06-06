@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_list.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duarte33 <duarte33@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 19:57:30 by duarte33          #+#    #+#             */
-/*   Updated: 2023/06/04 20:15:17 by duarte33         ###   ########.fr       */
+/*   Updated: 2023/06/06 19:22:37 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	ft_free_list(t_list **lst)
 		free(*lst);
 		*lst = temp;
 	}
+	g_data.vars->head = NULL;
 }
 
 /* Esta funcao serve para dar print da linked list

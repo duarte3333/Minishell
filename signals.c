@@ -6,7 +6,7 @@
 /*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:34:53 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/06 18:59:22 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/06 20:00:14 by mtiago-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@ void	signals_default(void)
 
 void	signals_here_doc(int sign)
 {
-	write(2, " ", 1);
 	if (sign == SIGQUIT)
-		SIG_IGN;
+		SIG_IGN ;
 	else if (sign == SIGINT)
 	{
+		write(2, " ", 1);
 		ft_free_env(&g_data.env);
+		free_vars();
 		exit(1);
 	}
 }
@@ -60,6 +61,7 @@ void	handle_sign(int sign)
 		if (g_data.hd)
 		{
 			g_data.interrupted = 1;
+			ft_free_env(&g_data.env);
 			return ;
 		}
 		if (pid == -1)

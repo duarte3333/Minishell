@@ -64,7 +64,6 @@ SRCS =  Aux/ft_calloc.c \
 		parser.c \
 		main.c \
 		path.c \
-		vars.c \
 		syntax.c
 
 OBJS	= ${SRCS:.c=.o}
