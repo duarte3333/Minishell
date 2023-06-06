@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:01:28 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/06 18:46:25 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/06 18:51:27 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	prompt(void)
 		if (list->content[0] && !g_data.interrupted)
 			execution(list);
 		ft_free_list(&list);
+		if (g_data.env_og)
+			ft_free_matrix(&g_data.env_og);
 		free(input);
 	}
 }
@@ -70,7 +72,7 @@ int	main(int ac, char **av, char **env)
 	(void)ac;
 	(void)av;
 	g_data.env = get_env(env);
-	g_data.env_og = env;
+	g_data.env_og = ft_matrixdup(env);
 	g_data.status = 0;
 	g_data.hd = 0;
 	rl_catch_signals = 0;
