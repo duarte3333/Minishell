@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 17:45:55 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/06 19:59:40 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/06 23:01:46 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ t_env	*ft_envnew(char *str);
 t_env	*ft_envlast(t_env *lst);
 void	ft_envadd_back(t_env **lst, t_env *new);
 void	env_go_head(t_env **lst);
-void	ft_free_env(t_env **lst);
 char	**ft_env_lst_to_arr(t_env *lst_env);
 int		ft_env_lstsize(t_env *lst);
 t_env	*env_lst_search(char *input_var);
@@ -137,7 +136,7 @@ char	*get_cmd_path(char **env, char **cmd);
 
 //Env
 t_env	*get_env(char **env);
-void	ft_free_env(t_env **lst);
+int		ft_free_env(t_env **lst);
 
 //Here doc
 int		ft_here_doc(char *str);
@@ -157,8 +156,8 @@ char	**prepare(char *str);
 //Execution
 void	execution(t_list *lst);
 
-//vars
-void	free_vars(void);
+//Vars
+int		free_vars(void);
 t_vars	*init_vars(void);
 
 //Exec functions

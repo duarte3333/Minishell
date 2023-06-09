@@ -6,7 +6,7 @@
 /*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:04:26 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/06 18:33:00 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/06/06 22:34:28 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,12 @@ void	delete_quotes_string(char **input, char c)
 /* 0 = i ; 1 = j ; 2 = words; 3 = flag ; 4 = sep */
 void	syntax_treatment(char *input)
 {
-	int	*arr;
+	int	arr[5];
+	int	i;
 
-	arr = (int *)ft_calloc(5, sizeof(int));
+	i = 0;
+	while (i <= 4)
+		arr[i++] = 0;
 	if (!input)
 		return ;
 	while (input[arr[0]])
@@ -127,9 +130,7 @@ void	syntax_treatment(char *input)
 			arr[3] = 0;
 		else if (input[arr[0]] != 32)
 			(arr[2])++;
-		if (arr[1] == 2)
-			(arr[0])++;
+		(arr[0]) += (arr[1] == 2);
 		(arr[0])++;
 	}
-	free(arr);
 }

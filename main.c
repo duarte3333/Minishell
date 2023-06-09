@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:01:28 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/06 19:59:09 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/06 21:52:04 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ t_list	*generate_list(char *input)
 	list = ft_lstnew(ft_matrixlen(g_data.vars->division));
 	g_data.vars->head = list;
 	redirection(list, g_data.vars->division);
-	free(g_data.vars->division);
-	g_data.vars->division = NULL;
+	ft_free_matrix(&g_data.vars->division);
 	return (list);
 }
 

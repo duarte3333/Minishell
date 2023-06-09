@@ -6,7 +6,7 @@
 /*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 20:57:12 by duarte33          #+#    #+#             */
-/*   Updated: 2023/06/06 20:18:24 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/06/06 20:43:49 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	__exec_exit(t_list **lst)
 {
 	int	nb;
 
-	write(2, "exit\n", 5);
 	if (exit_overflow(lst))
 		g_data.status = 2;
 	else if ((*lst)->content[1] && (*lst)->content[2])
@@ -84,9 +83,6 @@ void	__exec_exit(t_list **lst)
 			nb -= 256;
 		g_data.status = nb;
 	}
-	ft_free_env(&g_data.env);
-	free_vars();
-	exit(g_data.status);
 }
 
 // 0: Indica que o comando foi executado com sucesso, sem erros.

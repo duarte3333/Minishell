@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 10:58:47 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/06/06 20:02:02 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/06 21:45:09 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	ft_hd_child(char *str, int *fd)
 			break ;
 		write(fd[1], g_data.vars->str, ft_strlen(g_data.vars->str));
 		free(g_data.vars->str);
+		g_data.vars->str = NULL;
 	}
 	ft_free_env(&g_data.env);
 	free_vars();

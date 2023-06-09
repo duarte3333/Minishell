@@ -6,7 +6,7 @@
 /*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 17:16:16 by dsa-mora          #+#    #+#             */
-/*   Updated: 2023/05/29 19:53:21 by dsa-mora         ###   ########.fr       */
+/*   Updated: 2023/06/06 20:37:17 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int	ft_lstsize(t_list *lst)
 	size_t	i;
 
 	i = 0;
+	go_head(&lst);
 	while (lst)
 	{
 		lst = lst->next;

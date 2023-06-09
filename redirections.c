@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 18:13:42 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/05 18:58:00 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/06 21:53:08 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	redirect(char **division, int *i, t_list *lst)
 		else if (option == 4)
 			lst->fd_master[1] = open(division[++(*i)], \
 			O_WRONLY | O_TRUNC | O_CREAT, 0644);
-		free(division[(*i) - 1]);
 		invalid_fd(lst);
 	}
 }
@@ -98,6 +97,5 @@ void	redirection(t_list	*lst, char **division)
 			redirect(division, &i, temp);
 		else
 			temp->content[j++] = ft_strdup(division[i]);
-		free(division[i]);
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_list.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 19:57:30 by duarte33          #+#    #+#             */
-/*   Updated: 2023/06/06 19:22:37 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/06 22:03:07 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	ft_free_list(t_list **lst)
 	while (*lst)
 	{
 		temp = (*lst)->next;
+		close((*lst)->fd[0]);
+		close((*lst)->fd[1]);
 		ft_free_matrix(&(*lst)->content);
 		free((*lst)->path);
 		free((*lst)->content);

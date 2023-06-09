@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiago-s <mtiago-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dsa-mora <dsa-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 16:34:53 by mtiago-s          #+#    #+#             */
-/*   Updated: 2023/06/06 20:00:14 by mtiago-s         ###   ########.fr       */
+/*   Updated: 2023/06/06 21:57:16 by dsa-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,22 +53,19 @@ void	handle_sign(int sign)
 	int		status;
 
 	pid = waitpid(-1, &status, 0);
-	if (sign == SIGINT)
+	g_data.status = 130;
+	(void)sign;
+	write(2, "^C", 2);
+	write(2, "\n", 1);
+	if (g_data.hd)
 	{
-		write(2, "^C", 2);
-		write(2, "\n", 1);
-		g_data.status = 130;
-		if (g_data.hd)
-		{
-			g_data.interrupted = 1;
-			ft_free_env(&g_data.env);
-			return ;
-		}
-		if (pid == -1)
-		{
-			rl_replace_line("", 0);
-			rl_on_new_line();
-			rl_redisplay();
-		}
+		g_data.interrupted = 1;
+		return ;
+	}
+	if (pid == -1)
+	{
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		rl_redisplay();
 	}
 }
