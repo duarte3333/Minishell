@@ -35,6 +35,7 @@ Here's what each field represents:
 
 
 **Example of input I will use to explain:**
+
 I will explain our parsing, redirections and execution with an example command:
 
 ```bash
