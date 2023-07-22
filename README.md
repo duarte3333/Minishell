@@ -93,7 +93,7 @@ When, the program find a pipe `‘|’` it means that the command is over and we
 
 In this command the file will read from the file descriptor 8 and will write to the file descriptor 1.
 
-### Executions
+### Execution
 
 Each time we execute a node command, we create a fork and the redirections are set up in the child process.
 
