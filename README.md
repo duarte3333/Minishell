@@ -44,11 +44,9 @@ I will explain our parsing, redirections and execution with an example command:
 
 ### Parsing
 
-In the given example, we have two commands separated by a pipe symbol "|". Each command is represented by a node in the linked list.
-
 **Step 1: Parsing the command** 
 
-The command is parsed into tokens using the function in the **`parser()`** . The result of this separation is a char*  like this:
+In the given example, the command is parsed into tokens using the function `parser()`, resulting in a char* array containing redirections, commands, pipes, files, arguments, and other relevant tokens represented by nodes in the linked list.
 
 [’<’, ‘Makefile’ , ‘grep’ , ‘a’ ,’|’, ‘>’ , ‘out’, ’main.c’ , ‘cat’ ]
 
