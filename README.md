@@ -375,16 +375,6 @@ int main() {
 }
 ```
 
-## The builtins we had to implement:
-
-- **`echo with option -n`**: Prints text without a trailing newline.
-- **`cd with only a relative or absolute path`**: Changes the current directory to the specified path.
-- **`pwd with no options`**: Prints the current working directory.
-- **`export with no options`**: Displays all environment variables.
-- **`unset with no options`**: Removes specified environment variables.
-- **`env with no options or arguments`**: Displays all environment variables and their values.
-- **`exit with no options`**: Exits the current shell or script.
-
 ## Documentation
 
 [Short introduction to signals in C](https://www.youtube.com/watch?v=5We_HtLlAbs&list=PLfqABt5AS4FkW5mOn2Tn9ZZLLDwA3kZUY&index=16&pp=iAQB)
@@ -397,7 +387,7 @@ https://github.com/maiadegraaf/minishell
 
 [https://www.cs.purdue.edu/homes/grr/SystemsProgrammingBook/Book/Chapter5-WritingYourOwnShell.pdf](https://www.cs.purdue.edu/homes/grr/SystemsProgrammingBook/Book/Chapter5-WritingYourOwnShell.pdf)
 
-### Command’s that work in our shell exacly like Bash?
+## Command’s that work in our shell exacly like Bash?
 
 ```bash
 cat /dev/random | head
