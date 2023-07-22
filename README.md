@@ -58,7 +58,7 @@ divided in redirections, commands, pipes, files, arguments and other relevant to
 
 Our parser is designed to tokenize a given shell command input and store the resulting tokens in a modified format. It processes the input string character by character, considering special characters like quotes, double quotes, angle brackets, and pipes as separators. The parser converts these separators into numeric codes (2 and 3 in this case) and modifies the input string accordingly.
 
-Check our `**parser()**` function to understand the logic.
+Check our **parser()** function to understand the logic.
 
 For the given example:
 
