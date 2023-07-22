@@ -293,7 +293,7 @@ The readline library is a set of functions for command-line editing, history, an
 - The **`rl_redisplay`** function redisplay the current line.
 - The **`add_history`** function adds a line to the command history.
 
-### Signals
+## Signals
 
 ### What is a sigaction?
 
