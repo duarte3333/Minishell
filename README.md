@@ -35,9 +35,9 @@ Here's what each field represents:
 
 ### Parsing and redirections
 
-I will explain the parsing and redirections with an example command:
+I will explain the parsing, redirections and execution with a command example:
 
-**Example of input:**
+**Example of input i will use to explain:**
 
 ```bash
 < Makefile grep a > out | < main.c cat
