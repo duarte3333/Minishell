@@ -33,9 +33,9 @@ Here's what each field represents:
 - **`next`** and **`prev`**: Pointers to the next and previous nodes in the linked list, respectively.
 - **`ft_exec`**: A function pointer pointing to the function responsible for executing the command.
 
-I will explain our parsing, redirections and execution with an example command:
 
 **Example of input I will use to explain:**
+I will explain our parsing, redirections and execution with an example command:
 
 ```bash
 < Makefile grep a > out | < main.c cat
