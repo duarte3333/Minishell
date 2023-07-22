@@ -1,3 +1,4 @@
+
 # Minishell
 
 ## Summary
@@ -155,7 +156,9 @@ So this command will read from the file descriptor 5 and it will write to the fi
 
 6                                5
 
-![Untitled](Minishell%20799ee0088d9b4f2483ec744dbbf62864/Untitled.png)
+<p align="center">
+  <img src="https://github.com/duarte3333/Minishell/assets/76222459/756bc082-1386-471e-8d5e-b26e233b18fa" alt="Image Description width=80% ">
+</p>
 
 **!!This works for any line of commands you can think of!!**
 
@@ -180,7 +183,10 @@ So this command will read from the file descriptor 5 and it will write to the fi
 
 A shell refers to a command-line interface that allows users to interact with an operating system. It provides a way to access and control the various functions of an operating system using text commands rather than a graphical user interface.
 
-![Untitled](Minishell%20799ee0088d9b4f2483ec744dbbf62864/Untitled%201.png)
+<p align="center">
+  <img src="https://github.com/duarte3333/Minishell/assets/76222459/5e49623b-4326-4b25-87e1-4962e7092835" alt="Image Description width='60%' ">
+</p>
+
 
 ### What is a GNU shell?
 
@@ -188,8 +194,9 @@ GNU shell, also known as Bash (short for "Bourne-again shell"), is a widely used
 
 ### What are the 4 steps to make the real Bash?
 
-![Untitled](Minishell%20799ee0088d9b4f2483ec744dbbf62864/Untitled%202.png)
-
+<p align="center">
+  <img src="https://github.com/duarte3333/Minishell/assets/76222459/0e15e6a5-4314-482b-ab31-d7fdf32d8418" alt="Image Description">
+</p>
 ### Lexer
 
 This is the first step in processing a command, where the shell reads the input and converts it into a series of tokens. Tokens are individual units of syntax, such as words, symbols, and operators. The lexer identifies each token and assigns a type to it, such as "**command**", "**argument**", "**redirection operator**", or "**pipe operator**".
@@ -228,6 +235,34 @@ int main()
 ```
 
 This program will repeatedly prompt the user to enter a command, read the input using **`readline`**, add the input to the command history using **`add_history`**, and then print the input to the console using **`printf`**. Finally, it frees the memory used by the input string with **`free`**.
+## What is the function fork() ?
+
+In C programming, the **`fork()`** function is used to create a new process by duplicating the calling process. The new process is referred to as the child process, while the original process is referred to as the parent process.
+
+When **`fork()`** is called, a new process is created that is a copy of the calling process. Both processes then continue executing from the point where the **`fork()`** function was called. The new process gets its own unique process ID (PID), while the parent process retains its original PID.
+<div align="center">
+    <table >
+     <!-- <tr>
+        <td><b>Latest Tweets</b></td>
+        <td><b>daily.dev</b></td>
+     </tr> -->
+     <tr>
+       <td><img src="https://user-images.githubusercontent.com/76222459/227656655-9899db40-ae44-4b32-ad7d-51363da4028b.png" width="300" alt="sunil sapkota twitter" > </img></td>
+        <td><img src="https://user-images.githubusercontent.com/76222459/227656661-5774de6c-4ecd-47ab-8afc-fad557ac75ad.png" width="300" alt="sunil sapkota's Dev Card"/></td>
+     </tr>
+    </table>
+    </div>
+
+The child process and parent process run independently of each other and have their own memory space, CPU registers, and file descriptors. The child process can modify its own memory space, but any changes made by the child process do not affect the parent process.
+
+## What is a pipe?
+
+<div align="center">
+        <td> <img src="https://user-images.githubusercontent.com/76222459/227657406-bbaa54c1-31c8-48b8-b772-3c4bab9d5b94.png" width="400" alt="sunil sapkota's Dev Card"/></td>
+     </tr>
+</div>
+
+**Definition:** A pipe is a method for </ins>interprocess communication (IPC)</ins> that allows one process to send data to another process. A pipe consists of two ends, a read end and a write end. The write end is used to send data to the pipe, and the read end is used to receive data from the pipe.
 
 **Readline library**
 
