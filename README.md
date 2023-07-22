@@ -201,7 +201,7 @@ So this command will read from the file descriptor 5 and it will write to the fi
 A shell refers to a command-line interface that allows users to interact with an operating system. It provides a way to access and control the various functions of an operating system using text commands rather than a graphical user interface.
 
 <p align="center">
-  <img src="https://github.com/duarte3333/Minishell/assets/76222459/5e49623b-4326-4b25-87e1-4962e7092835" alt="Image Description" "style="width: 60%;">
+  <img src="https://github.com/duarte3333/Minishell/assets/76222459/5e49623b-4326-4b25-87e1-4962e7092835" alt="Image Description" style="width: 60%;">
 </p>
 
 ### What is a GNU shell?
@@ -211,7 +211,7 @@ GNU shell, also known as Bash (short for "Bourne-again shell"), is a widely used
 ### What are the steps to make the our Minishell?
 
 <p align="center">
-  <img src="https://github.com/duarte3333/Minishell/assets/76222459/0e15e6a5-4314-482b-ab31-d7fdf32d8418" alt="Image Description" "style="width: 80%;">
+  <img src="https://github.com/duarte3333/Minishell/assets/76222459/0e15e6a5-4314-482b-ab31-d7fdf32d8418" alt="Image Description" style="width: 80%;">
 </p>
 
 
