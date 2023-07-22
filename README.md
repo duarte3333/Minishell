@@ -170,8 +170,7 @@ So this command will read from the file descriptor 5 and it will write to the fi
           fd[1]  |——————-| fd[0]
 
      in/write                      out/read
-
-6                                5
+     6	                           5
 
 <p align="center">
   <img src="https://github.com/duarte3333/Minishell/assets/76222459/756bc082-1386-471e-8d5e-b26e233b18fa" alt="Image Description" "style="width: 90%;">
