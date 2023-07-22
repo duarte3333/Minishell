@@ -33,25 +33,42 @@ Here's what each field represents:
 - **`next`** and **`prev`**: Pointers to the next and previous nodes in the linked list, respectively.
 - **`ft_exec`**: A function pointer pointing to the function responsible for executing the command.
 
-### Parsing and redirections
+I will explain our parsing, redirections and execution with an example command:
 
-I will explain the parsing, redirections and execution with a command example:
-
-**Example of input i will use to explain:**
+### Example of input I will use to explain:
 
 ```bash
 < Makefile grep a > out | < main.c cat
 ```
 
-In this example, we have two commands separated by a pipe symbol "|". Each command is represented by a node in the linked list.
+### Parsing
+
+In the given example, we have two commands separated by a pipe symbol "|". Each command is represented by a node in the linked list.
 
 **Step 1: Parsing the command** 
 
 The command is parsed into tokens using the function in the **`parser()`** . The result of this separation is a char*  like this:
 
-[’< Makefile’ , ‘grep a’ ,’|’, ‘> out’, ’main.c’ , ‘cat’ ]
+[’<’, ‘Makefile’ , ‘grep’ , ‘a’ ,’|’, ‘>’ , ‘out’, ’main.c’ , ‘cat’ ]
 
-divided in redirections, commands, pipes and other relevant tokens.
+divided in redirections, commands, pipes, files, arguments and other relevant tokens.
+
+**Technical explanation of our parser:**
+
+Our parser is designed to tokenize a given shell command input and store the resulting tokens in a modified format. It processes the input string character by character, considering special characters like quotes, double quotes, angle brackets, and pipes as separators. The parser converts these separators into numeric codes (2 and 3 in this case) and modifies the input string accordingly.
+
+Check our `**parser()**` function to understand the logic.
+
+For the given example:
+
+```c
+Input:                **< Makefile grep a > out | < main.c cat**
+Our Parser Output:    **22<2Makefile2grep2a222>22out2232222<22main.c2cat**
+```
+
+The final output array represents the parsed and tokenized form of the input command line, allowing further processing or execution of individual commands in the minimal shell environment.
+
+### Redirections
 
 **Step 2: Setting Up File Descriptors**
 
@@ -76,7 +93,7 @@ When, the program find a pipe `‘|’` it means that the command is over and we
 
 In this command the file will read from the file descriptor 8 and will write to the file descriptor 1.
 
-### Execution
+### Executions
 
 Each time we execute a node command, we create a fork and the redirections are set up in the child process.
 
@@ -175,7 +192,7 @@ So this command will read from the file descriptor 5 and it will write to the fi
 9. Support ctrl-C, ctrl-D, and ctrl-\ signals as in bash.
 10. Recreate the built-in commands echo with option -n, cd with only a relative or absolute path, pwd with no flags, export with no flags, unset with no flags, env with no flags or arguments, and exit with no flags.
 
-# Theory
+## Theory
 
 ## What is a shell?
 
@@ -187,31 +204,31 @@ A shell refers to a command-line interface that allows users to interact with an
   <img src="https://github.com/duarte3333/Minishell/assets/76222459/5e49623b-4326-4b25-87e1-4962e7092835" alt="Image Description width='60%' ">
 </p>
 
-
 ### What is a GNU shell?
 
 GNU shell, also known as Bash (short for "Bourne-again shell"), is a widely used command-line interface and scripting language for Unix-based operating systems. It is the default shell on most Linux distributions and is available on many other Unix-like systems.
 
-### What are the 4 steps to make the real Bash?
+### What are the steps to make the our Minishell?
 
 <p align="center">
   <img src="https://github.com/duarte3333/Minishell/assets/76222459/0e15e6a5-4314-482b-ab31-d7fdf32d8418" alt="Image Description">
 </p>
-### Lexer
 
-This is the first step in processing a command, where the shell reads the input and converts it into a series of tokens. Tokens are individual units of syntax, such as words, symbols, and operators. The lexer identifies each token and assigns a type to it, such as "**command**", "**argument**", "**redirection operator**", or "**pipe operator**".
 
-### Parser
-
-Once the input has been broken down into tokens, the parser takes over and checks that the tokens form a **valid syntax tree**. It ensures that the tokens are arranged in a **grammatically correct order**, and that any syntax rules are followed. If there are any syntax errors, the parser generates an error message and the command is not executed.
-
-### Expander
-
-After the command has been parsed and the syntax has been validated, the shell expands any variables, wildcards, or other special characters in the command. For example, it replaces **`$HOME`** with the user's home directory, or expands **`.txt`** to a list of all files in the current directory that end in **`.txt`**. This step also handles quote removal, where quotes are removed from the command's arguments.
-
-### Executor
-
-The final step is to **execute the command**. This involves creating a new process for the command and passing it any necessary arguments. The shell also manages the command's input and output streams, redirects them if necessary, and waits for the command to finish executing before returning control to the user.
+1. **Parser:**
+The parser is responsible for breaking down the user input into individual tokens. It takes the raw command line and separates it into distinct components like commands, arguments, operators, and redirections. The parsed tokens are then used to construct the command structure for further processing and execution.
+2. **Syntax Errors:**
+We handled syntax errors in Minishell to provide informative feedback to the user when they enter an invalid command or have incorrect syntax. Proper error handling helps users identify and correct mistakes, making the shell more user-friendly.
+3. **Expander:**
+The expander module processes certain special characters and expansions in the command, such as environment variable expansion (e.g., **`$VAR`**) and command substitution (e.g., **`$(command)`**). It ensures that these expansions are resolved correctly before executing the command.
+4. **Here Doc:**
+Here documents (Here doc) are a type of input redirection in which data is provided directly into the standard input of a command from the script itself, using a delimiter to mark the end of the input. We implemented support for here documents, allowing users to provide input inline within the script or command line.
+5. **Redirections:**
+Redirections in our Minishell allow users to manipulate standard input, output, and error streams for commands. We implemented input redirection (**`<`**), output redirection (**`>`** and **`>>`**). These redirections enable users to work with files and customize command behavior.
+6. **Signals:**
+Signal handling is essential for maintaining the shell's responsiveness and user experience. We managed signals like **`SIGINT`** (usually triggered by pressing Ctrl+C) and  **`SIGQUIT`** (usually triggered by pressing Ctrl+D). Handling these signals allows users to interrupt or terminate running processes gracefully.
+7. **Built-ins:**
+Built-in commands are commands that are directly handled by the shell itself rather than invoking external executables. In Minishell, you implemented several built-in commands like **`cd`** for changing directories, **`echo`** with the **`n`** option to suppress newlines, **`pwd`** to print the current working directory, **`export`** to set environment variables, **`unset`** to remove environment variables, **`env`** to display environment variables, and **`exit`** to exit the shell.
 
 ## What is the function readline() ?
 
@@ -235,34 +252,6 @@ int main()
 ```
 
 This program will repeatedly prompt the user to enter a command, read the input using **`readline`**, add the input to the command history using **`add_history`**, and then print the input to the console using **`printf`**. Finally, it frees the memory used by the input string with **`free`**.
-## What is the function fork() ?
-
-In C programming, the **`fork()`** function is used to create a new process by duplicating the calling process. The new process is referred to as the child process, while the original process is referred to as the parent process.
-
-When **`fork()`** is called, a new process is created that is a copy of the calling process. Both processes then continue executing from the point where the **`fork()`** function was called. The new process gets its own unique process ID (PID), while the parent process retains its original PID.
-<div align="center">
-    <table >
-     <!-- <tr>
-        <td><b>Latest Tweets</b></td>
-        <td><b>daily.dev</b></td>
-     </tr> -->
-     <tr>
-       <td><img src="https://user-images.githubusercontent.com/76222459/227656655-9899db40-ae44-4b32-ad7d-51363da4028b.png" width="300" alt="sunil sapkota twitter" > </img></td>
-        <td><img src="https://user-images.githubusercontent.com/76222459/227656661-5774de6c-4ecd-47ab-8afc-fad557ac75ad.png" width="300" alt="sunil sapkota's Dev Card"/></td>
-     </tr>
-    </table>
-    </div>
-
-The child process and parent process run independently of each other and have their own memory space, CPU registers, and file descriptors. The child process can modify its own memory space, but any changes made by the child process do not affect the parent process.
-
-## What is a pipe?
-
-<div align="center">
-        <td> <img src="https://user-images.githubusercontent.com/76222459/227657406-bbaa54c1-31c8-48b8-b772-3c4bab9d5b94.png" width="400" alt="sunil sapkota's Dev Card"/></td>
-     </tr>
-</div>
-
-**Definition:** A pipe is a method for </ins>interprocess communication (IPC)</ins> that allows one process to send data to another process. A pipe consists of two ends, a read end and a write end. The write end is used to send data to the pipe, and the read end is used to receive data from the pipe.
 
 **Readline library**
 
