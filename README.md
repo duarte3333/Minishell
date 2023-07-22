@@ -193,7 +193,7 @@ So this command will read from the file descriptor 5 and it will write to the fi
 
 ## Theory
 
-## What is a shell?
+### What is a shell?
 
 **Simple definition:** A shell is a way to talk to the computer using text commands instead of clicking on icons or menus. It's like a window into the computer's brain. There are different types of shells, but they all let to do things like open programs, move files, and change settings by typing in simple commands.
 
@@ -228,7 +228,7 @@ Signal handling is essential for maintaining the shell's responsiveness and user
 7. **Built-ins:**
 Built-in commands are commands that are directly handled by the shell itself rather than invoking external executables. In Minishell, you implemented several built-in commands like **`cd`** for changing directories, **`echo`** with the **`n`** option to suppress newlines, **`pwd`** to print the current working directory, **`export`** to set environment variables, **`unset`** to remove environment variables, **`env`** to display environment variables, and **`exit`** to exit the shell.
 
-## What is the function fork() ?
+### What is the function fork() ?
 
 In C programming, the **`fork()`** function is used to create a new process by duplicating the calling process. The new process is referred to as the child process, while the original process is referred to as the parent process.
 
@@ -248,7 +248,7 @@ When **`fork()`** is called, a new process is created that is a copy of the call
 
 The child process and parent process run independently of each other and have their own memory space, CPU registers, and file descriptors. The child process can modify its own memory space, but any changes made by the child process do not affect the parent process.
 
-## What is a pipe?
+### What is a pipe?
 
 <div align="center">
         <td> <img src="https://user-images.githubusercontent.com/76222459/227657406-bbaa54c1-31c8-48b8-b772-3c4bab9d5b94.png" width="400" alt="sunil sapkota's Dev Card"/></td>
@@ -259,7 +259,7 @@ The child process and parent process run independently of each other and have th
 
 **Simple Definition:** A pipe is like a tube that connects two processes or programs. One end of the pipe is used to send data and the other end is used to receive it.
 
-## What is the function readline() ?
+### What is the function readline() ?
 
 **Simple definition:** It is a library function in C that reads input from the user via the command line interface. It allows for more advanced user input handling, including features such as line editing and command history.
 
@@ -293,7 +293,7 @@ The readline library is a set of functions for command-line editing, history, an
 - The **`rl_redisplay`** function redisplay the current line.
 - The **`add_history`** function adds a line to the command history.
 
-## Signals
+### Signals
 
 ### What is a sigaction?
 
