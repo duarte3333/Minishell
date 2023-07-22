@@ -35,7 +35,7 @@ Here's what each field represents:
 
 I will explain our parsing, redirections and execution with an example command:
 
-### Example of input I will use to explain:
+**Example of input I will use to explain:**
 
 ```bash
 < Makefile grep a > out | < main.c cat
