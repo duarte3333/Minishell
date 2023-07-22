@@ -3,7 +3,7 @@
 
 ## Summary
 
-During the Minishell project at 42 school, I had the opportunity to work alongside my partner Tiago to build a simplified Unix shell. Our task was to create a fully functional command-line interface that allowed users to execute commands, manage built-in functionalities like "cd," and handle environment variables. It was an exciting and valuable learning experience that deepened my understanding of OS concepts like process management and parsing. Tiago and I collaborated closely, combining our skills to design an efficient and user-friendly shell, making the project both challenging and rewarding.
+During the Minishell project at 42 school, I had the opportunity to work alongside my partner Tiago(@TiagoTeo) to build a simplified Unix shell. Our task was to create a fully functional command-line interface that allowed users to execute commands, manage built-in functionalities like "cd," and handle environment variables. It was an exciting and valuable learning experience that deepened my understanding of OS concepts like process management and parsing. Tiago and I collaborated closely, combining our skills to design an efficient and user-friendly shell, making the project both challenging and rewarding.
 
 ## Our implementation
 
